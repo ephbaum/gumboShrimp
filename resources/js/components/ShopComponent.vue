@@ -9,13 +9,13 @@
             <div class="col-md-4 " v-for="item in items" :key="item.id" style="padding-bottom: 20px" >
                 <div class="card" cols='3' >
                     <div class="card-body"  >
-                        <img :src="item.itemImage" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
-                        <h5 class="card-title">{{item.itemName}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
+                        <img :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
+                        <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><h5>Price:${{item.itemPrice}}</h5></li>
-                            <li class="list-group-item">Item Description: {{item.itemDescription}}</li>
-                            <li class="list-group-item">Number Available: {{item. numberAvailable}}</li>
-                            <li class="list-group-item">Size: {{item.itemSize}}</li>
+                            <li class="list-group-item"><h5>Price:${{item.price}}</h5></li>
+                            <li class="list-group-item">Item Description: {{item.description}}</li>
+                            <li class="list-group-item">Number Available: {{item. number_available}}</li>
+                            <li class="list-group-item">Size: {{item.size}}</li>
                             <li class="list-group-item">item id: {{item.id}}</li>
                         </ul>
 
@@ -31,7 +31,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Item: {{ updateItem.itemName }}</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Item: {{ updateItem.item_name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -45,20 +45,20 @@
 
                             <div class="form-group">
                                 <label for="name">Item</label>
-                                <input v-model="updateItem.itemName" type="text" class="form-control" name="name" id="name" />
+                                <input v-model="updateItem.item_name" type="text" class="form-control" name="name" id="name" />
                             </div>
                             <div class="form-group">
                                 <label for="price">price</label>
-                                <input v-model="updateItem.itemPrice" type="text" class="form-control" name="name" id="price" />
+                                <input v-model="updateItem.price" type="text" class="form-control" name="name" id="price" />
                             </div>
 
                             <div class="form-group">
                                 <label for="description">Item Description</label>
-                                <input v-model="updateItem.itemDescription" type="text" class="form-control" name="description" id="description" />
+                                <input v-model="updateItem.description" type="text" class="form-control" name="description" id="description" />
                             </div>
                             <div class="form-group">
                                 <label for="number_available">Number Available</label>
-                                <select v-model="updateItem.numberAvailable" class="custom-select mr-sm-2" id="numberAvailable">
+                                <select v-model="updateItem.number_available" class="custom-select mr-sm-2" id="numberAvailable">
                                     <option selected>Choose...</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="size">Size</label>
-                                <select v-model="updateItem.itemSize" class="custom-select mr-sm-2" id="numberAvailable">
+                                <select v-model="updateItem.size" class="custom-select mr-sm-2" id="numberAvailable">
                                     <option selected>Choose...</option>
                                     <option value="sm">SM</option>
                                     <option value="m">M</option>
@@ -130,7 +130,7 @@
             loadItems(){
                 axios.get(this.url)
                 .then(response =>{
-                    this.items = response.data.items;
+                    this.items = response.data.data;
                 })
                 .catch(error => {
                     console.log(error);
@@ -161,8 +161,8 @@
                 let reader = new FileReader();
                 if(file['size'] < 2111775){
                     reader.onloadend = (file) =>{
-                        this.updateItem.itemImage = reader.result;
-                        console.log(this.updateItem.itemImage);
+                        this.updateItem.image = reader.result;
+                        console.log(this.updateItem.image);
                     }
                     reader.readAsDataURL(file);
                 } else{

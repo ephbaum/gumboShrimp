@@ -2006,7 +2006,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post(this.url, {
-        iteName: this.item.ItemName,
+        itemName: this.item.ItemName,
         itemDescription: this.item.itemDescription,
         itemImage: this.item.itemImage,
         itemPrice: this.item.itemPrice,
@@ -2169,7 +2169,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.url).then(function (response) {
-        _this.items = response.data.items;
+        _this.items = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2200,8 +2200,8 @@ __webpack_require__.r(__webpack_exports__);
 
       if (file['size'] < 2111775) {
         reader.onloadend = function (file) {
-          _this3.updateItem.itemImage = reader.result;
-          console.log(_this3.updateItem.itemImage);
+          _this3.updateItem.image = reader.result;
+          console.log(_this3.updateItem.image);
         };
 
         reader.readAsDataURL(file);
@@ -38162,7 +38162,7 @@ var render = function() {
                 _c("img", {
                   staticClass: "card-img-top",
                   attrs: {
-                    src: item.itemImage,
+                    src: item.image,
                     alt: "Profile Picture",
                     height: "300px",
                     width: "300px"
@@ -38170,25 +38170,25 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("h5", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(item.itemName)),
+                  _vm._v(_vm._s(item.item_name)),
                   _vm._m(1, true)
                 ]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "list-group list-group-flush" }, [
                   _c("li", { staticClass: "list-group-item" }, [
-                    _c("h5", [_vm._v("Price:$" + _vm._s(item.itemPrice))])
+                    _c("h5", [_vm._v("Price:$" + _vm._s(item.price))])
                   ]),
                   _vm._v(" "),
                   _c("li", { staticClass: "list-group-item" }, [
-                    _vm._v("Item Description: " + _vm._s(item.itemDescription))
+                    _vm._v("Item Description: " + _vm._s(item.description))
                   ]),
                   _vm._v(" "),
                   _c("li", { staticClass: "list-group-item" }, [
-                    _vm._v("Number Available: " + _vm._s(item.numberAvailable))
+                    _vm._v("Number Available: " + _vm._s(item.number_available))
                   ]),
                   _vm._v(" "),
                   _c("li", { staticClass: "list-group-item" }, [
-                    _vm._v("Size: " + _vm._s(item.itemSize))
+                    _vm._v("Size: " + _vm._s(item.size))
                   ]),
                   _vm._v(" "),
                   _c("li", { staticClass: "list-group-item" }, [
@@ -38260,7 +38260,7 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "exampleModalLongTitle" }
                   },
-                  [_vm._v("Item: " + _vm._s(_vm.updateItem.itemName))]
+                  [_vm._v("Item: " + _vm._s(_vm.updateItem.item_name))]
                 ),
                 _vm._v(" "),
                 _vm._m(2)
@@ -38293,13 +38293,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.updateItem.itemName,
-                          expression: "updateItem.itemName"
+                          value: _vm.updateItem.item_name,
+                          expression: "updateItem.item_name"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: { type: "text", name: "name", id: "name" },
-                      domProps: { value: _vm.updateItem.itemName },
+                      domProps: { value: _vm.updateItem.item_name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -38307,7 +38307,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.updateItem,
-                            "itemName",
+                            "item_name",
                             $event.target.value
                           )
                         }
@@ -38323,23 +38323,19 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.updateItem.itemPrice,
-                          expression: "updateItem.itemPrice"
+                          value: _vm.updateItem.price,
+                          expression: "updateItem.price"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: { type: "text", name: "name", id: "price" },
-                      domProps: { value: _vm.updateItem.itemPrice },
+                      domProps: { value: _vm.updateItem.price },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.updateItem,
-                            "itemPrice",
-                            $event.target.value
-                          )
+                          _vm.$set(_vm.updateItem, "price", $event.target.value)
                         }
                       }
                     })
@@ -38355,8 +38351,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.updateItem.itemDescription,
-                          expression: "updateItem.itemDescription"
+                          value: _vm.updateItem.description,
+                          expression: "updateItem.description"
                         }
                       ],
                       staticClass: "form-control",
@@ -38365,7 +38361,7 @@ var render = function() {
                         name: "description",
                         id: "description"
                       },
-                      domProps: { value: _vm.updateItem.itemDescription },
+                      domProps: { value: _vm.updateItem.description },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -38373,7 +38369,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.updateItem,
-                            "itemDescription",
+                            "description",
                             $event.target.value
                           )
                         }
@@ -38393,8 +38389,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.updateItem.numberAvailable,
-                            expression: "updateItem.numberAvailable"
+                            value: _vm.updateItem.number_available,
+                            expression: "updateItem.number_available"
                           }
                         ],
                         staticClass: "custom-select mr-sm-2",
@@ -38411,7 +38407,7 @@ var render = function() {
                               })
                             _vm.$set(
                               _vm.updateItem,
-                              "numberAvailable",
+                              "number_available",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
@@ -38457,8 +38453,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.updateItem.itemSize,
-                            expression: "updateItem.itemSize"
+                            value: _vm.updateItem.size,
+                            expression: "updateItem.size"
                           }
                         ],
                         staticClass: "custom-select mr-sm-2",
@@ -38475,7 +38471,7 @@ var render = function() {
                               })
                             _vm.$set(
                               _vm.updateItem,
-                              "itemSize",
+                              "size",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]

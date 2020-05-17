@@ -95,7 +95,7 @@
         methods:{
             createItem(){
                 axios.post(this.url, {
-                    iteName:this.item.ItemName, itemDescription:this.item.itemDescription, itemImage:this.item.itemImage, itemPrice:this.item.itemPrice, numberAvailable:this.item.numberAvailable, itemSize:this.item.itemSize})
+                    itemName:this.item.ItemName, itemDescription:this.item.itemDescription, itemImage:this.item.itemImage, itemPrice:this.item.itemPrice, numberAvailable:this.item.numberAvailable, itemSize:this.item.itemSize})
                 .then(response=>{
                     this.items.push(response.data);
                 }).catch(error=>{
