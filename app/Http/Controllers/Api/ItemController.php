@@ -59,10 +59,11 @@ class ItemController extends Controller
 
         if ($item->save()) 
         {
+            // item saved, return 201
             return response()->json(['message' => 'Item successfully created and persisted'], Response::HTTP_CREATED);
         };
 
-        // Care Package did not save, return 417
+        // Item did not save, return 417
         return response()->json(['message' => 'Item did not save'], Response::HTTP_EXPECTATION_FAILED);
     }
 
