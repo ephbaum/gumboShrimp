@@ -51145,8 +51145,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/heribertomiguel/Documents/learningProjects/laravel/vueProjects/gumboShrimp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/heribertomiguel/Documents/learningProjects/laravel/vueProjects/gumboShrimp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/baldmike/Documents/projects_laravel/gumboShrimp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/baldmike/Documents/projects_laravel/gumboShrimp/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
