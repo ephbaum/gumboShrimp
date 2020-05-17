@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -14,7 +16,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return response()->json([
+            'items' => $items
+        ]);
     }
 
     /**
