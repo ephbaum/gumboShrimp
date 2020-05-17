@@ -34,14 +34,12 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
-        Log::debug("INSIDE [STORE] METHOD ---------->");
-        Log::debug($request);
         $validated = $request->validated();
         if($validated)
         {
             $item = new Item();
 
-            $item->name = request('itemName');
+            $item->name = request('name');
             $item->description = request('itemDescription');
             $item->price = request('itemPrice');
             $item->image = request('itemImage');
