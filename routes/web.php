@@ -13,10 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-Route::resource('/api/items', 'Api\ItemController');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'SpaController@index');

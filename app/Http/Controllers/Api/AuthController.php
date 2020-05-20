@@ -59,7 +59,7 @@ class AuthController extends Controller
         if ($response->getStatusCode() != 200) {
 
             return response()->json([
-                'message' => 'Unable to get a token. Goodbye.',
+                'message' => 'Unable to get a token. This is an error with passport.',
                 'status' => $response->getStatusCode(),
             ], $response->getStatusCode());
         }
