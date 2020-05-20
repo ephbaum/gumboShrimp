@@ -49,17 +49,23 @@ class AuthController extends Controller
                 'scope' => '',
             ];
 
+            Log::debug($request->email);
+            Log::debug($request->password);
+
         // Get access_token
         $request = Request::create('/oauth/token', 'POST', $data);
-            
-        // 
+        Log::debug($request);
+
+         
         $response = app()->handle($request);
+        Log::debug($response);
+
 
         // if we get any other response than 200 (SUCCESS!), return that info to user
         if ($response->getStatusCode() != 200) {
 
             return response()->json([
-                'message' => 'Unable to get a token. Goodbye.',
+                'message' => 'Unable to get a token. This is an error with passport.',
                 'status' => $response->getStatusCode(),
             ], $response->getStatusCode());
         }
