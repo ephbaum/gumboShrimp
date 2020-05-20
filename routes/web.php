@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
-Route::resource('/api/items', 'Api\ItemController');
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::resource('/api/items', 'Api\ItemController');
+// Route::get('/home', 'HomeController@index')->name('home');

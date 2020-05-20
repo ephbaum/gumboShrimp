@@ -12,10 +12,10 @@
                         <label for="description" >Description </label>
                         <input v-model="item.itemDescription" type="text" id="description" class="form-control" >
                     </div>
-                    <!-- <div class="form-group">
+                     <div class="form-group">
                             <label for="image" class="col-sm-2 control-label">Image</label>
                             <input type="file" @change="updateProfile" name="image" class="form-input">
-                    </div>  -->
+                    </div> 
                     <div class="form-group" >
                         <label for="price" >Price </label>
                         <input v-model="item.itemPrice" type="text" id="price" class="form-control" >
@@ -89,12 +89,11 @@
                     itemSize:''
                 },
                 items:[],
-                url:'http://localhost:8000/api/items/',
             }
         },
         methods:{
             createItem(){
-                axios.post(this.url, {
+                axios.post('/api/item', {
                     itemName:this.item.ItemName, itemDescription:this.item.itemDescription, itemImage:this.item.itemImage, itemPrice:this.item.itemPrice, numberAvailable:this.item.numberAvailable, itemSize:this.item.itemSize})
                 .then(response=>{
                     this.items.push(response.data);

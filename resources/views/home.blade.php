@@ -1,4 +1,4 @@
-
+{{-- 
 <!doctype html>
 <html lang="{{ app()->getLocale() }}"> 
     <head>
@@ -21,8 +21,8 @@
     <body>
         
         <div id="app">
-            <item-component></item-component>
-            <shop-component></shop-component> 
+            <router-view></router-view>
+ 
 
         </div>
         
@@ -33,4 +33,4 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.js"></script>
 
     </body>
-</html>
+</html> --}}

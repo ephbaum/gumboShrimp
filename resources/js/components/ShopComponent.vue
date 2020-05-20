@@ -1,8 +1,16 @@
 <template>
     <div class="container">
         <div>
-            <h1>CB Store</h1>
-            <form role="search" action="." data-radium="true" style="display: flex; flex-wrap: nowrap; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 0px 1px;"><input autocorrect="off" autocapitalize="off" type="search" placeholder="search for your item..." aria-controls="dropdown-container" aria-autocomplete="both" data-radium="true" value="" style="border-radius: 5px 0px 0px 5px; flex-grow: 1; height: 36px; margin-bottom: 0px; font-size: 16px; background-color: rgb(247, 247, 247); -webkit-appearance: none; line-height: normal;"><button  data-radium="true" style="touch-action: manipulation; cursor: pointer; border: 1px solid transparent; border-radius: 0px 5px 5px 0px; font-weight: 600; white-space: nowrap; user-select: none; -webkit-font-smoothing: antialiased; background-image: none; display: inline-flex; align-items: center; padding-left: 16px; padding-right: 16px; font-size: 16px; height: 36px; background-color: rgb(67, 176, 42); color: rgb(255, 255, 255); width: 50px;"><i aria-hidden="true" data-radium="true" style="font-size: 16px; position: relative; font-family: ic-icons; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; speak: none; line-height: 1;"></i><span data-radium="true" style="margin-right: 8px;"></span></button></form>
+            <h1 class="brandName" >ChangoCart</h1>
+            <b-container fluid class="search bg-dark">
+                <b-input-group class="mt-3"  >
+                    <template v-slot:append  >
+                    <button type="button" class="btn btn-success"><li class="fa fa-search"></li></button>
+                    </template>
+                    <b-form-input placeholder="search for your item..." ></b-form-input>
+                </b-input-group>
+
+             </b-container>
             <br>
         </div>
         <div class="row" >
@@ -18,7 +26,6 @@
                             <li class="list-group-item">Size: {{item.size}}</li>
                             <li class="list-group-item">item id: {{item.id}}</li>
                         </ul>
-
                     <button @click="showUpdateItemModal(item.id)" class="btn btn-link" style="width:90px"><i class="far fa-edit"  ></i> Edit</button>
                     <button @click="deleteItem(item.id)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                     </div>
@@ -117,7 +124,12 @@
 </template>
 
 <script>
+import { mapActions, mapGetters} from "vuex"
     export default {
+        name: 'shop',
+        components:{
+
+        },
         data(){
             return {
                 items:[],
@@ -181,5 +193,7 @@
     }
 </script>
 <style >
-
+.brandName{
+    color: white;
+}
 </style>
