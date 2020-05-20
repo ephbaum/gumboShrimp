@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use App\Models\User;
+=======
+use App\User;
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -11,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cookie;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
@@ -67,13 +72,22 @@ class AuthController extends Controller
      * @param Request $request
      * @return void
      */
+=======
+class AuthController extends Controller
+{
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
     public function login(Request $request)
     {
         
         // check if user exists
         $user = User::where('email', $request->email)->first();
+<<<<<<< HEAD
         Log::debug('[AuthController]-> user check: ' .$user);
         
+=======
+        
+        // if there is no user with that email, respond in kind
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
         if (!$user)                  
         {
             return response()->json([
@@ -82,6 +96,7 @@ class AuthController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+<<<<<<< HEAD
         if (!Hash::check(request('password'), $user->password)) {
             Log::debug("AuthController->login  **failed Hash::check");
 
@@ -90,10 +105,17 @@ class AuthController extends Controller
             }
 
             return response()->json([
+=======
+        // if password doesn't match, no soup for you
+        if (!Hash::check(request('password'), $user->password)) {
+
+            return response()->json()([
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
                 'message' => 'Incorrect email or password',
                 'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
             
+<<<<<<< HEAD
         } else {
             Log::info("AuthController->login: hash checked");
         }
@@ -102,6 +124,14 @@ class AuthController extends Controller
         $data = [
                 'grant_type' => 'password',
                 'refresh_token' => 'your_refresh_token',
+=======
+        }
+
+        // gather data to get access_token which allows user to login
+        // note that Oauth is expecting username instead of email
+        $data = [
+                'grant_type' => 'password',
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
                 'client_id' => config('services.passport.client_id'),
                 'client_secret' => config('services.passport.client_secret'),
                 'username' => $request->email,
@@ -109,6 +139,7 @@ class AuthController extends Controller
                 'scope' => '',
             ];
 
+<<<<<<< HEAD
         // Get access_token
         $request = Request::create('/oauth/token', 'POST', $data);
         Log::debug("$request");
@@ -120,12 +151,32 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'Incorrect email or password - maybe both, or at least one(1).',
+=======
+            Log::debug($request->email);
+            Log::debug($request->password);
+
+        // Get access_token
+        $request = Request::create('/oauth/token', 'POST', $data);
+        Log::debug($request);
+
+         
+        $response = app()->handle($request);
+        Log::debug($response);
+
+
+        // if we get any other response than 200 (SUCCESS!), return that info to user
+        if ($response->getStatusCode() != 200) {
+
+            return response()->json([
+                'message' => 'Unable to get a token. This is an error with passport.',
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
                 'status' => $response->getStatusCode(),
             ], $response->getStatusCode());
         }
         // unpack the response
         $responseData = json_decode($response->getContent());
 
+<<<<<<< HEAD
         Auth::login($user);
 
         // set user
@@ -157,12 +208,32 @@ class AuthController extends Controller
         Cookie::queue($token_cookie);
         Cookie::queue($user_cookie);
 
+=======
+        // log the user in
+        Auth::login($user);
+
+        // set user var
+        $user = Auth::User();
+
+        // set the token cookie
+        $token_cookie = cookie('tokenCookie', $responseData->access_token);
+
+        // set the user cookie
+        $user_cookie = cookie('userCookie', $user);
+
+        // queue the cookies...  Heeeeere's the cookies!
+        Cookie::queue($token_cookie);
+        Cookie::queue($user_cookie);
+
+        // return a JSON response
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
         return response()->json([
             'user' => $user,
             'token' => $responseData->access_token,
             'expires_in' => $responseData->expires_in,
             'message' => "{$user->name} successfully logged in.",
             'status' => Response::HTTP_OK,
+<<<<<<< HEAD
         ], Response::HTTP_OK);
     }
 
@@ -187,3 +258,8 @@ class AuthController extends Controller
     }
    
 }
+=======
+        ]);
+    }
+}
+>>>>>>> c7135a1546a4ae7f76375929967a618f1dd17318
