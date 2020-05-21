@@ -19,11 +19,11 @@ class SpaController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('spa');
     }
 
     public function notFound()
     {
-        return view('home');
+        return view('spa');
     }
 }
