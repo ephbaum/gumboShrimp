@@ -17,7 +17,6 @@ export const router = new VueRouter({
         {
             path: '/', 
             component: mainApp,
-            props: {loginComponent: LoginComponent},
     
             children: [
                 {
@@ -25,11 +24,7 @@ export const router = new VueRouter({
                     component: ItemComponent
 
                 },
-                {
-                path: 'navBar',
-                component: NavBar
-
-                },
+                
                 {
                     path: 'shop',
                     component: ShopComponent

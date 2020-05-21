@@ -10,11 +10,10 @@
                     <register-component class="col-md-8" ></register-component>
                 </b-col>
             </b-row>
-        <router-view v-if="isAuthenticated" ></router-view>
+            <router-view v-if="isAuthenticated" ></router-view>
             <shop-component class="col-md-11"></shop-component>
-            </b-container>
-</div>
-   
+        </b-container>
+    </div>
 </template>
 
 <script>
@@ -30,7 +29,7 @@
             ShopComponent,
             
         },
-        props: ["loginComponent"],
+    
         computed: mapGetters(['isAuthenticated']),
         methods: mapActions(['login']),
         mounted() {
