@@ -31,8 +31,8 @@ class AuthController extends Controller
         // if password doesn't match, no soup for you
         if (!Hash::check(request('password'), $user->password)) {
 
-            return response()->json()([
-                'message' => 'Incorrect email or password',
+            return response()->json([
+                'message' => 'Incorrect password',
                 'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
             
@@ -41,25 +41,19 @@ class AuthController extends Controller
         // gather data to get access_token which allows user to login
         // note that Oauth is expecting username instead of email
         $data = [
-                'grant_type' => 'password',
-                'client_id' => config('services.passport.client_id'),
-                'client_secret' => config('services.passport.client_secret'),
-                'username' => $request->email,
-                'password' => $request->password,
-                'scope' => '',
-            ];
+            'grant_type' => 'password',
+            'client_id' => config('services.passport.client_id'),
+            'client_secret' => config('services.passport.client_secret'),
+            'username' => $request->email,
+            'password' => $request->password,
+            'scope' => '',
+        ];
 
-            Log::debug($request->email);
-            Log::debug($request->password);
 
         // Get access_token
         $request = Request::create('/oauth/token', 'POST', $data);
-        Log::debug($request);
-
-         
+        
         $response = app()->handle($request);
-        Log::debug($response);
-
 
         // if we get any other response than 200 (SUCCESS!), return that info to user
         if ($response->getStatusCode() != 200) {
@@ -75,7 +69,7 @@ class AuthController extends Controller
         // log the user in
         Auth::login($user);
 
-        // set user var
+        // reset user var
         $user = Auth::User();
 
         // set the token cookie
