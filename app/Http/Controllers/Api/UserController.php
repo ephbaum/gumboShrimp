@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     public function index() 
     {
@@ -25,8 +25,6 @@ class UsersController extends Controller
     {
         
         $currentUser = Auth::user();
-        
-        Log::debug("[UsersController - currentUser]: ".$currentUser);
 
         return new UserResource($currentUser);
 
