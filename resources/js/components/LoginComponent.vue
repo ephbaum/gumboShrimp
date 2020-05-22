@@ -2,7 +2,6 @@
     <div class="container-fluid"  >
         
         <b-card  bg-variant="dark" text-variant="white" title="login" >
-        
         <b-form @submit="login">
             <b-form-group id="emailInputGroup"
                         label="Email"
@@ -96,7 +95,7 @@ export default {
                 auth.setAuthToken(data.token)
                 auth.login(data.token, data.user.email);
         
-                this.$router.push({path: 'shop'});
+                this.$router.push({path: '/'});
                 
                 self.$notify({
                     group: 'notifications',
@@ -128,3 +127,9 @@ export default {
 }
 
 </script>
+
+<style >
+.container-fluid{
+    padding-top:30px;
+}
+</style>

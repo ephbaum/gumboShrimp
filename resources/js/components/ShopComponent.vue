@@ -1,8 +1,11 @@
 <template>
+
     <div class="container">
+
+        
         <div>
-            <h1 class="brandName" >ChangoCart</h1>
-            <b-container fluid class="search bg-dark">
+            <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> changocart</h1>
+            <b-container fluid class="search ">
                 <b-input-group class="mt-3"  >
                     <template v-slot:append  >
                     <button type="button" class="btn btn-success"><li class="fa fa-search"></li></button>
@@ -14,20 +17,22 @@
             <br>
         </div>
         <div class="row" >
-            <div class="col-md-4 " v-for="item in items" :key="item.id" style="padding-bottom: 20px" >
+            <div class="col-md-4 " v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px" >
                 <div class="card" cols='3' >
                     <div class="card-body"  >
-                        <img :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
+                        <img :img-src="`/`+ item.image" alt="Profile storage" height="300px" width="300px">
+                        <img :img-src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
                         <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
                         <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h5>pic :${{item.image}}</h5></li>
                             <li class="list-group-item"><h5>Price:${{item.price}}</h5></li>
                             <li class="list-group-item">Item Description: {{item.description}}</li>
                             <li class="list-group-item">Number Available: {{item. number_available}}</li>
                             <li class="list-group-item">Size: {{item.size}}</li>
                             <li class="list-group-item">item id: {{item.id}}</li>
                         </ul>
-                    <button @click="showUpdateItemModal(item.id)" class="btn btn-link" style="width:90px"><i class="far fa-edit"  ></i> Edit</button>
-                    <button @click="deleteItem(item.id)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
+                    <button @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"  ></i> Edit</button>
+                    <button @click="deleteItem(index)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                     </div>
                 </div>
             </div>
@@ -35,10 +40,12 @@
 
         <!-- View update Item Modal -->
         <div class="modal fade" id="viewUpdateItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+            <div class="modal-dialog" role="document" >
+                <div class="modal-content" >
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Item: {{ updateItem.item_name }}</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                            
+                            Item: {{ updateItem.item_name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -50,10 +57,10 @@
                             <input type="file" @change="updateProfile" name="image" class="form-input">
                             </div> 
 
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label for="name">Item</label>
                                 <input v-model="updateItem.item_name" type="text" class="form-control" name="name" id="name" />
-                            </div>
+                            </div> 
                             <div class="form-group">
                                 <label for="price">price</label>
                                 <input v-model="updateItem.price" type="text" class="form-control" name="name" id="price" />
@@ -125,10 +132,21 @@
 
 <script>
 import { mapActions, mapGetters} from "vuex"
+
+
     export default {
         name: 'shop',
         components:{
 
+
+        },
+        computed: mapGetters(['isAuthenticated', 'currentUser']),
+        isCurrentUser() {
+            if (isAuthenticated) {
+                return currentUser
+            }
+
+            return false;
         },
         data(){
             return {
@@ -143,6 +161,7 @@ import { mapActions, mapGetters} from "vuex"
                 axios.get(this.url)
                 .then(response =>{
                     this.items = response.data.data;
+                    console.log(this.items);
                 })
                 .catch(error => {
                     console.log(error);
@@ -150,18 +169,40 @@ import { mapActions, mapGetters} from "vuex"
             },
             showUpdateItemModal(index){
                 // console.log(id);
+
                 this.updateItem = [];
                 $("#viewUpdateItemModal").modal("show");
-                this.updateItem = this.items[index -1];
+                this.updateItem = this.items[index];
+                console.log(this.updateItem);
+                return this.updateItem;
             },
             editItem(){
+                console.log(this.updateItem.id);
+                axios.patch('http://localhost:8000/api/items/' + this.updateItem.id, { itemName:this.updateItem.item_name, itemDescription:this.updateItem.description, itemPrice:this.updateItem.price, itemImage:this.updateItem.image, numberAvailable:this.updateItem.number_available, itemSize:this.updateItem.size
+                })
+                .then(response=>{
+                $("#viewUpdateItemModal").modal("hide");
+                    this.loadItems();
+                })
+                .catch(error=>{
+                    if(error.response.data.errors.name){
+                        this.errors.push(error.response.data.errors.name[0]);
+                    }
+                    if(error.response.data.errors.body){
+                        this.errors.push(error.response.data.errors.body[0]);
+                    }
+                });
 
             },
             deleteItem(index){
-                axios.delete('http://localhost:8000/api/items/' + this.items[index -1].id) 
+
+                console.log(this.items.id);
+                console.log("id.id" + this.items.id);
+
+                axios.delete('http://localhost:8000/api/items/' + this.items[index].id) 
                 .then(response =>{
                     this.$delete(this.items, index);
-                    this.loadItems();
+                    // this.loadItems();
                 })
                 .catch(error =>{
                     console.log(error);
@@ -175,6 +216,8 @@ import { mapActions, mapGetters} from "vuex"
                     reader.onloadend = (file) =>{
                         this.updateItem.image = reader.result;
                         console.log(this.updateItem.image);
+                        console.log("IMAGE;");
+                        
                     }
                     reader.readAsDataURL(file);
                 } else{

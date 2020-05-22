@@ -6,6 +6,7 @@ import ShopComponent from './components/ShopComponent'
 import ItemComponent from './components/ItemComponent'
 import LoginComponent from './components/LoginComponent'
 import RegisterComponent from './components/RegisterComponent'
+import HeaderComponent from './components/HeaderComponent'
 import UserComponent from './components/UserComponent'
 
 
@@ -17,7 +18,7 @@ export const router = new VueRouter({
         {
             path: '/', 
             component: mainApp,
-            props: {loginComponent: LoginComponent},
+            props: {loginComponent: LoginComponent, register:RegisterComponent},
     
             children: [
                 {
@@ -25,11 +26,27 @@ export const router = new VueRouter({
                     component: ItemComponent
 
                 },
+               
                 {
-                path: 'navBar',
-                component: NavBar
+                    path: 'tologin',
+                    component: LoginComponent
 
                 },
+                {
+                    path: 'register',
+                    component: RegisterComponent
+
+                },
+                {
+                    path: 'navBar',
+                    component: NavBar
+    
+                    },
+                     {
+                        path: 'header',
+                        component: HeaderComponent
+        
+                        },
                 {
                     path: 'shop',
                     component: ShopComponent

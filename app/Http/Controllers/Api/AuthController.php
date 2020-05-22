@@ -91,4 +91,23 @@ class AuthController extends Controller
             'status' => Response::HTTP_OK,
         ]);
     }
+    public function logout()
+    {
+        if (Auth::user()) {
+
+            // fetch user's ID
+            $accessToken = Auth::user()->token()->id;
+            $currentId = DB::table('oauth_access_tokens')->where('id', $accessToken)->first()->user_id;
+
+            // if logged in, delete access token
+            if ($currentId) {
+                DB::table('oauth_access_tokens')
+                    ->where('user_id', $currentId)
+                    ->delete();
+            }
+        }
+
+        // return null
+        return response()->json(null, 204);
+    }
 }
