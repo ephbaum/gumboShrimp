@@ -10,12 +10,10 @@ Vue.use(Vuex)
 Vue.use(VueCookie)
 
 export default new Vuex.Store({
-
     state() {
         let userToken = Vue.cookie.get('token');
         let user = Vue.cookie.get('user');
-
-        // let currentUser = JSON.stringify(user);
+        let currentUser = JSON.stringify(user);
 
         return {
             token: userToken ? userToken : null,
@@ -25,9 +23,6 @@ export default new Vuex.Store({
         }
     },
     getters: { 
-        // getters get data from state and are available in components
-
-        // !! returns boolean  --  if there is a token, the user is authenticated
         isAuthenticated: state => !!state.token,
         currentUser: state => state.currentUser,
     },

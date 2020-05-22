@@ -38,6 +38,7 @@ Vue.component('register-component', require('./components/RegisterComponent.vue'
 Vue.component('shop-component', require('./components/ShopComponent.vue').default);
 Vue.component('item-component', require('./components/ItemComponent.vue').default);
 Vue.component('nav-bar', require('./components/NavBar.vue'))
+Vue.component('header-component', require('./components/HeaderComponent.vue'))
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
