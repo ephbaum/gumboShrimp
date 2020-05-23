@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container>
         <b-form @submit="login">
             <b-form-group id="emailInputGroup"
                         label="Email"
@@ -18,10 +18,10 @@
                         label="Password"
                         label-for="password">
                 <b-form-input id="password"
-                                type="password"
-                                :state="!$v.form.password.$invalid"
-                                v-model="form.password" 
-                                 placeholder="Enter Password" />
+                        type="password"
+                        :state="!$v.form.password.$invalid"
+                        v-model="form.password" 
+                        placeholder="Enter Password"/>
                 <b-form-invalid-feedback id="input2LiveFeedback">
                     Your password must be at least 8 characters
                 </b-form-invalid-feedback>
@@ -121,7 +121,4 @@ export default {
 </script>
 
 <style >
-.container-fluid{
-    padding-top:30px;
-}
 </style>

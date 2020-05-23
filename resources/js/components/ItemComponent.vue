@@ -95,12 +95,14 @@
                 this.form.price = ''
                 this.form.numberAvailable = ''
                 this.form.image = null
+                this.form.url = null
                 
 
                 /* reset/clear native browser form validation state */
                 this.show = false
                 this.$nextTick(() => {
                     this.show = true;
+                    this.$router.push('/');
                 })
             },
             onImageChange(e){

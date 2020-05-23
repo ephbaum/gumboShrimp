@@ -48,10 +48,9 @@ class ItemController extends Controller
 
         if($request->hasFile('image'))
         {
-            $path = Storage::putFile('public/images', $request->file('image'), 'public');
 
             // $path includes 'public/', and we don't want that in our URL, but we want 'storage' - so we chop it off and add it:
-            $path = "/storage" . substr($path, 6);
+            $path = "/storage" . substr(Storage::putFile('public/images', $request->file('image'), 'public'), 6);
 
             $item->image = $path;
         }

@@ -4,6 +4,7 @@
             <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
                 <b-collapse is-nav id="nav_collapse">
+                    
                     <b-navbar-brand to="/"><i class="fas fa-shopping-cart"></i> changocart</b-navbar-brand>
 
                     <b-navbar-nav>
@@ -30,6 +31,7 @@
                         </li>
                         <b-nav-item v-if="isAuthenticated && currentUser" @click="logout" right> Logout - {{ currentUser.name }}></b-nav-item>
                     </b-navbar-nav>
+
                 </b-collapse>
             </b-navbar>
         </div>
