@@ -3,12 +3,18 @@
         <div>
             <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-            <b-collapse is-nav id="nav_collapse">
-                <b-navbar-brand to="/"><i class="fas fa-shopping-cart"></i> changocart</b-navbar-brand>
-                <b-navbar-nav>
-                    <b-nav-item v-if="isAuthenticated" to="add-item">Add Item</b-nav-item>
-                    <b-nav-item v-if="!isAuthenticated" to="login">Login</b-nav-item>
-                </b-navbar-nav>
+                <b-collapse is-nav id="nav_collapse">
+                    <b-navbar-brand to="/"><i class="fas fa-shopping-cart"></i> changocart</b-navbar-brand>
+
+                    <b-navbar-nav>
+                        <b-nav-item v-if="isAuthenticated" to="add-item">Add Item</b-nav-item>
+                        <b-nav-item v-if="!isAuthenticated" to="login">Login</b-nav-item>                
+                    </b-navbar-nav>
+
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-item type="light" to="/"><button><i class="fas fa-shopping-basket" right> Cart </i></button></b-nav-item>
+                    </b-navbar-nav>
+
                     <b-navbar-nav class="ml-auto"  v-if="isAuthenticated">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,9 +28,8 @@
                                 <a class="dropdown-item" href="#" v-if="isAuthenticated"  @click="logout" right> <i class="far fa-address-book" style="color: red;"></i> Logout </a>
                             </div>
                         </li>
-                        <b-nav-item type="light" to="/"><button type="button" class="btn btn-primary"><i class="fas fa-shopping-basket" right></i>  Cart</button></b-nav-item>
                         <b-nav-item v-if="isAuthenticated && currentUser" @click="logout" right> Logout - {{ currentUser.name }}></b-nav-item>
-                        </b-navbar-nav>
+                    </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
         </div>
