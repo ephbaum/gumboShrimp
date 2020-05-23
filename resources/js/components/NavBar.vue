@@ -22,7 +22,7 @@
                                 <a class="dropdown-item" href="#" v-if="isAuthenticated"  @click="logout" right> <i class="far fa-address-book" style="color: red;"></i> Logout </a>
                             </div>
                         </li>
-                        <b-nav-item type="light" to="/"><button type="button" class="btn btn-primary"><i class="fas fa-shopping-basket" right></i> Basket</button></b-nav-item>
+                        <b-nav-item type="light" to="/"><button type="button" class="btn btn-primary"><i class="fas fa-shopping-basket" right></i>  Cart</button></b-nav-item>
                         <b-nav-item v-if="isAuthenticated && currentUser" @click="logout" right> Logout - {{ currentUser.name }}></b-nav-item>
                         </b-navbar-nav>
                 </b-collapse>

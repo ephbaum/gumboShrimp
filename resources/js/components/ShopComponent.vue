@@ -1,5 +1,4 @@
 <template>
-
     <b-container fluid>
         <div>
             <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> changocart</h1>
@@ -10,22 +9,19 @@
                     </template>
                     <b-form-input placeholder="search for your item..." ></b-form-input>
                 </b-input-group>
-
-             </b-container>
+            </b-container>
             <br>
         </div>
         <b-row>
-            <div class="col-md-2 " v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px">
-                <div class="card" cols='3'>
+            <div class="col-md-4" v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px">
+                <div v-if="item.number_available > 0" class="card" cols='3'>
                     <div class="card-body">
                         <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
                         <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><h5>Price:${{item.price}}</h5></li>
-                            <li class="list-group-item">Item Description: {{item.description}}</li>
-                            <li class="list-group-item">Number Available: {{item.number_available}}</li>
-                            <li class="list-group-item">Size: {{item.size}}</li>
-                            <li class="list-group-item">item id: {{item.id}}</li>
+                            <li class="list-group-item">{{item.description}}</li>
+                            <li v-if="item.size" class="list-group-item">Size: {{item.size}}</li>
                         </ul>
                     <button @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
                     <button @click="deleteItem(index)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
