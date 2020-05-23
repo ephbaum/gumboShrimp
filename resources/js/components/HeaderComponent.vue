@@ -1,9 +1,8 @@
 <template>
     <b-container fluid>
-        <b-img class="headImage col-md-12" thumbnail fluid src="../images/fruits.jpeg" alt="Image 1" ></b-img>
+        <b-img class="headImage col-md-12" fluid src="../images/fruits.jpeg" alt="Image 1"></b-img>
     </b-container>
 </template>
-
 
 <script>
 
@@ -38,5 +37,6 @@ export default {
 <style>
 .headImage{
     max-height: 375px;
+    margin-top: 60px;
 }
 </style>

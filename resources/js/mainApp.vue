@@ -6,9 +6,6 @@
         <br>
         
         <router-view name="header"/>
-
-        <br>
-        
         <router-view name="body"/>
 
         <notifications group="notifications" position="bottom center" width="100%"/>
@@ -41,3 +38,6 @@
 
 </script>
 
+<style>
+
+</style>

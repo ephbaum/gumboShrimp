@@ -7,6 +7,7 @@ import ItemComponent from './components/ItemComponent'
 import LoginComponent from './components/LoginComponent'
 import RegisterComponent from './components/RegisterComponent'
 import HeaderComponent from './components/HeaderComponent'
+import SpacerComponent from './components/SpacerComponent'
 import UserComponent from './components/UserComponent'
 
 
@@ -36,7 +37,7 @@ export const router = new VueRouter({
 
                 {
                     path: 'login',
-                    components: {body: LoginComponent},
+                    components: {body: LoginComponent, header: SpacerComponent},
                 },
 
                 {

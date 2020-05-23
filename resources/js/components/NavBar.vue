@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid class="col-md-12 ">
+    <b-container fluid>
         <div>
             <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -70,6 +70,10 @@
         display: block;
         max-width: 100%;
         height: auto;
+    }
+
+    .container {
+        margin-bottom: 10px;
     }
 </style>
 

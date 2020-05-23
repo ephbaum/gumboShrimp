@@ -9,8 +9,6 @@ import store from './store'
 import 'bootstrap/dist/css/bootstrap.css'
 import Vuelidate from 'vuelidate'
 
-
-
 require('./bootstrap');
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
