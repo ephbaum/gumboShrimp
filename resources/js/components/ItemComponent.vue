@@ -3,7 +3,7 @@
         <div class="row">
              <div class="col-md-6 col-md-offset-3">
             <h2>create an item</h2>
-                <form  >
+                <form>
 
                           <div class="form-group">
                             <label for="image" class="col-sm-2 control-label">Image</label>
