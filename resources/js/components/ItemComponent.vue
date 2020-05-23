@@ -8,7 +8,7 @@
                         <b-form-file
                             id="image"
                             accept="image/*"
-                            v-model="form.image"
+                            v-model="form.itemImage"
                             placeholder="Choose an image..."
                             @change="onImageChange"/>
 
@@ -23,12 +23,12 @@
                     </div> 
                     <div class="form-group" >
                         <label for="description" >Description </label>
-                        <input v-model="form.description" type="text" id="description" class="form-control" >
+                        <input v-model="form.itemDescription" type="text" id="description" class="form-control" >
                     </div>
                     
                     <div class="form-group" >
                         <label for="price" >Price </label>
-                        <input v-model="form.price" type="text" id="itemPrice" class="form-control" >
+                        <input v-model="form.itemPrice" type="text" id="itemPrice" class="form-control" >
                     </div> 
                     <div class="form-group" >
                         <label for="numberAvailable" >Number Available </label>
@@ -48,15 +48,14 @@
             return{
                 form:{
                     itemName:'',
-                    description:'',
-                    image:null,
-                    price:'',
+                    itemDescription:'',
+                    itemImage:null,
+                    itemPrice:'',
                     numberAvailable:'',
                     itemSize:'',
                     url:null,
                     sent:false
                 },
-
             }
         },
         methods:{
@@ -90,11 +89,11 @@
             resetForm() {
                 /* Reset our form values */
                 this.form.itemName = ''
-                this.form.description = ''
+                this.form.itemDescription = ''
                 this.form.itemSize = ''
-                this.form.price = ''
+                this.form.itemPrice = ''
                 this.form.numberAvailable = ''
-                this.form.image = null
+                this.form.itemImage = null
                 this.form.url = null
                 
 

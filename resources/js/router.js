@@ -25,6 +25,11 @@ export const router = new VueRouter({
                 },
 
                 {
+                    path: 'shop',
+                    components: {body: ShopComponent, header: HeaderComponent}
+                },
+
+                {
                     path: 'register',
                     components: {body: RegisterComponent},
                 },
@@ -32,11 +37,6 @@ export const router = new VueRouter({
                 {
                     path: 'login',
                     components: {body: LoginComponent},
-                },
-
-                {
-                    path: 'shop',
-                    components: {body: ShopComponent, header: HeaderComponent}
                 },
 
                 {

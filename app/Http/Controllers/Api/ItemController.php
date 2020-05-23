@@ -40,17 +40,17 @@ class ItemController extends Controller
             $item = new Item();
 
             $item->item_name = request('itemName');
-            $item->description = request('description');
-            $item->price = request('price');
-            $item->image = request('image');
+            $item->description = request('itemDescription');
+            $item->price = request('itemPrice');
+            $item->image = request('itemImage');
             $item->number_available = request('numberAvailable');    
         }
 
-        if($request->hasFile('image'))
+        if($request->hasFile('itemImage'))
         {
 
             // $path includes 'public/', and we don't want that in our URL, but we want 'storage' - so we chop it off and add it:
-            $path = "/storage" . substr(Storage::putFile('public/images', $request->file('image'), 'public'), 6);
+            $path = "/storage" . substr(Storage::putFile('public/images', $request->file('itemImage'), 'public'), 6);
 
             $item->image = $path;
         }
