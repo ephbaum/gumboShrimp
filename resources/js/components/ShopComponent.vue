@@ -1,8 +1,6 @@
 <template>
 
-    <div class="container">
-
-        
+    <b-container fluid>
         <div>
             <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> changocart</h1>
             <b-container fluid class="search">
@@ -16,11 +14,11 @@
              </b-container>
             <br>
         </div>
-        <div class="row" >
+        <b-row>
             <div class="col-md-4 " v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px" >
-                <div class="card" cols='3' >
-                    <div class="card-body"  >
-                        <img :img-src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
+                <div class="card" cols='3'>
+                    <div class="card-body">
+                        <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
                         <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><h5>Price:${{item.price}}</h5></li>
@@ -34,7 +32,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </b-row>
 
         <!-- View update Item Modal -->
         <div class="modal fade" id="viewUpdateItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -125,7 +123,7 @@
             </div>
         </div> 
 <!--  -->
-    </div>
+    </b-container>
 </template>
 
 <script>
