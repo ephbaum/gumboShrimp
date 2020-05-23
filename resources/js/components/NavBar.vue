@@ -33,8 +33,9 @@
 
 <script>
     import { mapActions, mapGetters } from "vuex";
-import { validationMixin } from "vuelidate";
-import { required, minLength, email } from "vuelidate/lib/validators";
+    import { validationMixin } from "vuelidate";
+    import { required, minLength, email } from "vuelidate/lib/validators";
+    
     export default {
         name: "navBar",
         data(){
@@ -56,12 +57,12 @@ import { required, minLength, email } from "vuelidate/lib/validators";
             
     }
 </script>
-<style >
-.b-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
 
+<style >
+    .b-img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
 </style>
 
