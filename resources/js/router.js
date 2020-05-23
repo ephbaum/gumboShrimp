@@ -26,22 +26,22 @@ export const router = new VueRouter({
 
                 {
                     path: 'register',
-                    component: RegisterComponent
+                    components: {body: RegisterComponent},
                 },
 
                 {
                     path: 'login',
-                    component: LoginComponent
+                    components: {body: LoginComponent},
                 },
 
                 {
                     path: 'shop',
-                    component: ShopComponent
+                    components: {body: ShopComponent, header: HeaderComponent}
                 },
 
                 {
                     path: 'add-item',
-                    component: ItemComponent
+                    components: {body: ItemComponent}
                 }
             ]
         },
