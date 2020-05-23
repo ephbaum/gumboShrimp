@@ -13,7 +13,7 @@
                             @change="onImageChange"/>
 
                         <b-col cols="6" offset="3" style="margin-top: 1rem;">
-                            <img v-if="form.url" :src="form.url" width="100" alt="uploaded image">
+                            <img v-if="form.url" :src="form.url" width="420" alt="uploaded image">
                         </b-col>
                     </b-form-group> 
 
@@ -35,7 +35,7 @@
                          <input :model="form.numberAvailable" type="number">
                     </div>
 
-                     <button @click="createItem" class="btn btn-primary">Submit</button>
+                     <button @click.prevent="createItem" class="btn btn-primary">Submit</button>
                 </form>
              </b-col>
         </b-row>
@@ -62,6 +62,7 @@
         methods:{
             createItem(){
 
+                console.log("INSIDE CREATE ITEM");
                 // this.$v.form.$touch();
 
                 // if (this.$v.form.$invalid) {
@@ -75,14 +76,13 @@
                     
                     axios.post("/api/items/", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
 
+                        console.log("AXIOS CALL SUCCESSFULL");
                         // this.$store.dispatch('formSuccess')
                         this.resetForm()
 
                     }).catch((error) => {
 
-                            if (error.response.status === 400) {
                                 console.log("ERROR: " + error);
-                            }
                             // this.$store.dispatch('formError')
                     })
                 // }
@@ -94,7 +94,7 @@
                 this.form.itemSize = ''
                 this.form.itemPrice = ''
                 this.form.numberAvailable = ''
-                // this.form.itemImage = null
+                this.form.itemImage = null
                 
 
                 /* reset/clear native browser form validation state */
