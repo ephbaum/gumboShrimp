@@ -7,7 +7,11 @@
         
         <br>
         
-        <router-view></router-view>
+        <router-view name="header"/>
+
+        <br>
+        
+        <router-view name="body"/>
     
     </b-container>
 </template>

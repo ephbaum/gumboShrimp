@@ -25,11 +25,11 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><h5>Price:${{item.price}}</h5></li>
                             <li class="list-group-item">Item Description: {{item.description}}</li>
-                            <li class="list-group-item">Number Available: {{item. number_available}}</li>
+                            <li class="list-group-item">Number Available: {{item.number_available}}</li>
                             <li class="list-group-item">Size: {{item.size}}</li>
                             <li class="list-group-item">item id: {{item.id}}</li>
                         </ul>
-                    <button @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"  ></i> Edit</button>
+                    <button @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
                     <button @click="deleteItem(index)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                     </div>
                 </div>

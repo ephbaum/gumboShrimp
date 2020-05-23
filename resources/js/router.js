@@ -21,7 +21,7 @@ export const router = new VueRouter({
             children: [
                 {
                     path: '',
-                    component: ShopComponent
+                    components: {body: ShopComponent, header: HeaderComponent},
                 },
 
                 {
