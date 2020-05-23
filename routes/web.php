@@ -14,8 +14,3 @@ use Illuminate\Support\Facades\Route;
 */
 // Auth::routes();
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
-Route::get('/', 'SpaController@index');
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});

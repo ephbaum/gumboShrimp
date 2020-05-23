@@ -7,12 +7,9 @@
               <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
             <b-collapse is-nav id="nav_collapse">
-                <b-navbar-brand to="#"><i class="fas fa-shopping-cart"></i> changocart</b-navbar-brand>
-                <b-navbar-brand>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">login</button>
-                </b-navbar-brand>
+                <b-navbar-brand to="/"><i class="fas fa-shopping-cart"></i> changocart</b-navbar-brand>
                 <b-navbar-nav>
-                    <b-nav-item v-if="isAuthenticated" to="items/">Add Item</b-nav-item>
+                    <b-nav-item v-if="isAuthenticated" to="add-item">Add Item</b-nav-item>
                 </b-navbar-nav>
                      
                   

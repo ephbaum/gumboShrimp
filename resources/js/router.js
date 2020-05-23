@@ -10,7 +10,6 @@ import HeaderComponent from './components/HeaderComponent'
 import UserComponent from './components/UserComponent'
 
 
-Vue.use(VueRouter)
 export const router = new VueRouter({ 
     mode: 'history', 
     
@@ -18,41 +17,23 @@ export const router = new VueRouter({
         {
             path: '/', 
             component: mainApp,
-            props: {loginComponent: LoginComponent, register:RegisterComponent},
     
             children: [
-                {
-                    path: 'items',
-                    component: ItemComponent
-
-                },
-               
-                {
-                    path: 'tologin',
-                    component: LoginComponent
-
-                },
                 {
                     path: 'register',
                     component: RegisterComponent
 
                 },
-                {
-                    path: 'navBar',
-                    component: NavBar
-    
-                    },
-                     {
-                        path: 'header',
-                        component: HeaderComponent
-        
-                        },
-                {
-                    path: 'shop',
-                    component: ShopComponent
 
+                {
+                    path: 'create',
+                    component: LoginComponent
                 },
 
+                {
+                    path: 'add-item',
+                    component: ItemComponent
+                }
             ]
         },
     ]
