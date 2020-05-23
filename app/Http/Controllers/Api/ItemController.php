@@ -40,11 +40,10 @@ class ItemController extends Controller
             $item = new Item();
 
             $item->item_name = request('itemName');
-            $item->description = request('itemDescription');
-            $item->price = request('itemPrice');
-            $item->image = request('itemImage');
+            $item->description = request('description');
+            $item->price = request('price');
+            $item->image = request('image');
             $item->number_available = request('numberAvailable');    
-            $item->size = request('itemSize');
         }
 
         if($request->hasFile('image'))

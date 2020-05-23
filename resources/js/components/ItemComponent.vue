@@ -32,7 +32,7 @@
                     </div> 
                     <div class="form-group" >
                         <label for="numberAvailable" >Number Available </label>
-                         <input :model="form.numberAvailable" type="number">
+                         <input v-model="form.numberAvailable" type="number">
                     </div>
 
                      <button @click.prevent="createItem" class="btn btn-primary">Submit</button>
@@ -101,7 +101,6 @@
                 this.show = false
                 this.$nextTick(() => {
                     this.show = true;
-                    this.$v.$reset();
                 })
             },
             onImageChange(e){
