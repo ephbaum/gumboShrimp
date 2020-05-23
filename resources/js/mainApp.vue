@@ -1,8 +1,6 @@
 <template>    
     <b-container fluid>
         
-        <notifications group="notifications" position="bottom center" width="100%"/>
-
         <nav-bar></nav-bar>
         
         <br>
@@ -12,6 +10,8 @@
         <br>
         
         <router-view name="body"/>
+
+        <notifications group="notifications" position="bottom center" width="100%"/>
     
     </b-container>
 </template>
