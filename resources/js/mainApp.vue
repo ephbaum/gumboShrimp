@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <notifications group="notifications" position="bottom center" width="100%"/>
         <nav-bar></nav-bar>
+        <br>
         <!-- <login-component v-if="!isAuthenticated" :is="loginComponent"></login-component> -->
         <router-view></router-view>
     </div>
