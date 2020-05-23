@@ -23,12 +23,12 @@
                     </div> 
                     <div class="form-group" >
                         <label for="description" >Description </label>
-                        <input v-model="form.itemDescription" type="text" id="description" class="form-control" >
+                        <input v-model="form.description" type="text" id="description" class="form-control" >
                     </div>
                     
                     <div class="form-group" >
                         <label for="price" >Price </label>
-                        <input v-model="form.itemPrice" type="text" id="itemPrice" class="form-control" >
+                        <input v-model="form.price" type="text" id="itemPrice" class="form-control" >
                     </div> 
                     <div class="form-group" >
                         <label for="numberAvailable" >Number Available </label>
@@ -48,9 +48,9 @@
             return{
                 form:{
                     itemName:'',
-                    itemDescription:'',
-                    itemImage:null,
-                    itemPrice:'',
+                    description:'',
+                    image:null,
+                    price:'',
                     numberAvailable:'',
                     itemSize:'',
                     url:null,
@@ -74,7 +74,7 @@
 
                     // this.$store.dispatch('formSubmit');
                     
-                    axios.post("/api/items/", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
+                    axios.post("/api/items", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
 
                         console.log("AXIOS CALL SUCCESSFULL");
                         // this.$store.dispatch('formSuccess')
@@ -82,19 +82,19 @@
 
                     }).catch((error) => {
 
-                                console.log("ERROR: " + error);
-                            // this.$store.dispatch('formError')
+                        console.log("ERROR: " + error);
+                        // this.$store.dispatch('formError')
                     })
                 // }
             },
             resetForm() {
                 /* Reset our form values */
                 this.form.itemName = ''
-                this.form.itemDescription = ''
+                this.form.description = ''
                 this.form.itemSize = ''
-                this.form.itemPrice = ''
+                this.form.price = ''
                 this.form.numberAvailable = ''
-                this.form.itemImage = null
+                this.form.image = null
                 
 
                 /* reset/clear native browser form validation state */

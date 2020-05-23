@@ -39,7 +39,7 @@ class ItemController extends Controller
         {
             $item = new Item();
 
-            $item->name = request('itemName');
+            $item->item_name = request('itemName');
             $item->description = request('itemDescription');
             $item->price = request('itemPrice');
             $item->image = request('itemImage');
