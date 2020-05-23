@@ -13,7 +13,7 @@
             <br>
         </div>
         <b-row>
-            <div class="col-md-4" v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px">
+            <div class="col-md-3" v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px">
                 <div v-if="item.number_available > 0" class="card" cols='3'>
                     <div class="card-body">
                         <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
