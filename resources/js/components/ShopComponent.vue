@@ -5,9 +5,9 @@
         
         <div>
             <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> changocart</h1>
-            <b-container fluid class="search ">
-                <b-input-group class="mt-3"  >
-                    <template v-slot:append  >
+            <b-container fluid class="search">
+                <b-input-group class="mt-3">
+                    <template v-slot:append>
                     <button type="button" class="btn btn-success"><li class="fa fa-search"></li></button>
                     </template>
                     <b-form-input placeholder="search for your item..." ></b-form-input>

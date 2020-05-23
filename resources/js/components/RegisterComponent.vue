@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid " >
+    <b-container fluid>
       <b-card  bg-variant="dark" text-variant="white" title="register">
         <b-form @submit="register">
             <b-form-group id="nameInputGroup"
@@ -45,7 +45,7 @@
             </b-button>
         </b-form>
       </b-card>
-    </div>
+    </b-container>
 </template>
 
 
