@@ -20,14 +20,23 @@ export const router = new VueRouter({
     
             children: [
                 {
-                    path: 'register',
-                    component: RegisterComponent
-
+                    path: '',
+                    component: ShopComponent
                 },
 
                 {
-                    path: 'create',
+                    path: 'register',
+                    component: RegisterComponent
+                },
+
+                {
+                    path: 'login',
                     component: LoginComponent
+                },
+
+                {
+                    path: 'shop',
+                    component: ShopComponent
                 },
 
                 {

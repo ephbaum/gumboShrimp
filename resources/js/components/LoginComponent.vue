@@ -1,7 +1,5 @@
 <template>
-    <div class="container-fluid"  >
-        
-        <b-card  bg-variant="dark" text-variant="white" title="login" >
+    <b-container fluid>
         <b-form @submit="login">
             <b-form-group id="emailInputGroup"
                         label="Email"
@@ -32,13 +30,7 @@
                 Login
             </b-button>
         </b-form>
-        </b-card> 
-            
-
-             
-     
-
-    </div>
+    </b-container>
 </template>
 
 
@@ -95,7 +87,7 @@ export default {
                 auth.setAuthToken(data.token)
                 auth.login(data.token, data.user.email);
         
-                this.$router.push({path: '/'});
+                this.$router.push({path: '/shop'});
                 
                 self.$notify({
                     group: 'notifications',

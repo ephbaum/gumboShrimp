@@ -2,20 +2,22 @@
     <div class="container-fluid">
         <notifications group="notifications" position="bottom center" width="100%"/>
         <nav-bar></nav-bar>
-        <login-component v-if="!isAuthenticated" :is="loginComponent"></login-component>
-        <router-view v-if="isAuthenticated"></router-view>
+        <!-- <login-component v-if="!isAuthenticated" :is="loginComponent"></login-component> -->
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 
     import NavBar from './components/NavBar'
+    import ShopComponent from './components/ShopComponent'
     import { mapGetters, mapActions } from 'vuex';
 
     export default {
         name: "mainApp",
         components: {
             NavBar,
+            ShopComponent
         },
         props: ["loginComponent"],
         computed: mapGetters(['isAuthenticated']),

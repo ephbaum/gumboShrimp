@@ -10,6 +10,7 @@
                 <b-navbar-brand to="/"><i class="fas fa-shopping-cart"></i> changocart</b-navbar-brand>
                 <b-navbar-nav>
                     <b-nav-item v-if="isAuthenticated" to="add-item">Add Item</b-nav-item>
+                    <b-nav-item v-if="!isAuthenticated" to="login">Login</b-nav-item>
                 </b-navbar-nav>
                      
                   
