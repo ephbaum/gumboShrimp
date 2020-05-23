@@ -20,11 +20,9 @@
             <div class="col-md-4 " v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px" >
                 <div class="card" cols='3' >
                     <div class="card-body"  >
-                        <img :img-src="`/`+ item.image" alt="Profile storage" height="300px" width="300px">
                         <img :img-src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
                         <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><h5>pic :${{item.image}}</h5></li>
                             <li class="list-group-item"><h5>Price:${{item.price}}</h5></li>
                             <li class="list-group-item">Item Description: {{item.description}}</li>
                             <li class="list-group-item">Number Available: {{item. number_available}}</li>
