@@ -19,12 +19,12 @@
                         <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
                         <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><h5>Price:${{item.price}}</h5></li>
+                            <li class="list-group-item"><h5>${{item.price}}</h5></li>
                             <li class="list-group-item">{{item.description}}</li>
                             <li v-if="item.size" class="list-group-item">Size: {{item.size}}</li>
                         </ul>
-                    <button @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
-                    <button @click="deleteItem(index)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
+                    <button v-if="isAuthenticated" @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
+                    <button v-if="isAuthenticated" @click="deleteItem(index)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                     </div>
                 </div>
             </div>
