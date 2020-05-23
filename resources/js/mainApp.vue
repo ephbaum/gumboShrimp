@@ -15,17 +15,19 @@
 <script>
 
     import NavBar from './components/NavBar'
-    import ShopComponent from './components/ShopComponent'
     import { mapGetters, mapActions } from 'vuex';
 
     export default {
         name: "mainApp",
+
         components: {
             NavBar,
-            ShopComponent
         },
+
         computed: mapGetters(['isAuthenticated']),
+        
         methods: mapActions(['login']),
+        
         mounted() {
             if (window.auth.check()) {
                 // here is where you can do something if the user is logged in

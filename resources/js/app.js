@@ -31,7 +31,6 @@ window.auth = new Auth();
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('main-app', require('./mainApp.vue'))
 Vue.component('login-component', require('./components/LoginComponent.vue'))
 Vue.component('register-component', require('./components/RegisterComponent.vue'))

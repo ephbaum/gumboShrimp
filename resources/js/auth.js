@@ -39,7 +39,7 @@ export default class Auth {
 
             this.$store.commit('logout');
 
-            router.push({ name: 'login' });
+            router.push({ name: '' });
 
         })
     }
