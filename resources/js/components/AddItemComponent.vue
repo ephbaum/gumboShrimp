@@ -2,11 +2,11 @@
     <b-container fluid >
         <b-form class="addItem" >
             <b-form-group
-                    label-cols-lg="3"
-                    label="Add an Item"
-                    label-size="lg"
-                    label-class="font-weight-bold pt-0"
-                    class="mb-0">
+                label-cols-lg="3"
+                label="Add an Item"
+                label-size="lg"
+                label-class="font-weight-bold pt-0"
+                class="mb-0">
             </b-form-group>       
             <b-form-group id="imageGroup" label-for="image">
                 <b-form-file
@@ -14,52 +14,80 @@
                     accept="image/*"
                     v-model="form.itemImage"
                     placeholder="Choose an image..."
-                    @change="onImageChange"/>
+                    @change="onImageChange"
+                    :state="!$v.form.itemImage.$invalid" 
+                    aria-describedby="imageLiveFeedback"/>
                 <b-col cols="6" offset="3" style="margin-top: 1rem;">
-                    <img v-if="form.url" :src="form.url" width="420" alt="uploaded image">
+                    <b-img v-if="form.url" :src="form.url" width="420" alt="uploaded image"></b-img>
                 </b-col>
+                <b-form-invalid-feedback id="imageLiveFeedback">
+                    Please enter an image
+                </b-form-invalid-feedback>
             </b-form-group> 
             <b-form-group id="itemInputGroup" label-for="item">
                 <b-form-input id="item"
                     type="text"
                     v-model="form.itemName"
-                    placeholder="Enter Item">
+                    placeholder="Enter Item"
+                    :state="!$v.form.itemName.$invalid" 
+                    aria-describedby="itemLiveFeedback">
                 </b-form-input>
+                <b-form-invalid-feedback id="imageLiveFeedback">
+                    Please enter a valid item
+                </b-form-invalid-feedback>
             </b-form-group>
             <b-form-group id="descriptionInputGroup" label-for="description">
                 <b-form-input id="description"
                     type="text"
                     v-model="form.itemDescription"
-                    placeholder="Enter Description">
+                    placeholder="Enter Description"
+                    :state="!$v.form.itemDescription.$invalid" 
+                    aria-describedby="itemDescriptionLiveFeedback">
                 </b-form-input>
+                <b-form-invalid-feedback id="itemDescriptionLiveFeedback">
+                    Please enter item description
+                </b-form-invalid-feedback>
             </b-form-group>
             <b-form-group id="priceInputGroup" label-for="price">
                 <b-form-input id="price"
-                    type="text"
+                    type="number"
                     v-model="form.itemPrice"
-                    placeholder="Enter Price...">
+                    placeholder="Enter Price...ex: 0.99"
+                    :state="!$v.form.itemPrice.$invalid" 
+                    aria-describedby="itemPriceDescriptionLiveFeedback">
                 </b-form-input>
+                  <b-form-invalid-feedback id="itemPriceLiveFeedback">
+                    Please enter valid price
+                </b-form-invalid-feedback>
             </b-form-group>
-            <b-form-group id="sizeInputGroup" label-for="size">
+            <b-form-group id="numberAvailableInputGroup" label-for="numberAvailable">
+                <b-form-input id="numberAvailable"
+                    type="number"
+                    v-model="form.numberAvailable"
+                    placeholder="Enter Number Available"          
+                    :state="!$v.form.numberAvailable.$invalid" 
+                    aria-describedby="numberAvailableLiveFeedback">
+                </b-form-input>
+                  <b-form-invalid-feedback id="numberAvailableLiveFeedback">
+                    Please enter number Available
+                </b-form-invalid-feedback>
+            </b-form-group>
+              <b-form-group id="sizeInputGroup" label-for="size">
                 <b-form-input id="size"
                     type="text"
                     v-model="form.itemSize"
                     placeholder="Enter Size... ex: sm, md or lg">
                 </b-form-input>
             </b-form-group>
-            <b-form-group id="numberAvailableInputGroup" label-for="numberAvailable">
-                <b-form-input id="numberAvailable"
-                    type="number"
-                    v-model="form.numberAvailable"
-                    placeholder="Enter Number Available">
-                </b-form-input>
-            </b-form-group>
-            <b-button type="submit" @click.prevent="createItem" >Add Item</b-button>
+            <b-button type="submit" @click.prevent="createItem" :disabled="$v.form.$invalid" >Add Item</b-button>
         </b-form>
     </b-container>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+import { validationMixin } from "vuelidate";
+import { required, minLength, email } from "vuelidate/lib/validators";
     export default {
         data(){
             return{
@@ -75,6 +103,32 @@
                 },
             }
         },
+        mixins: [
+            validationMixin
+        ],
+            validations: {
+        form: {
+            itemImage: {
+                required
+            },
+            itemName: {
+                required,
+                minLength: minLength(3),
+            },
+            itemDescription: {
+                required,
+                minLength: minLength(3)
+            },
+            itemPrice:{
+                required,
+                minLength: minLength(3),
+            },
+            numberAvailable:{
+                required
+            }
+        }
+    },
+
         methods:{
             createItem(){
 

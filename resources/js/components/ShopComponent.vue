@@ -143,14 +143,13 @@ import { mapActions, mapGetters} from "vuex"
         data(){
             return {
                 items:[],
-                url:'http://localhost:8000/api/items/',
                 updateItem:[]
                 }
         },
 
         methods:{
             loadItems(){
-                axios.get(this.url)
+                axios.get('/api/items/')
                 .then(response =>{
                     this.items = response.data.data;
                     console.log(this.items);
@@ -170,7 +169,7 @@ import { mapActions, mapGetters} from "vuex"
             },
             editItem(){
                 console.log(this.updateItem.id);
-                axios.patch('http://localhost:8000/api/items/' + this.updateItem.id, { itemName:this.updateItem.item_name, itemDescription:this.updateItem.description, itemPrice:this.updateItem.price, itemImage:this.updateItem.image, numberAvailable:this.updateItem.number_available, itemSize:this.updateItem.size
+                axios.patch('/api/items/' + this.updateItem.id, { itemName:this.updateItem.item_name, itemDescription:this.updateItem.description, itemPrice:this.updateItem.price, itemImage:this.updateItem.image, numberAvailable:this.updateItem.number_available, itemSize:this.updateItem.size
                 })
                 .then(response=>{
                 $("#viewUpdateItemModal").modal("hide");
@@ -187,6 +186,7 @@ import { mapActions, mapGetters} from "vuex"
 
             },
             deleteItem(id){
+                if(confirm('Are you sure?')){
                 axios.delete('/api/items/' + id) 
                 .then(response => {
                     
@@ -195,6 +195,7 @@ import { mapActions, mapGetters} from "vuex"
                 .catch(error =>{
                     console.log(error);
                 });
+                }
 
             },
             updateProfile(e){
