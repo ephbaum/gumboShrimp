@@ -85,7 +85,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        $item = Item::find($item);
+        $item = Item::find($item)->first();
         $item->delete();
     }
 }

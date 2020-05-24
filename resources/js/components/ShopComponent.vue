@@ -24,7 +24,7 @@
                             <li v-if="item.size" class="list-group-item">Size: {{item.size}}</li>
                         </ul>
                     <button v-if="isAuthenticated" @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
-                    <button v-if="isAuthenticated" @click="deleteItem(index)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
+                    <button v-if="isAuthenticated" @click="deleteItem(item.id)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                     </div>
                 </div>
             </div>
@@ -186,15 +186,11 @@ import { mapActions, mapGetters} from "vuex"
                 });
 
             },
-            deleteItem(index){
-
-                console.log(this.items.id);
-                console.log("id.id" + this.items.id);
-
-                axios.delete('http://localhost:8000/api/items/' + this.items[index].id) 
-                .then(response =>{
-                    this.$delete(this.items, index);
-                    // this.loadItems();
+            deleteItem(id){
+                axios.delete('/api/items/' + id) 
+                .then(response => {
+                    
+                    this.$router.go()
                 })
                 .catch(error =>{
                     console.log(error);
