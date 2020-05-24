@@ -14,7 +14,7 @@
         </div>
         <b-row>
             <div class="col-md-3" v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px">
-                <div v-if="item.number_available > 0" class="card" cols='3'>
+                <div v-if="item.number_available > 0" class="card" cols='3' height="800">
                     <div class="card-body">
                         <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
                         <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
@@ -187,7 +187,8 @@ import { mapActions, mapGetters} from "vuex"
 
             },
             deleteItem(id){
-                axios.delete('/api/items/' + id) 
+                if(confirm("are you sure?")) {
+                    axios.delete('/api/items/' + id) 
                 .then(response => {
                     
                     this.$router.go()
@@ -195,7 +196,7 @@ import { mapActions, mapGetters} from "vuex"
                 .catch(error =>{
                     console.log(error);
                 });
-
+                }
             },
             updateProfile(e){
                 let file = e.target.files[0];
@@ -224,7 +225,11 @@ import { mapActions, mapGetters} from "vuex"
     }
 </script>
 <style >
-.brandName{
-    color: white;
-}
+    .brandName{
+        color: white;
+    }
+
+    .card-body {
+        height: 700px !important;
+    }
 </style>
