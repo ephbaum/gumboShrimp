@@ -64,50 +64,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="number_available">Number Available</label>
-                                <select v-model="updateItem.number_available" class="custom-select mr-sm-2" id="numberAvailable">
-                                    <option selected>Choose...</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="size">Size</label>
-                                <select v-model="updateItem.size" class="custom-select mr-sm-2" id="numberAvailable">
-                                    <option selected>Choose...</option>
-                                    <option value="sm">SM</option>
-                                    <option value="m">M</option>
-                                    <option value="l">L</option>
-                                    <option value="xl">XL</option>
-                                    <option value="1">size 1</option>
-                                    <option value="1.5">size 1.5</option>
-                                    <option value="2">size 2</option>
-                                    <option value="2.5">size 2.5</option>
-                                    <option value="3">size 3</option>
-                                    <option value="3.5">size 3.5</option>
-                                    <option value="4">size 4</option>
-                                    <option value="4.5">size 4.5</option>
-                                    <option value="5">size 5</option>
-                                    <option value="5.5">size 5.5</option>
-                                    <option value="6">size 6</option>
-                                    <option value="6.5">size 6.5</option>
-                                    <option value="7">size 7</option>
-                                    <option value="7.5">size 7.5</option>
-                                    <option value="8">size 8</option>
-                                    <option value="8.5">size 8.5</option>
-                                    <option value="9">size 9</option>
-                                    <option value="9.5">size 9.5</option>
-                                    <option value="10">sizen 10</option>
-                                    <option value="10.5">size 10.5</option>
-                                    <option value="11">size 11</option>
-                                </select>
                             </div>
                         </form>
                     </div>
