@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import mainApp from './mainApp'
 import NavBar from './components/NavBar'
 import ShopComponent from './components/ShopComponent'
-import ItemComponent from './components/ItemComponent'
+import AddItemComponent from './components/AddItemComponent'
 import LoginComponent from './components/LoginComponent'
 import RegisterComponent from './components/RegisterComponent'
 import HeaderComponent from './components/HeaderComponent'
@@ -42,7 +42,7 @@ export const router = new VueRouter({
 
                 {
                     path: 'add-item',
-                    components: {body: ItemComponent}
+                    components: {body: AddItemComponent}
                 }
             ]
         },

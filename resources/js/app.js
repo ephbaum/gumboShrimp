@@ -33,7 +33,7 @@ Vue.component('main-app', require('./mainApp.vue'))
 Vue.component('login-component', require('./components/LoginComponent.vue'))
 Vue.component('register-component', require('./components/RegisterComponent.vue'))
 Vue.component('shop-component', require('./components/ShopComponent.vue').default);
-Vue.component('item-component', require('./components/ItemComponent.vue').default);
+Vue.component('add-item-component', require('./components/AddItemComponent.vue').default);
 Vue.component('nav-bar', require('./components/NavBar.vue'))
 Vue.component('header-component', require('./components/HeaderComponent.vue'))
 
