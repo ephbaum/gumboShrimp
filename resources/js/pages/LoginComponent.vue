@@ -2,21 +2,21 @@
     <b-container>
         <b-form @submit="login">
             <b-form-group id="emailInputGroup"
-                        label="Email"
-                        label-for="email">
+                    label="Email"
+                    label-for="email">
                 <b-form-input id="email"
-                            type="email"
-                            v-model="form.email"
-                            :state="!$v.form.email.$invalid"
-                            aria-describedby="emailLiveFeedback"
-                            placeholder="Enter email" />
+                        type="email"
+                        v-model="form.email"
+                        :state="!$v.form.email.$invalid"
+                        aria-describedby="emailLiveFeedback"
+                        placeholder="Enter email" />
                 <b-form-invalid-feedback id="emailLiveFeedback">
                     Please enter a valid email address
                 </b-form-invalid-feedback>
             </b-form-group>
             <b-form-group id="passwordLoginGroup"
-                        label="Password"
-                        label-for="password">
+                    label="Password"
+                    label-for="password">
                 <b-form-input id="password"
                         type="password"
                         :state="!$v.form.password.$invalid"
@@ -32,7 +32,6 @@
         </b-form>
     </b-container>
 </template>
-
 
 <script>
 

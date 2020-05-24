@@ -30,7 +30,7 @@ window.auth = new Auth();
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('main-app', require('./mainApp.vue'))
-Vue.component('login-component', require('./components/LoginComponent.vue'))
+Vue.component('login-component', require('./pages/LoginComponent.vue'))
 Vue.component('register-component', require('./components/RegisterComponent.vue'))
 Vue.component('shop-component', require('./components/ShopComponent.vue').default);
 Vue.component('add-item-component', require('./components/AddItemComponent.vue').default);
