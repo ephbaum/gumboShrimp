@@ -129,8 +129,15 @@ import { mapActions, mapGetters} from "vuex"
             },
             editItem(){
                 console.log(this.updateItem.id);
-                axios.patch('http://localhost:8000/api/items/' + this.updateItem.id, { itemName:this.updateItem.item_name, itemDescription:this.updateItem.description, itemPrice:this.updateItem.price, itemImage:this.updateItem.image, numberAvailable:this.updateItem.number_available, itemSize:this.updateItem.size
+
+                let formData = new FormData();
+
+                Object.keys(this.form).forEach(key => {
+                    formData.append(key, this.form[key])
                 })
+                
+                axios.patch('/api/items/' + this.updateItem.id, formData)
+                
                 .then(response=>{
                 $("#viewUpdateItemModal").modal("hide");
                     this.loadItems();

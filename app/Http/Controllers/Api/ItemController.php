@@ -79,7 +79,6 @@ class ItemController extends Controller
         $item->item_name = request('itemName');
         $item->description = request('itemDescription');
         $item->price = request('itemPrice');
-        $item->image = request('itemImage');
         $item->number_available = request('numberAvailable');    
     
 
