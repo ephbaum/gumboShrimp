@@ -24,7 +24,7 @@
                             <li v-if="item.size" class="list-group-item">Size: {{item.size}}</li>
                         </ul>
                     <button v-if="isAuthenticated" @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
-                    <button v-if="isAuthenticated" @click="deleteItem(item.id)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
+                    <button v-if="isAuthenticated" @click="deleteItem(item.id, item.item_name)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                     </div>
                 </div>
             </div>
@@ -102,19 +102,19 @@ import { mapActions, mapGetters} from "vuex"
         data(){
             return {
                 items:[],
-                url:'http://localhost:8000/api/items/',
                 updateItem:[]
-                }
+            }
         },
 
         methods:{
             loadItems(){
-                axios.get(this.url)
+                axios.get('/api/items')
                 .then(response =>{
                     this.items = response.data.data;
-                    console.log(this.items);
+                    console.log("Items have successfully loaded");
                 })
                 .catch(error => {
+                    console.log("ERROR ON LOAD ITEMS. Error-->");
                     console.log(error);
                 }); 
             },
@@ -152,8 +152,8 @@ import { mapActions, mapGetters} from "vuex"
                 });
 
             },
-            deleteItem(id){
-                if(confirm("are you sure?")) {
+            deleteItem(id, name){
+                if(confirm("are you sure you want to delete " + name + "?")) {
                     axios.delete('/api/items/' + id) 
                 .then(response => {
                     
