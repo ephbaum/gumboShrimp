@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid >
+    <b-container>
         <b-form class="addItem" >
             <b-form-group
                     label-cols-lg="3"
@@ -9,13 +9,15 @@
                     class="mb-0">
             </b-form-group>       
             <b-form-group id="imageGroup" label-for="image">
-                <b-form-file
+                <b-col cols="4">
+                    <b-form-file
                     id="image"
                     accept="image/*"
                     v-model="form.itemImage"
                     placeholder="Choose an image..."
                     @change="onImageChange"/>
-                <b-col cols="6" offset="3" style="margin-top: 1rem;">
+                </b-col>
+                <b-col cols="6" style="margin-top: 1rem;">
                     <img v-if="form.url" :src="form.url" width="420" alt="uploaded image">
                 </b-col>
             </b-form-group> 
@@ -92,6 +94,15 @@
                     
                     axios.post("/api/items", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
 
+                        this.$notify({
+                        group: 'notifications',
+                        title: 'Success',
+                        type: 'success',
+                        text: 'Item Successfully added',
+                        duration: '6000',
+                        width: '100%'
+                    });
+
                         console.log("AXIOS CALL SUCCESSFULL");
                         // this.$store.dispatch('formSuccess')
                         this.resetForm()
@@ -124,7 +135,8 @@
             onImageChange(e){
                 const file = e.target.files[0];
                 this.form.url = URL.createObjectURL(file);
-                this.form.image = file;            },
+                this.form.image = file;            
+            },
 
         },
         mounted() {

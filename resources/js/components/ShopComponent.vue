@@ -12,8 +12,9 @@
             </b-container>
             <br>
         </div>
+
         <b-row>
-            <div class="col-md-3" v-for="(item, index) in items" :key="item.id" style="padding-bottom: 20px">
+            <b-col xl="3" lg="4" md="6" sm="12" v-for="item in items" :key="item.id" style="padding-bottom: 20px">
                 <div v-if="item.number_available > 0" class="card" cols='3' height="800">
                     <div class="card-body">
                         <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
@@ -23,11 +24,11 @@
                             <li class="list-group-item">{{item.description}}</li>
                             <li v-if="item.size" class="list-group-item">Size: {{item.size}}</li>
                         </ul>
-                    <button v-if="isAuthenticated" @click="showUpdateItemModal(index)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
+                    <button v-if="isAuthenticated" @click="showUpdateItemModal(item)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
                     <button v-if="isAuthenticated" @click="deleteItem(item.id, item.item_name)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                     </div>
                 </div>
-            </div>
+            </b-col>
         </b-row>
 
         <!-- View update Item Modal -->
@@ -46,21 +47,26 @@
                         <form>
                             <div class="form-group">
                             <label for="image" class="col-sm-2 control-label">Image</label>
-                            <input type="file" @change="updateProfile" name="image" class="form-input">
+                            <b-form-file
+                                id="image"
+                                accept="image/*"
+                                v-model="updateItem.image"
+                                placeholder="Choose an image..."
+                                @change="onImageChange"/>
                             </div> 
 
                              <div class="form-group">
                                 <label for="name">Item</label>
-                                <input v-model="updateItem.item_name" type="text" class="form-control" name="name" id="name" />
+                                <input v-model="updateItem.itemName" type="text" class="form-control" name="name" id="name" />
                             </div> 
                             <div class="form-group">
                                 <label for="price">price</label>
-                                <input v-model="updateItem.price" type="text" class="form-control" name="name" id="price" />
+                                <input v-model="updateItem.itemPrice" type="text" class="form-control" name="name" id="price" />
                             </div>
 
                             <div class="form-group">
                                 <label for="description">Item Description</label>
-                                <input v-model="updateItem.description" type="text" class="form-control" name="description" id="description" />
+                                <input v-model="updateItem.itemDescription" type="text" class="form-control" name="description" id="description" />
                             </div>
                             <div class="form-group">
                                 <label for="number_available">Number Available</label>
@@ -102,7 +108,17 @@ import { mapActions, mapGetters} from "vuex"
         data(){
             return {
                 items:[],
-                updateItem:[]
+                updateItem:{
+                    itemName:'',
+                    itemDescription:'',
+                    itemImage:null,
+                    itemPrice:'',
+                    numberAvailable:'',
+                    itemSize:'',
+                    sent:false
+                },
+
+                url:null,
             }
         },
 
@@ -111,6 +127,7 @@ import { mapActions, mapGetters} from "vuex"
                 axios.get('/api/items')
                 .then(response =>{
                     this.items = response.data.data;
+                    console.log(this.items);
                     console.log("Items have successfully loaded");
                 })
                 .catch(error => {
@@ -118,22 +135,28 @@ import { mapActions, mapGetters} from "vuex"
                     console.log(error);
                 }); 
             },
-            showUpdateItemModal(index){
-                // console.log(id);
+            showUpdateItemModal(item){
+                console.log("ITEM------> " + item[0]);
 
-                this.updateItem = [];
+                this.updateItem.itemName = item.item_name;
+                this.updateItem.itemPrice = item.price;
+                this.updateItem.numberAvailable = item.number_available;
+                this.updateItem.itemDescription = item.description;
+                this.updateItem.id = item.id;
+
+
+                // this.updatedItem.itemDescription = item.itemDescription;
+
                 $("#viewUpdateItemModal").modal("show");
-                this.updateItem = this.items[index];
-                console.log(this.updateItem);
-                return this.updateItem;
+                
             },
             editItem(){
                 console.log(this.updateItem.id);
 
                 let formData = new FormData();
 
-                Object.keys(this.form).forEach(key => {
-                    formData.append(key, this.form[key])
+                Object.keys(this.updateItem).forEach(key => {
+                    formData.append(key, this.updateItem[key])
                 })
                 
                 axios.patch('/api/items/' + this.updateItem.id, formData)
@@ -155,9 +178,19 @@ import { mapActions, mapGetters} from "vuex"
             deleteItem(id, name){
                 if(confirm("are you sure you want to delete " + name + "?")) {
                     axios.delete('/api/items/' + id) 
-                .then(response => {
+                .then(({data}) => {
                     
+                    self.$notify({
+                        group: 'notifications',
+                        type: 'success',
+                        title: 'Success!',
+                        text: name + " sucessfully deleted.",
+                        duration: '15000',
+                        width: '100%'
+                    });
+                
                     this.$router.go()
+                    
                 })
                 .catch(error =>{
                     console.log(error);
@@ -182,6 +215,11 @@ import { mapActions, mapGetters} from "vuex"
                         text: 'you are updloading a large file'
                     })
                 }
+            },
+            onImageChange(e){
+                const file = e.target.files[0];
+                this.url = URL.createObjectURL(file);
+                this.updateItem.image = file;            
             },
         },
         mounted() {
