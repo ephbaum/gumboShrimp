@@ -17,6 +17,17 @@ use App\Http\Requests\ItemRequest;
 class ItemController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // use auth middleware except on the index route
+        $this->middleware('auth:api')->except('index');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return ItemResource
@@ -104,12 +115,17 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
     public function destroy(Item $item)
     {
         $item = Item::find($item)->first();
-        $item->delete();
+        
+        if($item->delete()){
+            return response()->json(null, Response::HTTP_OK);
+        };
+
+        return response()->json(['message' => 'Item did not delete'], Response::HTTP_EXPECTATION_FAILED);   
     }
 }
