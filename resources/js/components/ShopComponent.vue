@@ -141,6 +141,7 @@ import { mapActions, mapGetters} from "vuex"
             },
             showUpdateItemModal(item){
 
+                this.url = item.url;
                 this.updateItem.itemImage = item.itemImage;
                 this.updateItem.itemName = item.item_name;
                 this.updateItem.itemPrice = item.price;
@@ -178,7 +179,7 @@ import { mapActions, mapGetters} from "vuex"
                         text: "Item sucessfully updated.",
                         duration: '15000',
                         width: '100%'
-                    }), 15000);
+                    }), 9000);
                     this.loadItems();
                 })
                 .catch(error=>{
@@ -220,11 +221,14 @@ import { mapActions, mapGetters} from "vuex"
                     }
                     reader.readAsDataURL(file);
                 } else{
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'you are updloading a large file'
-                    })
+                    this.$notify({
+                        group: 'notifications',
+                        type: 'warning',
+                        title: 'Failure',
+                        text: 'File too large',
+                        duration: '15000',
+                        width: '100%'
+                    });
                 }
             },
             onImageChange(e){
