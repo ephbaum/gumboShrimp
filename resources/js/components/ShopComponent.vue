@@ -50,7 +50,7 @@
                             <b-form-file
                                 id="image"
                                 accept="image/*"
-                                v-model="updateItem.image"
+                                v-model="updateItem.itemImage"
                                 placeholder="Choose an image..."
                                 @change="onImageChange"/>
                             </div> 
@@ -137,6 +137,7 @@ import { mapActions, mapGetters} from "vuex"
             },
             showUpdateItemModal(item){
 
+                this.updateItem.itemImage = item.itemImage;
                 this.updateItem.itemName = item.item_name;
                 this.updateItem.itemPrice = item.price;
                 this.updateItem.numberAvailable = item.number_available;
