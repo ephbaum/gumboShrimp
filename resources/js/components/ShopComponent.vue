@@ -55,7 +55,11 @@
                                 @change="onImageChange"/>
                             </div> 
 
-                             <div class="form-group">
+                            <b-col cols="6" style="margin-top: 1rem;">
+                                <img v-if="url" :src="url" width="420" alt="uploaded image">
+                            </b-col>
+
+                            <div class="form-group">
                                 <label for="name">Item</label>
                                 <input v-model="updateItem.itemName" type="text" class="form-control" id="name" />
                             </div> 
