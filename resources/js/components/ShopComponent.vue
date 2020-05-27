@@ -31,14 +31,14 @@
             </b-col>
         </b-row>
 
+
+
         <!-- View update Item Modal -->
         <div class="modal fade" id="viewUpdateItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document" >
                 <div class="modal-content" >
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">
-                            
-                            Item: {{ updateItem.item_name }}</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{ updateItem.itemName }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -70,13 +70,15 @@
 
                             <div class="form-group">
                                 <label for="description">Item Description</label>
-                                <input v-model="updateItem.itemDescription" type="text" class="form-control" name="description" id="description" />
+                                <input v-model="updateItem.itemDescription" type="text" class="form-control" id="description" />
                             </div>
                             <div class="form-group">
                                 <label for="number_available">Number Available</label>
+                                <input v-model="updateItem.numberAvailable" type="number" class="form-control" id="numberAvailable" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" v-if="updateItem.size">
                                 <label for="size">Size</label>
+                                <input v-model="updateItem.itemSize" type="text" class="form-control" id="size" />
                             </div>
                         </form>
                     </div>
@@ -141,7 +143,7 @@ import { mapActions, mapGetters} from "vuex"
             },
             showUpdateItemModal(item){
 
-                this.url = item.url;
+                this.url = item.itemImage;
                 this.updateItem.itemImage = item.itemImage;
                 this.updateItem.itemName = item.item_name;
                 this.updateItem.itemPrice = item.price;
