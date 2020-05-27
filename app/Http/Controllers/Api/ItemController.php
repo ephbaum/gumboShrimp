@@ -85,6 +85,10 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+        Log::debug($request);
+        Log::debug($item);
+
+
         $item = Item::find($item)->first();
 
         $item->item_name = request('itemName');

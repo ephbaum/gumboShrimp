@@ -15,7 +15,7 @@
 
         <b-row>
             <b-col xl="3" lg="4" md="6" sm="12" v-for="item in items" :key="item.id" style="padding-bottom: 20px">
-                <div v-if="item.number_available > 0" class="card" cols='3' height="800">
+                <div v-if="item.number_available > 0" class="card" height="700">
                     <div class="card-body">
                         <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
                         <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
@@ -57,11 +57,11 @@
 
                              <div class="form-group">
                                 <label for="name">Item</label>
-                                <input v-model="updateItem.itemName" type="text" class="form-control" name="name" id="name" />
+                                <input v-model="updateItem.itemName" type="text" class="form-control" id="name" />
                             </div> 
                             <div class="form-group">
                                 <label for="price">price</label>
-                                <input v-model="updateItem.itemPrice" type="text" class="form-control" name="name" id="price" />
+                                <input v-model="updateItem.itemPrice" type="text" class="form-control" id="price" />
                             </div>
 
                             <div class="form-group">
@@ -136,7 +136,6 @@ import { mapActions, mapGetters} from "vuex"
                 }); 
             },
             showUpdateItemModal(item){
-                console.log("ITEM------> " + item[0]);
 
                 this.updateItem.itemName = item.item_name;
                 this.updateItem.itemPrice = item.price;
@@ -159,19 +158,26 @@ import { mapActions, mapGetters} from "vuex"
                     formData.append(key, this.updateItem[key])
                 })
                 
-                axios.patch('/api/items/' + this.updateItem.id, formData)
+                formData.append('_method', 'PUT');
+
+                let self = this;
+                axios.post('/api/items/' + this.updateItem.id, formData)
                 
                 .then(response=>{
-                $("#viewUpdateItemModal").modal("hide");
+                    $("#viewUpdateItemModal").modal("hide");
+                    
+                    setTimeout(this.$notify({
+                        group: 'notifications',
+                        type: 'success',
+                        title: 'Success!',
+                        text: "Item sucessfully updated.",
+                        duration: '15000',
+                        width: '100%'
+                    }), 15000);
                     this.loadItems();
                 })
                 .catch(error=>{
-                    if(error.response.data.errors.name){
-                        this.errors.push(error.response.data.errors.name[0]);
-                    }
-                    if(error.response.data.errors.body){
-                        this.errors.push(error.response.data.errors.body[0]);
-                    }
+                    console.log(error);
                 });
 
             },
@@ -180,16 +186,16 @@ import { mapActions, mapGetters} from "vuex"
                     axios.delete('/api/items/' + id) 
                 .then(({data}) => {
                     
-                    self.$notify({
+                    setTimeout(this.$notify({
                         group: 'notifications',
                         type: 'success',
                         title: 'Success!',
                         text: name + " sucessfully deleted.",
                         duration: '15000',
                         width: '100%'
-                    });
+                    }), 15000);
                 
-                    this.$router.go()
+                    this.loadItems();
                     
                 })
                 .catch(error =>{
