@@ -1,94 +1,105 @@
 <template>
     <b-container fluid>
-        <div>
-            <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> changocart</h1>
-            <b-container fluid class="search">
-                <b-input-group class="mt-3">
-                    <template v-slot:append>
-                    <button type="button" class="btn btn-success"><li class="fa fa-search"></li></button>
-                    </template>
-                    <b-form-input placeholder="search for your item..." ></b-form-input>
-                </b-input-group>
-            </b-container>
-            <br>
-        </div>
+        <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> changocart</h1>
+        <h6>Items in Cart: {{ cartLength }}</h6>
+        <b-container fluid class="search">
+            <b-input-group class="mt-3">
+                <template v-slot:append>
+                <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
+                </template>
+                <b-form-input placeholder="search for your item..." ></b-form-input>
+            </b-input-group>
+        </b-container>
+        <br>
 
         <b-row>
-            <b-col xl="3" lg="4" md="6" sm="12" v-for="item in items" :key="item.id" style="padding-bottom: 20px">
-                <div v-if="item.number_available > 0" class="card" height="700">
-                    <div class="card-body">
-                        <img v-if="item.image" :src="item.image" class="card-img-top" alt="Profile Picture"  height="300px" width="300px">
-                        <h5 class="card-title">{{item.item_name}}<button class="btn btn-link"><i class="fas fa-plus"></i><i class="fas fa-shopping-cart"></i></button> </h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><h5>${{item.price}}</h5></li>
-                            <li class="list-group-item">{{item.description}}</li>
-                            <li v-if="item.size" class="list-group-item">Size: {{item.size}}</li>
-                        </ul>
-                    <button v-if="isAuthenticated" @click="showUpdateItemModal(item)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
-                    <button v-if="isAuthenticated" @click="deleteItem(item.id, item.item_name)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
-                    </div>
-                </div>
+            <b-col xl="2" lg="3" md="4" sm="6" v-for="item in items" :key="item.id">
+                <b-card v-if="item.image" :img-src="item.image" img-alt="Item image" img-height="300" img-width="300" :title="item.item_name">
+                    
+                    <b-row class="text-center">
+                        <b-col>
+                            <b-card-text style="font-size: .7em"> {{ item.description }} </b-card-text>
+                        </b-col>
+                    </b-row>
+
+                    <b-row class="text-center bottom">
+                        <b-col>
+                            <b-card-text> ${{ item.price }} </b-card-text>
+                        </b-col>
+                    </b-row>
+                    
+                    <b-card-footer>
+                        <b-row>
+                            <b-col>
+                                <button v-if="isAuthenticated" @click="showUpdateItemModal(item)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
+                            </b-col>
+                        
+                            <b-col>
+                                <button v-if="isAuthenticated" @click="deleteItem(item.id, item.item_name)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
+                            </b-col>
+
+                            <b-col>
+                                <button v-if="!isAuthenticated" @click="addToCart(item)" class="btn btn-link" style="color: green;"><i class="fas fa-shopping-cart"></i></button>
+                            </b-col>
+                        </b-row>
+                    </b-card-footer>
+
+                </b-card>
+            </b-col>
+
+            <b-col>
+                <b-card title="CART">
+                    <li v-for="thing in cart" :key="thing.id">{{ thing.item_name }}</li>
+                </b-card>
             </b-col>
         </b-row>
+
+        
+            
 
 
 
         <!-- View update Item Modal -->
-        <div class="modal fade" id="viewUpdateItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document" >
-                <div class="modal-content" >
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">{{ updateItem.itemName }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                            <label for="image" class="col-sm-2 control-label">Image</label>
-                            <b-form-file
-                                id="image"
-                                accept="image/*"
-                                v-model="updateItem.itemImage"
-                                placeholder="Choose an image..."
-                                @change="onImageChange"/>
-                            </div> 
+        <b-modal id="editModal" hide-footer no-close-on-backdrop>
+            <form>
+                <div class="form-group">
+                <label for="image" class="col-sm-2 control-label">Image</label>
+                <b-form-file
+                    id="image"
+                    accept="image/*"
+                    v-model="updateItem.itemImage"
+                    placeholder="Choose an image..."
+                    @change="onImageChange"/>
+                </div> 
 
-                            <b-col cols="6" style="margin-top: 1rem;">
-                                <img v-if="url" :src="url" width="420" alt="uploaded image">
-                            </b-col>
+                <b-col cols="6" style="margin-top: 1rem;">
+                    <img v-if="url" :src="url" width="420" alt="uploaded image">
+                </b-col>
 
-                            <div class="form-group">
-                                <label for="name">Item</label>
-                                <input v-model="updateItem.itemName" type="text" class="form-control" id="name" />
-                            </div> 
-                            <div class="form-group">
-                                <label for="price">price</label>
-                                <input v-model="updateItem.itemPrice" type="text" class="form-control" id="price" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description">Item Description</label>
-                                <input v-model="updateItem.itemDescription" type="text" class="form-control" id="description" />
-                            </div>
-                            <div class="form-group">
-                                <label for="number_available">Number Available</label>
-                                <input v-model="updateItem.numberAvailable" type="number" class="form-control" id="numberAvailable" />
-                            </div>
-                            <div class="form-group" v-if="updateItem.size">
-                                <label for="size">Size</label>
-                                <input v-model="updateItem.itemSize" type="text" class="form-control" id="size" />
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button @click="editItem" class="btn btn-primary">Save changes</button>
-                    </div>
+                <div class="form-group">
+                    <label for="name">Item</label>
+                    <input v-model="updateItem.itemName" type="text" class="form-control" id="name" />
+                </div> 
+                <div class="form-group">
+                    <label for="price">price</label>
+                    <input v-model="updateItem.itemPrice" type="text" class="form-control" id="price" />
                 </div>
-            </div>
-        </div> 
+
+                <div class="form-group">
+                    <label for="description">Item Description</label>
+                    <input v-model="updateItem.itemDescription" type="text" class="form-control" id="description" />
+                </div>
+                <div class="form-group">
+                    <label for="number_available">Number Available</label>
+                    <input v-model="updateItem.numberAvailable" type="number" class="form-control" id="numberAvailable" />
+                </div>
+                <div class="form-group" v-if="updateItem.size">
+                    <label for="size">Size</label>
+                    <input v-model="updateItem.itemSize" type="text" class="form-control" id="size" />
+                </div>
+                <b-button class="mt-3" block @click.prevent="editItem">Edit Item</b-button>
+            </form>
+        </b-modal>
 <!--  -->
     </b-container>
 </template>
@@ -113,6 +124,7 @@ import { mapActions, mapGetters} from "vuex"
         },
         data(){
             return {
+                cart: [],
                 items:[],
                 updateItem:{
                     itemName:'',
@@ -151,10 +163,7 @@ import { mapActions, mapGetters} from "vuex"
                 this.updateItem.itemDescription = item.description;
                 this.updateItem.id = item.id;
 
-
-                // this.updatedItem.itemDescription = item.itemDescription;
-
-                $("#viewUpdateItemModal").modal("show");
+                this.$bvModal.show('editModal');
                 
             },
             editItem(){
@@ -172,7 +181,7 @@ import { mapActions, mapGetters} from "vuex"
                 axios.post('/api/items/' + this.updateItem.id, formData)
                 
                 .then(response=>{
-                    $("#viewUpdateItemModal").modal("hide");
+                    this.$bvModal.hide('editModal');
                     
                     setTimeout(this.$notify({
                         group: 'notifications',
@@ -211,6 +220,9 @@ import { mapActions, mapGetters} from "vuex"
                 });
                 }
             },
+            addToCart(item){
+                this.cart.push(item);
+            },
             updateProfile(e){
                 let file = e.target.files[0];
                 let reader = new FileReader();
@@ -239,6 +251,12 @@ import { mapActions, mapGetters} from "vuex"
                 this.updateItem.image = file;            
             },
         },
+        computed: {
+            cartLength(){
+                return this.cart.length;
+            }
+            
+        },
         mounted() {
             this.loadItems();
             console.log('Component mounted.')
@@ -246,11 +264,42 @@ import { mapActions, mapGetters} from "vuex"
     }
 </script>
 <style >
-    .brandName{
+    .bottom {
+        position: sticky;
+        top: 10;
+        left: 0;
+        right: 0;
+    }
+
+    .brandName {
         color: white;
     }
 
+    .card-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .modal-backdrop {
+        opacity:0; transition:opacity .8s;
+    }
+
+    .modal-backdrop.in {
+        opacity:.7;
+    }
+
     .card-body {
-        height: 700px !important;
+        flex: 1 1 auto;
+        height: 300px !important;
+        padding: 1.25rem;
+    }
+
+    .card {
+        
     }
 </style>

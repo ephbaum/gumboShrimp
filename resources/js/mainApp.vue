@@ -5,7 +5,7 @@
         
         <br>
         
-        <router-view name="header"/>
+        <router-view name="header" v-if="!isAuthenticated"/>
         <router-view name="body"/>
 
         <notifications group="notifications" position="bottom center" width="100%"/>
