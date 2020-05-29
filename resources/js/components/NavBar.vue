@@ -17,7 +17,7 @@
                     </b-navbar-nav>
 
                     <b-navbar-nav class="ml-auto"  v-if="isAuthenticated">
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Account
                             </a>
@@ -28,8 +28,8 @@
                                 <a class="dropdown-item" href="#"></a>
                                 <a class="dropdown-item" href="#" v-if="isAuthenticated"  @click="logout" right> <i class="far fa-address-book" style="color: red;"></i> Logout </a>
                             </div>
-                        </li>
-                        <b-nav-item v-if="isAuthenticated && currentUser" @click="logout" right> Logout - {{ currentUser.name }}></b-nav-item>
+                        </li> -->
+                        <b-nav-item v-if="isAuthenticated" @click="logout" right> Logout - {{ currentUser }}></b-nav-item>
                     </b-navbar-nav>
 
                 </b-collapse>

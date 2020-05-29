@@ -1,15 +1,17 @@
 <template>
     <b-container fluid>
-        <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> changocart</h1>
+        <br>
+        <div class="spacer" style="margin: 100px;"></div>
+        <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> ChangoCart</h1>
         <h6>Items in Cart: {{ cartLength }}</h6>
-        <b-container fluid class="search">
+        <b-row>
             <b-input-group class="mt-3">
                 <template v-slot:append>
                 <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
                 </template>
                 <b-form-input placeholder="search for your item..." ></b-form-input>
             </b-input-group>
-        </b-container>
+        </b-row>
         <br>
 
         <b-row>
@@ -30,16 +32,16 @@
                     
                     <b-card-footer>
                         <b-row>
-                            <b-col>
-                                <button v-if="isAuthenticated" @click="showUpdateItemModal(item)" class="btn btn-link" style="width:90px"><i class="far fa-edit"></i> Edit</button>
+                            <b-col v-if="isAuthenticated">
+                                <button @click.prevent="showUpdateItemModal(item)" class="btn btn-link"><i class="far fa-edit"></i>    Edit</button>
                             </b-col>
                         
-                            <b-col>
-                                <button v-if="isAuthenticated" @click="deleteItem(item.id, item.item_name)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
+                            <b-col v-if="isAuthenticated">
+                                <button @click.prevent="deleteItem(item.id, item.item_name)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
                             </b-col>
 
-                            <b-col>
-                                <button v-if="!isAuthenticated" @click="addToCart(item)" class="btn btn-link" style="color: green;"><i class="fas fa-shopping-cart"></i></button>
+                            <b-col v-if="!isAuthenticated">
+                                <button @click="addToCart(item)" class="btn btn-link" style="color: green;"><i class="fas fa-shopping-cart"></i></button>
                             </b-col>
                         </b-row>
                     </b-card-footer>
@@ -105,23 +107,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters} from "vuex"
-
+    import { mapGetters, mapActions } from "vuex";
 
     export default {
         name: 'shop',
-        components:{
-
-
-        },
-        computed: mapGetters(['isAuthenticated', 'currentUser']),
-        isCurrentUser() {
-            if (isAuthenticated) {
-                return currentUser
-            }
-
-            return false;
-        },
         data(){
             return {
                 cart: [],
@@ -220,7 +209,7 @@ import { mapActions, mapGetters} from "vuex"
                 });
                 }
             },
-            addToCart(item){
+            addToCart(item){    
                 this.cart.push(item);
             },
             updateProfile(e){
@@ -254,12 +243,14 @@ import { mapActions, mapGetters} from "vuex"
         computed: {
             cartLength(){
                 return this.cart.length;
-            }
+            },
+
+            ...mapGetters(['isAuthenticated', 'currentUser']),
             
         },
         mounted() {
             this.loadItems();
-            console.log('Component mounted.')
+            console.log('Shop Component mounted.')
         }
     }
 </script>
@@ -297,9 +288,5 @@ import { mapActions, mapGetters} from "vuex"
         flex: 1 1 auto;
         height: 300px !important;
         padding: 1.25rem;
-    }
-
-    .card {
-        
     }
 </style>

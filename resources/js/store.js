@@ -18,13 +18,13 @@ export default new Vuex.Store({
         return {
             token: userToken ? userToken : null,
             user: user ? user : null,
-            currentUser: null,
+            currentUser: currentUser ? currentUser : null,
             cart: []
         }
     },
     getters: { 
         isAuthenticated: state => !!state.token,
-        currentUser: state => state.currentUser,
+        currentUser: state => state.user,
     },
     mutations: {
         // mutations are committed by actions, and are the ONLY way to manipulate state
