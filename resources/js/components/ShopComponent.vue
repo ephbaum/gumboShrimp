@@ -33,15 +33,15 @@
                     <b-card-footer>
                         <b-row>
                             <b-col v-if="isAuthenticated">
-                                <button @click.prevent="showUpdateItemModal(item)" class="btn btn-link"><i class="far fa-edit"></i>    Edit</button>
+                                <b-button v-b-popover.hover.top="'Click here to edit item'" title="EDIT ITEM" @click.prevent="showUpdateItemModal(item)" style="color: white;"><i class="far fa-edit"></i></b-button>
                             </b-col>
                         
                             <b-col v-if="isAuthenticated">
-                                <button @click.prevent="deleteItem(item.id, item.item_name)" class="btn btn-link" style="color: red;"><i class="far fa-trash-alt"> Remove</i></button>
+                                <b-button v-b-popover.hover.top="'Click here to DELETE item. You cannot undo this.'" title="DELETE ITEM" @click.prevent="deleteItem(item.id, item.item_name)" style="color: red;"><i class="far fa-trash-alt"></i></b-button>
                             </b-col>
 
                             <b-col v-if="!isAuthenticated">
-                                <button @click="addToCart(item)" class="btn btn-link" style="color: green;"><i class="fas fa-shopping-cart"></i></button>
+                                <b-button v-b-popover.hover.top="'Click here to add this item to your cart.'" title="Add Item"@click="addToCart(item)" class="btn btn-link" style="color: white;"><i class="fas fa-shopping-cart"></i></b-button>
                             </b-col>
                         </b-row>
                     </b-card-footer>
