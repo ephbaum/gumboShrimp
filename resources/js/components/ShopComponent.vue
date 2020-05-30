@@ -9,13 +9,13 @@
                 <template v-slot:append>
                 <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
                 </template>
-                <b-form-input placeholder="search for your item..." ></b-form-input>
+                <b-form-input v-model="search" placeholder="search for your item..." ></b-form-input>
             </b-input-group>
         </b-row>
         <br>
 
         <b-row>
-            <b-col xl="2" lg="3" md="4" sm="6" v-for="item in items" :key="item.id">
+            <b-col xl="2" lg="3" md="4" sm="6" v-for="item in filteredItems" :key="item.id">
                 <b-card v-if="item.image" :img-src="item.image" img-alt="Item image" img-height="300" img-width="300" :title="item.item_name">
                     
                     <b-row class="text-center">
@@ -41,7 +41,7 @@
                             </b-col>
 
                             <b-col v-if="!isAuthenticated">
-                                <b-button v-b-popover.hover.top="'Click here to add this item to your cart.'" title="Add Item"@click="addToCart(item)" class="btn btn-link" style="color: white;"><i class="fas fa-shopping-cart"></i></b-button>
+                                <b-button v-b-popover.hover.top="'Click here to add this item to your cart.'" title="Add Item" @click="addToCart(item)" class="btn btn-link" style="color: white;"><i class="fas fa-shopping-cart"></i></b-button>
                             </b-col>
                         </b-row>
                     </b-card-footer>
@@ -113,6 +113,7 @@
         name: 'shop',
         data(){
             return {
+                search: '',
                 cart: [],
                 items:[],
                 updateItem:{
@@ -243,6 +244,15 @@
         computed: {
             cartLength(){
                 return this.cart.length;
+            },
+            filteredItems() {
+                let self=this;
+
+                if (this.search) {
+                    return this.items.filter(item => item.item_name.toLowerCase().indexOf(self.search.toLowerCase())>=0);
+                }
+        
+                return this.items;  
             },
 
             ...mapGetters(['isAuthenticated', 'currentUser']),
