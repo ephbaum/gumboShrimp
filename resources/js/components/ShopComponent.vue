@@ -1,13 +1,12 @@
 <template>
     <b-container fluid>
-        <br>
         <div class="spacer" style="margin: 100px;"></div>
-        <h1 class="brandName" style="color:green" ><i class="fas fa-shopping-cart" ></i> ChangoCart</h1>
-        <h6>Items in Cart: {{ cartLength }}</h6>
+        <h1 class="brandName" style="color:green; text-align: center;" ><i class="fas fa-shopping-cart" ></i> ChangoCart</h1>
+        <h6>Items in {{ currentUser }}'s Cart: {{ cartLength }}</h6>
         <b-row>
             <b-input-group class="mt-3">
                 <template v-slot:append>
-                <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
+                    <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
                 </template>
                 <b-form-input v-model="search" placeholder="search for your item..." ></b-form-input>
             </b-input-group>
@@ -37,7 +36,7 @@
                             </b-col>
                         
                             <b-col v-if="isAuthenticated">
-                                <b-button v-b-popover.hover.top="'Click here to DELETE item. You cannot undo this.'" title="DELETE ITEM" @click.prevent="deleteItem(item.id, item.item_name)" style="color: red;"><i class="far fa-trash-alt"></i></b-button>
+                                <b-button v-b-popover.hover.top="'Click here to DELETE item. You cannot undo this.'" title="DELETE ITEM" @click.prevent="deleteItem(item.id, item.item_name)" style="color: white;"><i class="far fa-trash-alt"></i></b-button>
                             </b-col>
 
                             <b-col v-if="!isAuthenticated">
@@ -114,7 +113,6 @@
         data(){
             return {
                 search: '',
-                cart: [],
                 items:[],
                 updateItem:{
                     itemName:'',
@@ -211,7 +209,7 @@
                 }
             },
             addToCart(item){    
-                this.cart.push(item);
+                this.$store.dispatch('addToCart', item)
             },
             updateProfile(e){
                 let file = e.target.files[0];
@@ -254,7 +252,7 @@
         
                 return this.items;  
                 
-            },...mapGetters(['isAuthenticated', 'currentUser']),
+            },...mapGetters(['isAuthenticated', 'currentUser', 'cart']),
             
         },
         mounted() {

@@ -23,8 +23,10 @@ export default new Vuex.Store({
         }
     },
     getters: { 
+        
         isAuthenticated: state => !!state.token,
         currentUser: state => state.user,
+        cart: state => state.cart
     },
     mutations: {
         // mutations are committed by actions, and are the ONLY way to manipulate state
@@ -32,7 +34,7 @@ export default new Vuex.Store({
         setLoginCred(state, payload) {
             state.token = payload.token;
             state.user = payload.user;
-            state.isAuthenticated = true;
+            
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + payload.token
         },
         setUser(state, user) {
@@ -45,6 +47,9 @@ export default new Vuex.Store({
             Vue.cookie.delete('token');
             Vue.cookie.delete('user');
         },
+        addToCart(state, payload) {
+            state.cart.push(payload);
+        }
     },
     actions: {
         // actions are dispatched, they commit mutations
@@ -70,6 +75,8 @@ export default new Vuex.Store({
                 router.push({ path: '/' });
             })
         },
+        addToCart(context, payload) {
+            context.commit('addToCart', payload);
+        }
     }
-
 })
