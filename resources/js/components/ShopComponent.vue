@@ -253,9 +253,8 @@
                 }
         
                 return this.items;  
-            },
-
-            ...mapGetters(['isAuthenticated', 'currentUser']),
+                
+            },...mapGetters(['isAuthenticated', 'currentUser']),
             
         },
         mounted() {
