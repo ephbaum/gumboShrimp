@@ -45,10 +45,10 @@ export default new Vuex.Store({
         logout(state) {
             state.token = null;
             state.user = null;
-            state.isAuthenticated = false;
             Vue.cookie.delete('token');
             Vue.cookie.delete('user');
         },
+<<<<<<< HEAD
         addToCart(state, item) {
             console.log(item.item_name);
             console.log(item.price);
@@ -64,6 +64,11 @@ export default new Vuex.Store({
                 Vue.set(item, 'totalPrice', item.price);
             }
             state.cartCount++;
+=======
+        addToCart(state, payload) {
+            // if it's already in cart, add quantity
+            state.cart.push(payload);
+>>>>>>> 63237e82ab0800cf27467914a9ffe7cd65f985bb
         }
     },
     actions: {
