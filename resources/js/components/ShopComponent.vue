@@ -2,7 +2,31 @@
     <b-container fluid>
         <div class="spacer" style="margin: 100px;"></div>
         <h1 class="brandName" style="color:green; text-align: center;" ><i class="fas fa-shopping-cart" ></i> ChangoCart</h1>
-        <h6>Items in {{ currentUser }}'s Cart: {{ cartLength }}</h6>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" href="">Cart ({{ $store.state.cartCount }})</a>
+            <div v-if="$store.state.cart.length > 0" class="navbar-dropdown is-boxed is-right">
+                <a v-for="item in $store.state.cart"
+                    :key="item.id"
+                    class="navbar-item"
+                    href="">
+                    {{ item.item_name }} x{{ item.quantity }} - ${{ item.totalPrice }}</a>
+
+                <a class="navbar-item" href="">
+                    Total: ${{ totalPrice }}
+                </a>
+
+                <hr class="navbar-divider">
+
+                <a class="navbar-item" href="">
+                    Checkout
+                </a>
+            </div>
+
+            <div v-else class="navbar-dropdown is-boxed is-right">
+                <a class="navbar-item" href="">Cart is empty</a>
+            </div>
+            </div>
+            <h6>Items in {{ currentUser }}'s Cart: </h6>
         <b-row>
             <b-input-group class="mt-3">
                 <template v-slot:append>
@@ -47,10 +71,10 @@
 
                 </b-card>
             </b-col>
-
             <b-col>
                 <b-card title="CART">
-                    <li v-for="thing in cart" :key="thing.id">{{ thing.item_name }}</li>
+                    <!-- <li v-for="thing in cart" :key="thing.id">{{ thing.item_name }}</li> -->
+                  
                 </b-card>
             </b-col>
         </b-row>
@@ -209,7 +233,10 @@
                 }
             },
             addToCart(item){    
-                this.$store.dispatch('addToCart', item)
+                this.$store.commit('addToCart', item);
+            },
+            removeFromCart(item){
+                this.$store.commit('removeFromCart', item);
             },
             updateProfile(e){
                 let file = e.target.files[0];
@@ -240,9 +267,17 @@
             },
         },
         computed: {
-            cartLength(){
-                return this.cart.length;
+            totalPrice(){
+                let total = 0;
+                for(let item of this.$store.state.cart){
+                    total += item.totalPrice;
+                    console.log(total);
+                }
+                return total.toFixed(2);
             },
+            // cartLength(){
+            //     return this.cart.length;
+            // },
             filteredItems() {
                 let self=this;
 

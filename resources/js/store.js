@@ -14,12 +14,12 @@ export default new Vuex.Store({
         let userToken = Vue.cookie.get('token');
         let user = Vue.cookie.get('user');
         let currentUser = JSON.stringify(user);
-
         return {
             token: userToken ? userToken : null,
             user: user ? user : null,
             currentUser: currentUser ? currentUser : null,
-            cart: []
+            cart: [],
+            cartCount: 0,
         }
     },
     getters: { 
@@ -28,6 +28,8 @@ export default new Vuex.Store({
         currentUser: state => state.user,
         cart: state => state.cart
     },
+
+
     mutations: {
         // mutations are committed by actions, and are the ONLY way to manipulate state
 
@@ -47,8 +49,21 @@ export default new Vuex.Store({
             Vue.cookie.delete('token');
             Vue.cookie.delete('user');
         },
-        addToCart(state, payload) {
-            state.cart.push(payload);
+        addToCart(state, item) {
+            console.log(item.item_name);
+            console.log(item.price);
+            console.log(item.number_available);
+
+            let found = state.cart.find(product => product.id == item.id);
+            if(found){
+                found.quantity ++;
+                found.totalPrice = found.quantity * found.price;
+            }else{
+                state.cart.push(item);
+                Vue.set(item, 'quantity', 1);
+                Vue.set(item, 'totalPrice', item.price);
+            }
+            state.cartCount++;
         }
     },
     actions: {
@@ -75,8 +90,16 @@ export default new Vuex.Store({
                 router.push({ path: '/' });
             })
         },
-        addToCart(context, payload) {
-            context.commit('addToCart', payload);
+        addToCart(state, item) {
+            state.commit('addToCart', item);
+        },
+        removeFromCart(state, item){
+            let index = state.cart.indexOf(item);
+            if(index > -1){
+                let product = state.cart[index];
+                state.cartCount -= product.quantity;
+                state.cart.splice(index, 1);
+            }
         }
     }
 })

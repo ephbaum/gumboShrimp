@@ -77,3 +77,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+1. when you click 'add item', the 'addItem' method dispatches an action which commits a mutation to CHANGE STATE === adds item to cart.
+
+2. item gets added to cart (like you have), no double lines/entries
+
+3. the cart icon at the top (on the navbar?) should have a number next to it, that shows how many items are in the cart (like a normal website).
+
+4. when user clicks on 'cart' the router takes the user to CartComponent, which displays the items in the cart, with the ability to increase or decrease amounts
