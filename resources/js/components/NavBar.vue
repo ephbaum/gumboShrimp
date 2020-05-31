@@ -13,7 +13,7 @@
                     </b-navbar-nav>
 
                     <b-navbar-nav class="ml-auto">
-                        <b-nav-item type="light" to="/"><button><i class="fas fa-shopping-basket" right> Cart </i></button></b-nav-item>
+                        <b-nav-item type="light" to="cart"><button><i class="fas fa-shopping-basket" right> Cart </i></button></b-nav-item>
                     </b-navbar-nav>
 
                     <b-navbar-nav class="ml-auto"  v-if="isAuthenticated">
