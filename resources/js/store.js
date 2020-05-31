@@ -43,11 +43,11 @@ export default new Vuex.Store({
         logout(state) {
             state.token = null;
             state.user = null;
-            state.isAuthenticated = false;
             Vue.cookie.delete('token');
             Vue.cookie.delete('user');
         },
         addToCart(state, payload) {
+            // if it's already in cart, add quantity
             state.cart.push(payload);
         }
     },
