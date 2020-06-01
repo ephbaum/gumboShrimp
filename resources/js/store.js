@@ -14,6 +14,7 @@ export default new Vuex.Store({
         let userToken = Vue.cookie.get('token');
         let user = Vue.cookie.get('user');
         let currentUser = JSON.stringify(user);
+        
         return {
             token: userToken ? userToken : null,
             user: user ? user : null,
@@ -49,10 +50,6 @@ export default new Vuex.Store({
             Vue.cookie.delete('user');
         },
         addToCart(state, item) {
-            console.log(item.item_name);
-            console.log(item.price);
-            console.log(item.number_available);
-
             let found = state.cart.find(product => product.id == item.id);
             if(found){
                 found.quantity ++;
@@ -89,8 +86,8 @@ export default new Vuex.Store({
                 router.push({ path: '/' });
             })
         },
-        addToCart(state, item) {
-            state.commit('addToCart', item);
+        addToCart(context, item) {
+            context.commit('addToCart', item);
         },
         removeFromCart(state, item){
             let index = state.cart.indexOf(item);

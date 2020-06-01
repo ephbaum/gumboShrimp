@@ -1,6 +1,6 @@
 <template>
     <div>   
-        <li v-for="thing in cart" :key="thing.id">{{ thing.item_name }}</li>
+        <b-table striped hover :items="cart" :fields="fields"></b-table>
     </div>
 </template>
  
@@ -10,14 +10,21 @@ import { mapGetters } from 'vuex'
     export default {
         data() {
             return {
- 
+                fields: ['item_name', 'price', 'quantity', 'totalPrice'],
             }
         },
         methods: {
         },
-        computed: {...mapGetters(['isAuthenticated', 'cart'])
+        computed: {
+            totalPrice(){
+                let total = 0;
+                for(let item of this.$store.state.cart){
+                    total += item.totalPrice;
+                }
+                return total.toFixed(2);
+            },...mapGetters(['isAuthenticated', 'cart'])
         },
-        }
+    }
 </script>
 
 <style>

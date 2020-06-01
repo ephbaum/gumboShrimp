@@ -71,12 +71,6 @@
 
                 </b-card>
             </b-col>
-            <b-col>
-                <b-card title="CART">
-                    <!-- <li v-for="thing in cart" :key="thing.id">{{ thing.item_name }}</li> -->
-                  
-                </b-card>
-            </b-col>
         </b-row>
 
         
@@ -233,7 +227,7 @@
                 }
             },
             addToCart(item){    
-                this.$store.commit('addToCart', item);
+                this.$store.dispatch('addToCart', item);
             },
             removeFromCart(item){
                 this.$store.commit('removeFromCart', item);
