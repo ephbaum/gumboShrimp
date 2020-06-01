@@ -27,7 +27,8 @@ export default new Vuex.Store({
         
         isAuthenticated: state => !!state.token,
         currentUser: state => state.user,
-        cart: state => state.cart
+        cart: state => state.cart,
+        cartCount: state => state.cartCount
     },
 
 
@@ -51,6 +52,7 @@ export default new Vuex.Store({
         },
         addToCart(state, item) {
             let found = state.cart.find(product => product.id == item.id);
+            
             if(found){
                 found.quantity ++;
                 found.totalPrice = found.quantity * found.price;
@@ -59,6 +61,7 @@ export default new Vuex.Store({
                 Vue.set(item, 'quantity', 1);
                 Vue.set(item, 'totalPrice', item.price);
             }
+            
             state.cartCount++;
         }
     },

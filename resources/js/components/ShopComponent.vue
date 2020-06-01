@@ -2,31 +2,8 @@
     <b-container fluid>
         <div class="spacer" style="margin: 100px;"></div>
         <h1 class="brandName" style="color:green; text-align: center;" ><i class="fas fa-shopping-cart" ></i> ChangoCart</h1>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link" href="">Cart ({{ $store.state.cartCount }})</a>
-            <div v-if="$store.state.cart.length > 0" class="navbar-dropdown is-boxed is-right">
-                <a v-for="item in $store.state.cart"
-                    :key="item.id"
-                    class="navbar-item"
-                    href="">
-                    {{ item.item_name }} x{{ item.quantity }} - ${{ item.totalPrice }}</a>
-
-                <a class="navbar-item" href="">
-                    Total: ${{ totalPrice }}
-                </a>
-
-                <hr class="navbar-divider">
-
-                <a class="navbar-item" href="">
-                    Checkout
-                </a>
             </div>
-
-            <div v-else class="navbar-dropdown is-boxed is-right">
-                <a class="navbar-item" href="">Cart is empty</a>
-            </div>
-            </div>
-            <h6>Items in {{ currentUser }}'s Cart: </h6>
+            <h6>Items in {{ currentUser }}'s Cart: {{ cartCount }}</h6>
         <b-row>
             <b-input-group class="mt-3">
                 <template v-slot:append>
@@ -281,7 +258,7 @@
         
                 return this.items;  
                 
-            },...mapGetters(['isAuthenticated', 'currentUser', 'cart']),
+            },...mapGetters(['isAuthenticated', 'currentUser', 'cart', 'cartCount']),
             
         },
         mounted() {
