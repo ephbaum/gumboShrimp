@@ -1,11 +1,11 @@
 import Vue from 'vue' 
 import Vuex from 'vuex'
 import VueCookie from 'vue-cookie'
-
 // to make API calls
 import { router } from './router'
 import axios from 'axios'
-
+let cart = window.localStorage.getItem('cart');
+let cartCount = window.localStorage.getItem('cartCount');
 Vue.use(Vuex)
 Vue.use(VueCookie)
 
@@ -19,8 +19,8 @@ export default new Vuex.Store({
             token: userToken ? userToken : null,
             user: user ? user : null,
             currentUser: currentUser ? currentUser : null,
-            cart: [],
-            cartCount: 0,
+            cart: cart ? JSON.parse(cart) : [],
+            cartCount: cartCount ? parseInt(cartCount) : 0,
         }
     },
     getters: { 
@@ -60,6 +60,11 @@ export default new Vuex.Store({
                 Vue.set(item, 'totalPrice', item.price);
             }
             state.cartCount++;
+            this.commit('saveCart');
+        },
+        saveCart(state) {
+            window.localStorage.setItem('cart', JSON.stringify(state.cart));
+            window.localStorage.setItem('cartCount', state.cartCount);
         }
     },
     actions: {
@@ -80,7 +85,6 @@ export default new Vuex.Store({
             })
         },
         logout( { commit }) {
-        
             axios.post("/api/logout").then((userData) => {        
                 commit('logout');
                 router.push({ path: '/' });
@@ -95,6 +99,7 @@ export default new Vuex.Store({
                 let product = state.cart[index];
                 state.cartCount -= product.quantity;
                 state.cart.splice(index, 1);
+
             }
         }
     }
