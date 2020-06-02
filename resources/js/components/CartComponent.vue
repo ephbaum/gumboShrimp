@@ -1,6 +1,6 @@
 <template>
     <div>   
-        <b-table striped hover :items="cart" :fields="fields"></b-table>
+        <b-table striped hover :items="$store.state.cart" :fields="fields"></b-table>
     </div>
 </template>
  
