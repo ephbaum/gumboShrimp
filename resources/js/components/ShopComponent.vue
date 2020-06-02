@@ -2,7 +2,7 @@
     <b-container fluid>
         <div class="spacer" style="margin: 100px;"></div>
         <h1 class="brandName" style="color:green; text-align: center;" ><i class="fas fa-shopping-cart" ></i> ChangoCart</h1>
-            </div>
+           
             <h6>Items in {{ currentUser }}'s Cart: {{ cartCount }}</h6>
         <b-row>
             <b-input-group class="mt-3">
@@ -205,10 +205,6 @@
             },
             addToCart(item){    
                 this.$store.dispatch('addToCart', item);
-
-            },
-            removeFromCart(item){
-                this.$store.commit('removeFromCart', item);
 
             },
             updateProfile(e){
