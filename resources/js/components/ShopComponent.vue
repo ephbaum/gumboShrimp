@@ -205,9 +205,11 @@
             },
             addToCart(item){    
                 this.$store.dispatch('addToCart', item);
+
             },
             removeFromCart(item){
                 this.$store.commit('removeFromCart', item);
+
             },
             updateProfile(e){
                 let file = e.target.files[0];
