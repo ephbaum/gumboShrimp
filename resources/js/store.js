@@ -19,7 +19,7 @@ export default new Vuex.Store({
             token: userToken ? userToken : null,
             user: user ? user : null,
             currentUser: currentUser ? currentUser : null,
-            cart: cart ? JSON.parse(cart) : [],
+            cart: cart,
             cartCount: cartCount ? parseInt(cartCount) : 0,
         }
     },
@@ -68,11 +68,37 @@ export default new Vuex.Store({
         saveCart(state) {
             window.localStorage.setItem('cart', JSON.stringify(state.cart));
             window.localStorage.setItem('cartCount', state.cartCount);
+        },
+        removeFromCart(state, item){
+            let index = state.cart.indexOf(item);
+            if(index > -1){
+                let product = state.cart[index];
+                state.cartCount -= product.quantity;
+                state.cart.splice(index, 1);
+            }
+            this.commit('saveCart');
+        },
+        addQuantityToCart(state, cartItem){
+            let found = state.cart.find(product => product.id == cartItem);
+            if(found){
+                found.quantity ++;
+                found.totalPrice = found.quantity * found.price;
+            }  
+            state.cartCount++;
+            this.commit('saveCart');
+        },
+        subtractQuantityFromCart(state, cartItem){
+            let found = state.cart.find(product => product.id == cartItem);
+            if(found){
+                found.quantity --;
+                found.totalPrice = found.quantity * found.price;
+            }  
+            state.cartCount++;
+            this.commit('saveCart');
         }
     },
     actions: {
         // actions are dispatched, they commit mutations
-
         setLoginCred(context, payload) {
             context.commit('setLoginCred', payload)
 
@@ -96,14 +122,14 @@ export default new Vuex.Store({
         addToCart(context, item) {
             context.commit('addToCart', item);
         },
-        removeFromCart(state, item){
-            let index = state.cart.indexOf(item);
-            if(index > -1){
-                let product = state.cart[index];
-                state.cartCount -= product.quantity;
-                state.cart.splice(index, 1);
-
-            }
+        removeFromCart(context, cartItem){
+            context.commit('removeFromCart', cartItem);
+        },
+        addQuantityToCart(context, cartItem){
+            context.commit('addQuantityToCart', cartItem);
+        },
+        subtractQuantityFromCart(context, cartItem){
+            context.commit('subtractQuantityFromCart', cartItem);
         }
     }
 })
