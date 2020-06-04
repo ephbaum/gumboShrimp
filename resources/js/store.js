@@ -19,7 +19,7 @@ export default new Vuex.Store({
             token: userToken ? userToken : null,
             user: user ? user : null,
             currentUser: currentUser ? currentUser : null,
-            cart: cart ? JSON.parse(cart) : [],
+            cart: cart,
             cartCount: cartCount ? parseInt(cartCount) : 0,
         }
     },
