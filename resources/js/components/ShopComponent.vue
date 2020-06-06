@@ -201,6 +201,9 @@
                     console.log(error);
                 });
                 }
+            },
+            addToCart(item){    
+                this.$store.dispatch('addToCart', item);
 
             },
             updateProfile(e){
