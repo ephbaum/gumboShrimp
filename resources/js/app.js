@@ -29,13 +29,7 @@ window.auth = new Auth();
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('main-app', require('./mainApp.vue'))
-Vue.component('login-component', require('./pages/LoginComponent.vue'))
-Vue.component('register-component', require('./components/RegisterComponent.vue'))
-Vue.component('shop-component', require('./components/ShopComponent.vue').default);
-Vue.component('add-item-component', require('./components/AddItemComponent.vue').default);
-Vue.component('nav-bar', require('./components/NavBar.vue'))
-Vue.component('header-component', require('./components/HeaderComponent.vue'))
+// Vue.component('main-app', require('./mainApp.vue'))
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

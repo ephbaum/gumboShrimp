@@ -8,6 +8,7 @@ import LoginComponent from './pages/LoginComponent'
 import RegisterComponent from './components/RegisterComponent'
 import HeaderComponent from './components/HeaderComponent'
 import SpacerComponent from './components/SpacerComponent'
+import CartComponent from './components/CartComponent'
 import UserComponent from './components/UserComponent'
 
 
@@ -43,6 +44,11 @@ export const router = new VueRouter({
                 {
                     path: 'add-item',
                     components: {body: AddItemComponent}
+                },
+
+                {
+                    path: 'cart',
+                    components: {body: CartComponent}
                 }
             ]
         },

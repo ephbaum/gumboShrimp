@@ -17,6 +17,17 @@ use App\Http\Requests\ItemRequest;
 class ItemController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // use auth middleware except on the index route
+        $this->middleware('auth:api')->except('index');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return ItemResource
@@ -29,7 +40,7 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ItemRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(ItemRequest $request)
@@ -74,7 +85,35 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        Log::debug($request);
+        Log::debug($item);
+
+
+        $item = Item::find($item)->first();
+
+        $item->item_name = request('itemName');
+        $item->description = request('itemDescription');
+        $item->price = request('itemPrice');
+        $item->number_available = request('numberAvailable');    
+    
+
+        if($request->hasFile('itemImage'))
+        {
+
+            // $path includes 'public/', and we don't want that in our URL, but we want 'storage' - so we chop it off and add it:
+            $path = "/storage" . substr(Storage::putFile('public/images', $request->file('itemImage'), 'public'), 6);
+
+            $item->image = $path;
+        }
+
+        if ($item->save()) 
+        {
+            // item saved, return 201
+            return response()->json(['message' => 'Item successfully created and persisted'], Response::HTTP_CREATED);
+        };
+
+        // Item did not save, return 417
+        return response()->json(['message' => 'Item did not save'], Response::HTTP_EXPECTATION_FAILED);
     }
 
     /**
@@ -86,6 +125,11 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item = Item::find($item)->first();
-        $item->delete();
+        
+        if($item->delete()){
+            return response()->json(null, Response::HTTP_OK);
+        };
+
+        return response()->json(['message' => 'Item did not delete'], Response::HTTP_EXPECTATION_FAILED);   
     }
 }

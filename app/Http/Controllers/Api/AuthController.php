@@ -11,9 +11,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cookie;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // use auth middleware except on the index route
+        // $this->middleware('auth:api')->only('user');
+    }
+
     public function login(Request $request)
     {
         
@@ -110,5 +122,19 @@ class AuthController extends Controller
 
         // return null
         return response()->json(null, 204);
+    }
+
+    /**
+     *
+     * @return \App\Models\User
+    */
+    public function User()
+    {
+        $currentUser = Auth::user();
+
+        Log::debug("CURRENT USER --->");
+        Log::debug($currentUser);
+
+        return new UserResource($currentUser);
     }
 }

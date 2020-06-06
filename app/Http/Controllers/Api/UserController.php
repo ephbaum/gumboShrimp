@@ -12,6 +12,20 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    private $user;
+
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(Request $request)
+    {
+        $this->user = $request->user;
+        // use auth middleware except on the index route
+        $this->middleware('auth:api');
+    }
+
     public function index() 
     {
         return new UserResource(User::all());
@@ -23,10 +37,7 @@ class UserController extends Controller
     */
     public function current()
     {
-        
-        $currentUser = Auth::user();
-
-        return new UserResource($currentUser);
+        return $this->user;
 
     }
 }
