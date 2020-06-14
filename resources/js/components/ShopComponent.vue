@@ -41,14 +41,10 @@
                             </b-col>
                         </b-row>
                     </b-card-footer>
-
+                    
                 </b-card>
             </b-col>
         </b-row>
-
-        
-            
-
 
 
         <!-- View update Item Modal -->
