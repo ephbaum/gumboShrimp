@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h2>HEllo</h2>
         <table striped hover class="table">
             <thead>
                 <tr>
@@ -41,14 +40,14 @@ import { mapGetters } from 'vuex'
         },
         methods: {
             removeFromCart(cartItem) {
-            this.$store.dispatch('removeFromCart', cartItem);
-        },
-        addQuantityToCart(cartItem){
-            console.log(cartItem);
-            this.$store.dispatch('addQuantityToCart', cartItem);
-        },
-        subtractQuantityFromCart(cartItem){
-            this.$store.dispatch('subtractQuantityFromCart', cartItem);
+                this.$store.dispatch('removeFromCart', cartItem);
+            },
+            addQuantityToCart(cartItem){
+                console.log(cartItem);
+                this.$store.dispatch('addQuantityToCart', cartItem);
+            },
+            subtractQuantityFromCart(cartItem){
+                this.$store.dispatch('subtractQuantityFromCart', cartItem);
             }
         },
         computed: {

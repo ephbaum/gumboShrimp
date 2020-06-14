@@ -13,7 +13,7 @@
                     </b-navbar-nav>
 
                     <b-navbar-nav class="ml-auto">
-                        <b-nav-item type="light" to="cart"><button><i class="fas fa-shopping-basket" right> Cart </i></button></b-nav-item>
+                        <b-nav-item type="light" to="cart"><button><i class="fas fa-shopping-basket" right> Cart <span v-if="cartCount != 0"> {{ cartCount}}</span></i></button></b-nav-item>
                     </b-navbar-nav>
 
                     <b-navbar-nav class="ml-auto"  v-if="isAuthenticated">
@@ -44,7 +44,7 @@
             }
         },
         
-        computed: mapGetters(['isAuthenticated', 'currentUser']),
+        computed: mapGetters(['isAuthenticated', 'currentUser', 'cartCount']),
         routeName() {
             console.log("ROUTE: " + this.$route.name)
             return this.$route.name;
