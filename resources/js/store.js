@@ -75,7 +75,7 @@ export default new Vuex.Store({
                 state.cartCount -= product.quantity;
                 state.cart.splice(index, 1);
             }
-            state.cartCount--;
+            
             this.commit('saveCart');
         },
         addQuantityToCart(state, cartItem){
