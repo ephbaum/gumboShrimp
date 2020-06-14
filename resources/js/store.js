@@ -24,7 +24,6 @@ export default new Vuex.Store({
         }
     },
     getters: { 
-        
         isAuthenticated: state => !!state.token,
         currentUser: state => state.user,
         cart: state => state.cart,

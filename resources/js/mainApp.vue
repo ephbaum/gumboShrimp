@@ -3,8 +3,6 @@
         
         <nav-bar></nav-bar>
         
-        <br>
-        
         <router-view name="header" v-if="!isAuthenticated"/>
         <router-view name="body"/>
 
