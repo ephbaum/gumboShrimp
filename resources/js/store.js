@@ -53,8 +53,10 @@ export default new Vuex.Store({
             let found = state.cart.find(product => product.id == item.id);
             
             if(found){
+                
                 found.quantity ++;
                 found.totalPrice = found.quantity * found.price;
+
             }else{
                 state.cart.push(item);
                 Vue.set(item, 'quantity', 1);

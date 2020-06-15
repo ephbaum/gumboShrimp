@@ -9,13 +9,13 @@
                     <th>Total Price</th>
                 </tr>
             </thead>
-            <tbody v-for="cartItem in $store.state.cart" :key="cartItem.id" >
+            <tbody v-for="cartItem in cart" :key="cartItem.id" >
                 <tr >
                     <td>{{ cartItem.item_name }}<a href=""><span class="removeBtn" @click.prevent="removeFromCart(cartItem)"> remove</span> </a> </td>
                     <td> ${{ cartItem.price }}</td>
                     <td><b-input-group>
-                        <b-btn v-if="cartItem.quantity  >= 2" id="minusButton" variant="outline-info" @click.prevent="subtractQuantityFromCart(cartItem.id)" >-</b-btn>
-                        <b-button variant="info">{{cartItem.quantity}}</b-button>
+                        <b-btn v-if="cartItem.quantity  >= 1" id="minusButton" variant="outline-info" @click.prevent="subtractQuantityFromCart(cartItem.id)" >-</b-btn>
+                        <b-button  v-if="cartItem.quantity  >= 1" variant="info">{{cartItem.quantity}}</b-button>
 
                         <b-btn variant="outline-secondary" @click.prevent="addQuantityToCart(cartItem.id)">+</b-btn>
                     </b-input-group></td>
@@ -47,6 +47,7 @@ import { mapGetters } from 'vuex'
                 this.$store.dispatch('addQuantityToCart', cartItem);
             },
             subtractQuantityFromCart(cartItem){
+                
                 this.$store.dispatch('subtractQuantityFromCart', cartItem);
             }
         },
