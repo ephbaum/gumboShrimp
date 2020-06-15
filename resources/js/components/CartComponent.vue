@@ -11,7 +11,7 @@
             </thead>
             <tbody v-for="cartItem in cart" :key="cartItem.id" >
                 <tr >
-                    <td>{{ cartItem.item_name }}<a href=""><span class="removeBtn" @click.prevent="removeFromCart(cartItem)"> remove</span> </a> </td>
+                    <td>{{ cartItem.item_name }}<a href=""><span class="removeBtn" @click.prevent="removeFromCart(cartItem)" v-if="cartItem.quantity  == 0"> remove</span> </a> </td>
                     <td> ${{ cartItem.price }}</td>
                     <td><b-input-group>
                         <b-btn v-if="cartItem.quantity  >= 1" id="minusButton" variant="outline-info" @click.prevent="subtractQuantityFromCart(cartItem.id)" >-</b-btn>
