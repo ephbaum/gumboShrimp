@@ -12,15 +12,16 @@
                         <b-nav-item v-if="!isAuthenticated" to="login">Login</b-nav-item>                
                     </b-navbar-nav>
 
-                    <b-navbar-nav class="ml-auto">
-                        <b-nav-item type="light" to="cart"><button><i class="fas fa-shopping-basket" right> Cart <span v-if="cartCount != 0"> {{ cartCount}}</span></i></button></b-nav-item>
-                    </b-navbar-nav>
-
                     <b-navbar-nav class="ml-auto"  v-if="isAuthenticated">
                         <b-nav-item v-if="isAuthenticated" @click="logout" right> Logout - {{ currentUser }}</b-nav-item>
                     </b-navbar-nav>
 
                 </b-collapse>
+
+                <b-navbar-nav class="ml-auto">
+                    <b-nav-item type="light" to="cart" v-if="cartCount > 0"><button><i class="fas fa-shopping-basket" right> Cart <span v-if="cartCount != 0"> {{ cartCount}}</span></i></button></b-nav-item>
+                </b-navbar-nav>
+                
             </b-navbar>
         </div>
     
