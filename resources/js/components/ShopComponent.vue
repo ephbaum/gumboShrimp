@@ -259,7 +259,7 @@
 </script>
 <style >
     .bottom {
-        position: sticky;
+        position: relative;
         top: 10;
         left: 0;
         right: 0;
