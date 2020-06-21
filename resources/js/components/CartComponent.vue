@@ -16,7 +16,8 @@
                     <td><img :src=cartItem.image alt="cart item" height="50"></td>
                     <td> ${{ cartItem.price }}</td>
                     <td><b-input-group>
-                        <b-btn v-if="cartItem.quantity  >= 1" id="minusButton" variant="outline-info" @click.prevent="subtractQuantityFromCart(cartItem.id)" >-</b-btn>
+                        <b-btn v-if="cartItem.quantity  > 1" id="minusButton" variant="outline-info" @click.prevent="subtractQuantityFromCart(cartItem.id)" >-</b-btn>
+                        <b-btn v-if="cartItem.quantity  == 1" id="minusButton" variant="outline-info" @click.prevent="removeFromCart(cartItem)" >-</b-btn>
                         <b-button  v-if="cartItem.quantity  >= 1" variant="info">{{cartItem.quantity}}</b-button>
 
                         <b-btn variant="outline-secondary" @click.prevent="addQuantityToCart(cartItem.id)">+</b-btn>
@@ -45,12 +46,15 @@ import { mapGetters } from 'vuex'
                 this.$store.dispatch('removeFromCart', cartItem);
             },
             addQuantityToCart(cartItem){
-                console.log(cartItem);
                 this.$store.dispatch('addQuantityToCart', cartItem);
             },
             subtractQuantityFromCart(cartItem){
-                
+
                 this.$store.dispatch('subtractQuantityFromCart', cartItem);
+
+                if(this.cartCount == 0) {
+                    this.$store.dispatch('removeFromCart', cartItem);
+                }
             }
         },
         computed: {
@@ -60,7 +64,7 @@ import { mapGetters } from 'vuex'
                     total += item.totalPrice;
                 }
                 return total.toFixed(2);
-            },...mapGetters(['isAuthenticated', 'cart'])
+            },...mapGetters(['isAuthenticated', 'cart', 'cartCount'])
         },
     }
 </script>

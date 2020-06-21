@@ -1,8 +1,9 @@
 <template>    
     <b-container fluid>
         
+        <br>
         <nav-bar></nav-bar>
-        
+        <br>
         <router-view name="header" v-if="!isAuthenticated"/>
         <router-view name="body"/>
 
