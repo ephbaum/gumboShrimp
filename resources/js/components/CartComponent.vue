@@ -43,7 +43,10 @@ import { mapGetters } from 'vuex'
         },
         methods: {
             removeFromCart(cartItem) {
-                this.$store.dispatch('removeFromCart', cartItem);
+                if(confirm("Are you sure you want to delete " + cartItem.item_name + "?")) {
+                    this.$store.dispatch('removeFromCart', cartItem);
+                }
+                
             },
             addQuantityToCart(cartItem){
                 this.$store.dispatch('addQuantityToCart', cartItem);
@@ -52,9 +55,6 @@ import { mapGetters } from 'vuex'
 
                 this.$store.dispatch('subtractQuantityFromCart', cartItem);
 
-                if(this.cartCount == 0) {
-                    this.$store.dispatch('removeFromCart', cartItem);
-                }
             }
         },
         computed: {
