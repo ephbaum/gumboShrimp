@@ -11,7 +11,7 @@
         <br>
 
         <b-row>
-            <b-col xl="2" lg="3" md="4" sm="6" v-for="item in filteredItems" :key="item.id">
+            <b-col lg="3" md="4" sm="6" v-for="item in filteredItems" :key="item.id">
                 <b-card v-if="item.image" :img-src="item.image" img-alt="Item image" img-height="300" img-width="300" :title="item.item_name">
                     
                     <b-row class="text-center">
@@ -41,7 +41,6 @@
                             </b-col>
                         </b-row>
                     </b-card-footer>
-                    
                 </b-card>
             </b-col>
         </b-row>
@@ -276,6 +275,7 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: auto;
         text-align: center;
     }
 

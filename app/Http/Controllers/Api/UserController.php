@@ -22,7 +22,7 @@ class UserController extends Controller
     public function __construct(Request $request)
     {
         $this->user = $request->user;
-        // use auth middleware except on the index route
+        
         $this->middleware('auth:api');
     }
 
