@@ -1,12 +1,14 @@
 <template>
-    <b-container fluid>
+    <b-container fluid style="background-color: lightgrey;">
         <b-row>
-            <b-input-group class="mt-3">
-                <template v-slot:append>
-                    <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
-                </template>
-                <b-form-input v-model="search" placeholder="search for your item..." ></b-form-input>
-            </b-input-group>
+            <b-col>
+                <b-input-group class="mt-3">
+                    <template v-slot:append>
+                        <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
+                    </template>
+                    <b-form-input v-model="search" placeholder="search for your item..." ></b-form-input>
+                </b-input-group>
+            </b-col>
         </b-row>
         <br>
 
