@@ -25,11 +25,10 @@
                 </b-form-invalid-feedback>
             </b-form-group> 
             
-            <b-form-group id="itemInputGroup" label="Item" label-for="item">
+            <b-form-group id="itemInputGroup" label="Item Name" label-for="item">
                 <b-form-input id="item"
                     type="text"
                     v-model="form.itemName"
-                    placeholder="Enter Item"
                     :state="!$v.form.itemName.$invalid" 
                     aria-describedby="itemLiveFeedback">
                 </b-form-input>
@@ -42,7 +41,6 @@
                 <b-form-input id="description"
                     type="text"
                     v-model="form.itemDescription"
-                    placeholder="Enter Description"
                     :state="!$v.form.itemDescription.$invalid" 
                     aria-describedby="itemDescriptionLiveFeedback">
                 </b-form-input>
@@ -50,11 +48,10 @@
                     Please enter item description
                 </b-form-invalid-feedback>
             </b-form-group>
-            <b-form-group id="priceInputGroup" label-for="price">
+            <b-form-group id="priceInputGroup" label="Price" label-for="price">
                 <b-form-input id="price"
                     type="number"
                     v-model="form.itemPrice"
-                    placeholder="Enter Price...ex: 0.99"
                     :state="!$v.form.itemPrice.$invalid" 
                     aria-describedby="itemPriceDescriptionLiveFeedback">
                 </b-form-input>
@@ -62,11 +59,10 @@
                     Please enter valid price
                 </b-form-invalid-feedback>
             </b-form-group>
-            <b-form-group id="numberAvailableInputGroup" label-for="numberAvailable">
+            <b-form-group id="numberAvailableInputGroup" label="Number Available" label-for="numberAvailable">
                 <b-form-input id="numberAvailable"
                     type="number"
-                    v-model="form.numberAvailable"
-                    placeholder="Enter Number Available"          
+                    v-model="form.numberAvailable"      
                     :state="!$v.form.numberAvailable.$invalid" 
                     aria-describedby="numberAvailableLiveFeedback">
                 </b-form-input>

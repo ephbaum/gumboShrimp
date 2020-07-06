@@ -14,7 +14,7 @@
 
                     <b-navbar-nav class="ml-auto"  v-if="isAuthenticated">
                         <b-nav-item v-if="isAuthenticated" @click="logout" right> 
-                            butt
+                            logout
                         </b-nav-item>
                     </b-navbar-nav>
 
@@ -47,12 +47,7 @@
             }
         },
         
-        computed: mapGetters(['isAuthenticated', 'currentUser', 'cartCount']),
-        routeName() {
-            console.log("ROUTE: " + this.$route.name)
-            return this.$route.name;
-        }
-            
+        computed: mapGetters(['isAuthenticated', 'currentUser', 'cartCount']),            
     }
 </script>
 
