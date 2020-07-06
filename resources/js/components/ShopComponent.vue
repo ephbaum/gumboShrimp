@@ -45,7 +45,6 @@
             </b-col>
         </b-row>
 
-
         <!-- View update Item Modal -->
         <b-modal id="editModal" hide-footer no-close-on-backdrop>
             <form>
@@ -87,7 +86,7 @@
                 <b-button class="mt-3" block @click.prevent="editItem">Edit Item</b-button>
             </form>
         </b-modal>
-<!--  -->
+
     </b-container>
 </template>
 
