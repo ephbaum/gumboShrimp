@@ -28,6 +28,8 @@
 
         <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.js"></script>
+        
+        <script src="https://js.stripe.com/v3/"></script>
 
     </body>
 </html>
