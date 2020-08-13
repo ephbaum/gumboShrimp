@@ -18,29 +18,29 @@
 
         data () {
             return {
-              complete: false,
-              errorMessage: '',
-              stripeOptions: {
+                complete: false,
+                errorMessage: '',
+                stripeOptions: {
                 // see https://stripe.com/docs/stripe.js#element-options for details
-                style: {
-                  base: {
-                    color: 'black',
-                    // lineHeight: '18px',
-                    fontFamily: '"Raleway", Helvetica, sans-serif',
-                    fontSmoothing: 'antialiased',
-                    fontSize: '16px',
-                    '::placeholder': {
-                      color: '#aab7c4'
-                    }
-                  },
-                  invalid: {
-                    color: '#fa755a',
-                    iconColor: '#fa755a'
-                  }
-                },
-                hidePostalCode: true
+                    style: {
+                        base: {
+                            color: 'black',
+                            // lineHeight: '18px',
+                            fontFamily: '"Raleway", Helvetica, sans-serif',
+                            fontSmoothing: 'antialiased',
+                            fontSize: '16px',
+                            '::placeholder': {
+                            color: '#aab7c4'
+                            }
+                        },
+                        invalid: {
+                            color: '#fa755a',
+                            iconColor: '#fa755a'
+                        }
+                    },
+                    hidePostalCode: true
+                }
             }
-          }
         },
         methods: {
             pay () {
@@ -61,6 +61,6 @@
 
                 this.errorMessage = event.error ? event.error.message : ''
             }
-      }
+        } 
     }
 </script>
