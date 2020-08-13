@@ -33,7 +33,7 @@
             </div>
         </b-form>
         <div >
-            <b-button  block variant="primary" >  Place your order... total amount ${{ totalPrice }} </b-button>
+            <b-button  block variant="primary" @click="goToCheckout">  Go to Checkout - Current Total: ${{ totalPrice }}</b-button>
         </div>
     </div>
 </template>
@@ -52,6 +52,9 @@ import CardElement from '../components/CardElement'
             CardElement
         },
         methods: {
+            goToCheckout(){
+                this.$router.push("/checkout");
+            },
             removeFromCart(cartItem) {
                 if(confirm("Are you sure you want to delete " + cartItem.item_name + "?")) {
                     this.$store.dispatch('removeFromCart', cartItem);
