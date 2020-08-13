@@ -1,6 +1,6 @@
 <template>
     <b-container>
-        <b-form @submit="login">
+        <b-form @submit="login" class="container-box">
             <b-form-group id="emailInputGroup"
                     label="Email"
                     label-for="email">
@@ -119,5 +119,8 @@ export default {
 
 </script>
 
-<style >
+<style scoped>
+    .container-box {
+        margin-top: 10em;
+    }
 </style>

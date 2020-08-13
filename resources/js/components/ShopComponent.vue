@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid style="background-color: lightgrey;">
+    <b-container fluid class="container-box">
         <b-row>
             <b-col>
                 <b-input-group class="mt-3">
@@ -258,6 +258,11 @@
     }
 </script>
 <style >
+    .container-box {
+        background-color: rgb(214, 214, 214);
+        margin-top: 2em;
+        padding-bottom: 2em;
+    }
     .bottom {
         position: relative;
         top: 10;

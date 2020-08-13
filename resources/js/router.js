@@ -7,7 +7,6 @@ import AddItemComponent from './components/AddItemComponent'
 import LoginComponent from './pages/LoginComponent'
 import RegisterComponent from './components/RegisterComponent'
 import HeaderComponent from './components/HeaderComponent'
-import SpacerComponent from './components/SpacerComponent'
 import CartComponent from './components/CartComponent'
 import UserComponent from './components/UserComponent'
 
@@ -38,12 +37,21 @@ export const router = new VueRouter({
 
                 {
                     path: 'login',
-                    components: {body: LoginComponent, header: SpacerComponent},
+                    components: {body: LoginComponent},
                 },
 
                 {
                     path: 'add-item',
-                    components: {body: AddItemComponent}
+                    components: {body: AddItemComponent},
+                    beforeEnter: (to, from, next) => {
+                        if (!window.auth.check()) {
+                            next({
+                                path: '/'
+                            });
+                            return;
+                        }
+                        next();
+                    },
                 },
 
                 {
