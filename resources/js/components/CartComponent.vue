@@ -26,6 +26,12 @@
                 </tr>
             </tbody>
         </table>
+        <b-form>
+            <div class="form-group">
+                <label for="card-element">Card Information</label>
+                <card-element></card-element>
+            </div>
+        </b-form>
         <div >
             <b-button  block variant="primary" >  Place your order... total amount ${{ totalPrice }} </b-button>
         </div>
@@ -34,12 +40,16 @@
  
 <script>
 import { mapGetters } from 'vuex'
+import CardElement from '../components/CardElement'
 
     export default {
         data() {
             return {
                  
             }
+        },
+        components: {
+            CardElement
         },
         methods: {
             removeFromCart(cartItem) {

@@ -6,7 +6,7 @@
           :options='stripeOptions'
           @change='change($event)'
         />
-        <div id="card-errors" role="alert" v-text="errorMessage"></div>
+        <div id="card-errors" role="alert" v-text="errorMessage"/>
     </div>
 </template>
 
