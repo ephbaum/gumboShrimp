@@ -26,12 +26,7 @@
                 </tr>
             </tbody>
         </table>
-        <b-form>
-            <div class="form-group">
-                <label for="card-element">Card Information</label>
-                <card-element></card-element>
-            </div>
-        </b-form>
+
         <div >
             <b-button  block variant="primary" @click="goToCheckout">  Go to Checkout - Current Total: ${{ totalPrice }}</b-button>
         </div>
@@ -41,6 +36,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import CardElement from '../components/CardElement'
+
 
     export default {
         data() {
