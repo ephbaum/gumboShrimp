@@ -73,6 +73,11 @@ import CardElement from '../components/CardElement'
 import { Card, createToken, stripe } from 'vue-stripe-elements-plus'
 
 export default {
+    data() {
+        return {
+            
+        }
+    },
 
     components: {
         CardElement
