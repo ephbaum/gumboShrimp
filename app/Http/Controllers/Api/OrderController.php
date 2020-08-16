@@ -37,8 +37,7 @@ class OrderController extends Controller
         if (!$user)
         {
             $user = User::create([
-                'first_name' => $request->firstName,
-                'last_name' => $request->lastName,
+                'name' => $request->name_on_card,
                 'email' => $request->email,
                 'password' => bcrypt('password'),
                 'role' => 'user',
@@ -71,16 +70,14 @@ class OrderController extends Controller
             // Stripe call successful, carry on
             
             // instantiate a new Order
-            $d = New Order();
-            $d->amount = request('amount');
-            $d->name_on_card = request('name_on_card');
-            $d->first_name = request('firstName');
-            $d->last_name = request('lastName');
-            $d->email = request('email');
+            $order = New Order();
+            $order->amount = request('amount');
+            $order->name_on_card = request('name_on_card');
+            $order->email = request('email');
             
             
             // make sure new Order is saved
-            if ($d->save())
+            if ($order->save())
             {
                 // everything went well, return 201
                 return response()->json(null, Response::HTTP_CREATED);
