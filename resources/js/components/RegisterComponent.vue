@@ -72,14 +72,14 @@ export default {
     validations: {
       form: {
         name: {
-        required,
+        required
         },
         password: {
-          required,
+          required
         },
         email: {
           required,
-        
+          email
         }
       }
     },
