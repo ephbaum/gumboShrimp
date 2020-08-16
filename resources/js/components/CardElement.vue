@@ -2,7 +2,7 @@
     <div>
         <card class='stripe-card'
           :class='{ complete }'
-          stripe='pk_test_Pob3hbobh05isJlsBZ4JcPRH'
+          stripe='pk_test_51HDxgkHu6qxslO2NAHO0gzqsuOGeizH5TVAKd1TtHLKlvJZT5jzPJ3AimfND7KxAP1q23fBECCHoM1LZL9qubDDM00Q81rFlbk'
           :options='stripeOptions'
           @change='change($event)'
         />
@@ -23,6 +23,7 @@
                 stripeOptions: {
                 // see https://stripe.com/docs/stripe.js#element-options for details
                     style: {
+
                         base: {
                             color: 'black',
                             // lineHeight: '18px',
@@ -64,3 +65,33 @@
         } 
     }
 </script>
+<style>
+  .StripeElement {
+      box-sizing: border-box;
+
+      height: 40px;
+
+      padding: 10px 12px;
+
+      border: 1px solid #ccd0d2;
+      border-radius: 4px;
+      background-color: white;
+
+      box-shadow: 0 1px 3px 0 #e6ebf1;
+      -webkit-transition: box-shadow 150ms ease;
+      transition: box-shadow 150ms ease;
+  }
+
+  .StripeElement--focus {
+      box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+
+  .StripeElement--invalid {
+      border-color: #fa755a;
+  }
+
+  .StripeElement--webkit-autofill {
+      background-color: #fefde5 !important;
+  }
+
+</style>

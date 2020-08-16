@@ -9,6 +9,7 @@ import RegisterComponent from './components/RegisterComponent'
 import HeaderComponent from './components/HeaderComponent'
 import CartComponent from './components/CartComponent'
 import UserComponent from './components/UserComponent'
+import CheckoutComponent from './components/CheckoutComponent'
 
 
 export const router = new VueRouter({ 
@@ -38,6 +39,10 @@ export const router = new VueRouter({
                 {
                     path: 'login',
                     components: {body: LoginComponent},
+                },
+                {
+                    path: 'checkout',
+                    components: {body: CheckoutComponent},
                 },
 
                 {
