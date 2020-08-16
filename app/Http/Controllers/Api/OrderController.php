@@ -73,6 +73,10 @@ class OrderController extends Controller
             $order = New Order();
             $order->name = request('name_on_card');
             $order->email = request('email');
+            $order->address = request('address');
+            $order->city = request('city');
+            $order->state = request('state');
+            $order->zip = request('zip');
             $order->amount = request('amount');
             
             
