@@ -63,7 +63,7 @@
                 <div id="card-errors" role="alert"></div>
             </div>
 
-            <button type="submit" @click="pay()" class="btn btn-success">Submit Payment</button>
+            <button @click.prevent="submitPayment" class="btn btn-success">Submit Payment</button>
         </b-form>
 
     </div>
@@ -98,7 +98,6 @@ export default {
 
                         if(result.error) {
                             console.log(result.error);
-                            this.$store.dispatch('cardSubmitError');
                         }
                         
                         // create hidden input with stripe token to complete transaction
@@ -110,11 +109,6 @@ export default {
 
                         //append stripe token noto form
                         this.$el.appendChild(hiddenInput);
-
-                        // check which fund 
-                        if (!this.form.fund) {
-                            this.form.fund = this.$store.state.fund;
-                        };
 
                         // build the FormData object for each form key
                         let fd = new FormData();
