@@ -79,10 +79,63 @@ export default {
     },
 
     methods: {
-        pay(){
-            alert("hello");
-        }
- 
+        submitPayment() {
+
+                // this.$v.form.$touch();
+
+                // if (!this.$v.form.$invalid) {
+                    
+
+                    // createToken returns a Promise which resolves in a result object with
+                    // either a token or an error key.
+                    // See https://stripe.com/docs/api#tokens for the token object.
+                    // See https://stripe.com/docs/api#errors for the error object.
+                    // More general https://stripe.com/docs/stripe.js#stripe-create-token.
+                    const options = {
+                        name: this.name_on_card,
+                    }
+                    createToken(options).then(result => {
+
+                        if(result.error) {
+                            console.log(result.error);
+                            this.$store.dispatch('cardSubmitError');
+                        }
+                        
+                        // create hidden input with stripe token to complete transaction
+                        let hiddenInput = document.createElement('input');
+                        
+                        hiddenInput.setAttribute('type', 'hidden');
+                        hiddenInput.setAttribute('name', 'stripeToken');
+                        hiddenInput.setAttribute('value', result.token.id);
+
+                        //append stripe token noto form
+                        this.$el.appendChild(hiddenInput);
+
+                        // check which fund 
+                        if (!this.form.fund) {
+                            this.form.fund = this.$store.state.fund;
+                        };
+
+                        // build the FormData object for each form key
+                        let fd = new FormData();
+                        Object.keys(this.form).forEach(key => {
+                            fd.append(key, this.form[key])
+                        })
+                        
+                        // append hidden input to FormData object
+                        fd.append('stripeToken', result.token.id);
+
+                        // Make the call to our server to process donation using Stripe result.token.id 
+
+                        fd.append('role', 'donor');
+                        
+                        // TODO: MAKE AXIOS CALL TO OUR SERVERS
+
+                        console.log("TOKEN: " + result.token);
+
+                    })
+                // }
+            },
     }
     
 }
