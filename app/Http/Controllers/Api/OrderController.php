@@ -71,9 +71,9 @@ class OrderController extends Controller
             
             // instantiate a new Order
             $order = New Order();
-            $order->amount = request('amount');
-            $order->name_on_card = request('name_on_card');
+            $order->name = request('name_on_card');
             $order->email = request('email');
+            $order->amount = request('amount');
             
             
             // make sure new Order is saved
