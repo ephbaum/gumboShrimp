@@ -74,7 +74,7 @@ import CardElement from '../components/CardElement'
                 }
                 return total.toFixed(2);
             },...mapGetters(['isAuthenticated', 'cart', 'cartCount'])
-        },
+        }
     }
 </script>
 
