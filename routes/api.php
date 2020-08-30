@@ -22,3 +22,4 @@ Route::get('/user', 'Api\UserController@current');
 
 Route::resource('items', 'Api\ItemController');
 
+Route::post('/purchase', 'Api\OrderController@purchase');

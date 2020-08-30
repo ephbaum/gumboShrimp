@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Order;
 use App\Models\User;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -25,7 +26,7 @@ class OrderController extends Controller
         //
     }
 
-    public function purchase(Request $request)
+    public function purchase(OrderRequest $request)
     {
         // validate the request
         $validated = $request->validated();
@@ -73,6 +74,10 @@ class OrderController extends Controller
             $order = New Order();
             $order->name = request('name_on_card');
             $order->email = request('email');
+            $order->address = request('address');
+            $order->city = request('city');
+            $order->state = request('state');
+            $order->zip = request('zip');
             $order->amount = request('amount');
             
             
