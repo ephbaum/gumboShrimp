@@ -1,149 +1,163 @@
 <template>
-    <div class="wrapper">
-        <b-form id="payment-form">
-              <b-form-group id="emailInputGroup"
-                        label="Email"
-                        label-for="email">
-                <b-form-input id="email"
-                            v-model="form.email"
-                            :state="!$v.form.email.$invalid" 
-                            aria-describedby="emailLiveFeedback"
-                            placeholder="Enter Email" />
-                <b-form-invalid-feedback id="emailLiveFeedback">
-                    Please enter a valid Email
-                </b-form-invalid-feedback>
-            </b-form-group>
+    <b-container class="wrapper">
+        <b-row>
+            <b-col>
+                <b-form id="payment-form">
+                    <b-form-group id="emailInputGroup"
+                            label="Email"
+                            label-for="email">
+                        <b-form-input id="email"
+                                v-model="form.email"
+                                :state="!$v.form.email.$invalid"
+                                aria-describedby="emailLiveFeedback"
+                                placeholder="Enter Email" 
+                        />
+                        <b-form-invalid-feedback id="emailLiveFeedback">
+                            Please enter a valid Email
+                        </b-form-invalid-feedback>
+                    </b-form-group>               
 
-             <b-form-group id="nameInputGroup" label="Name On Card" label-for="name">
-                <b-form-input id="name"
-                    type="text"
-                    v-model="form.name"
-                  
-                    aria-describedby="nameLiveFeedback"
-                    placeholder="Enter Name on Card">
-                </b-form-input>
-                <b-form-invalid-feedback id="nameLiveFeedback">
-                    Please enter a valid Name
-                </b-form-invalid-feedback>
-            </b-form-group>
+                    <b-form-group id="addressInputGroup" label="Address" label-for="address">
+                        <b-form-input id="address"
+                            type="text"
+                            v-model="form.address"
+                            :state="!$v.form.address.$invalid"
+                            aria-describedby="addressLiveFeedback"
+                            placeholder="Enter Address">
+                        </b-form-input>
+                        <b-form-invalid-feedback id="addressLiveFeedback">
+                            Please enter a valid Address
+                        </b-form-invalid-feedback>
+                    </b-form-group>
 
-             <b-form-group id="addressInputGroup" label="Address" label-for="address">
-                <b-form-input id="address"
-                    type="text"
-                    v-model="form.address"
-                  
-                    aria-describedby="addressLiveFeedback"
-                    placeholder="Enter Address">
-                </b-form-input>
-                <b-form-invalid-feedback id="addressLiveFeedback">
-                    Please enter a valid Address
-                </b-form-invalid-feedback>
-            </b-form-group>
+                    <b-form-group id="cityInputGroup" label="City" label-for="city">
+                        <b-form-input id="city"
+                            type="text"
+                            v-model="form.city"
+                            :state="!$v.form.city.$invalid"
+                            aria-describedby="cityLiveFeedback"
+                            placeholder="Enter City">
+                        </b-form-input>
+                        <b-form-invalid-feedback id="cityLiveFeedback">
+                            Please enter a valid City
+                        </b-form-invalid-feedback>
+                    </b-form-group>  
 
-             <b-form-group id="cityInputGroup" label="City" label-for="city">
-                <b-form-input id="city"
-                    type="text"
-                    v-model="form.city"
-                  
-                    aria-describedby="cityLiveFeedback"
-                    placeholder="Enter City">
-                </b-form-input>
-                <b-form-invalid-feedback id="cityLiveFeedback">
-                    Please enter a valid City
-                </b-form-invalid-feedback>
-            </b-form-group>  
+                    <b-form-group id="stateInputGroup" label="State" label-for="state">
+                        <b-form-input id="state"
+                            type="text"
+                            v-model="form.state"
+                            :state="!$v.form.state.$invalid"
+                            aria-describedby="stateLiveFeedback"
+                            placeholder="Enter State"
+                            maxlength=2>
+                        </b-form-input>
+                        <b-form-invalid-feedback id="stateLiveFeedback">
+                            Please enter a valid State
+                        </b-form-invalid-feedback>
+                    </b-form-group>
 
-             <b-form-group id="stateInputGroup" label="State" label-for="state">
-                <b-form-input id="state"
-                    type="text"
-                    v-model="form.state"
-                  
-                    aria-describedby="stateLiveFeedback"
-                    placeholder="Enter State">
-                </b-form-input>
-                <b-form-invalid-feedback id="stateLiveFeedback">
-                    Please enter a valid Name
-                </b-form-invalid-feedback>
-            </b-form-group>
-              
-<!--
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="State">State</label>
-                        <input type="text" class="form-control" id="state" name="state">
-                    </div>
-                </div>
+                    <b-form-group id="zipInputGroup" label="Zip Code" label-for="zip">
+                        <b-form-input id="zip"
+                            type="text"
+                            v-model="form.zip"
+                            :state="!$v.form.zip.$invalid"
+                            aria-describedby="zipLiveFeedback"
+                            placeholder="Enter Zip Code"
+                            minlength=5
+                            maxlength=5>
+                        </b-form-input>
+                        <b-form-invalid-feedback id="stateLiveFeedback">
+                            Please enter a valid State
+                        </b-form-invalid-feedback>
+                    </b-form-group>
+                
+                    <b-form-group id="nameInputGroup" label="Name On Card" label-for="name_on_card">
+                        <b-form-input id="name_on_card"
+                                type="text"
+                                v-model="form.name_on_card"
+                                :state="!$v.form.name_on_card.$invalid" 
+                                aria-describedby="nameLiveFeedback"
+                                placeholder="Enter Name on Card">
+                        </b-form-input>
+                        <b-form-invalid-feedback id="nameLiveFeedback">
+                            Please enter the name on the card
+                        </b-form-invalid-feedback>
+                    </b-form-group>
 
-            </div>
+                    <b-form-group>
+                        <label for="card-element">Credit Card</label>
+                        <card-element required/>
+                        <b-form-invalid-feedback id="zipLiveFeedback">
+                            You gotta pay to play
+                        </b-form-invalid-feedback>
+                    </b-form-group>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="postalcode">Postal Code</label>
-                        <input type="text" class="form-control" id="postalcode" name="postalcode">
-                    </div>
-                </div>
+                    <!-- Used to display form errors -->
+                    <div id="card-errors" role="alert"></div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="text" class="form-control" id="phone" name="phone">
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <label for="card-element">Credit Card</label>
-                <div id="card-element">
-                    a Stripe Element will be inserted here. -->
-               
-
-                <!-- Used to display form errors -->
-                <div id="card-errors" role="alert"></div>
-        
-
-            <button @click.prevent="submitPayment" class="btn btn-success">Submit Payment</button>
-        </b-form>
-
-    </div>
+                    <button @click.prevent="submitPayment" :disabled="$v.form.$invalid" class="btn btn-success">Submit Payment</button>
+                    
+                </b-form>
+            </b-col>
+        </b-row>
+    </b-container>
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { validationMixin } from "vuelidate";
-import { required, minLength, email } from "vuelidate/lib/validators";
+import { helpers, required, minLength, maxLength, email } from "vuelidate/lib/validators";
 import CardElement from '../components/CardElement'
 import { Card, createToken, stripe } from 'vue-stripe-elements-plus'
 
+const zip = helpers.regex('zip', /(^\d{5}$)|(^\d{5}-\d{4}$)/);
+
 export default {
+
     data() {
         return {
             form:{
                 email:'',
-                name:'',
+                name_on_card:'',
                 address:'',
                 city:'',
                 state:'',
                 zip:'',
                 amount:''
             }
-
         }
-        
     },
+
     mixins: [
         validationMixin
     ],
+
     validations: {
         form: {
             email:{
                 required,
                 email
             },
-            name:{
+            name_on_card:{
                 required,
-                minLength: minLength(3),
+                minLength: minLength(3)
             },
+            address:{
+                required
+            },
+            city:{
+                required,
+                minLength: minLength(2)
+            },
+            state:{
+                required,
+                minLength: minLength(2),
+                maxLength: maxLength(2)
+            },
+            zip:{
+                required,
+                zip
+            }
 
         }
     },
@@ -155,9 +169,9 @@ export default {
     methods: {
         submitPayment() {
 
-            // this.$v.form.$touch();
+            this.$v.form.$touch();
 
-            // if (!this.$v.form.$invalid) {
+            if (!this.$v.form.$invalid) {
                 
 
                 // createToken returns a Promise which resolves in a result object with
@@ -199,10 +213,10 @@ export default {
                     
                     // TODO: MAKE AXIOS CALL TO OUR SERVERS
 
-                    console.log("TOKEN: " + result.token);
+                    console.log("TOKEN: " + result.token.id);
 
                 })
-            // }
+            }
         },
  
     },
@@ -219,7 +233,7 @@ export default {
     
 </script>
 <style>
-    .wrapper{
+    .wrapper {
         margin-top: 20px;
     }
 </style>
