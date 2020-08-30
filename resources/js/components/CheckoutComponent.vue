@@ -219,16 +219,34 @@ export default {
 
                     fd.append('role', 'user');
                     
-                    // TODO: MAKE AXIOS CALL TO OUR SERVERS
+                    axios.post("/api/purchase", fd, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
+
+                                this.resetForm();
+                                
+                            }).catch((error) => {
+                                
+                                console.log(error);
+                                this.resetForm();
+
+                            })
 
                     console.log("TOKEN: " + result.token.id);
 
                 })
-
             }
-
         },
- 
+
+        resetForm() {
+
+            this.form.email = '';
+            this.form.name_on_card = '',
+            this.form.address = '',
+            this.form.city = '',
+            this.form.state = '',
+            this.form.zip = '',
+            this.form.amount = ''
+            
+        }
     },
     
     computed: {
@@ -247,7 +265,9 @@ export default {
 <style>
 
     .wrapper {
+
         margin-top: 20px;
+
     }
 
 </style>
