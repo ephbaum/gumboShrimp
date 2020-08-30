@@ -217,7 +217,7 @@ export default {
 
                     // Make the call to our server to process donation using Stripe result.token.id 
 
-                    fd.append('role', 'donor');
+                    fd.append('role', 'user');
                     
                     // TODO: MAKE AXIOS CALL TO OUR SERVERS
 
