@@ -88,15 +88,12 @@
                     <b-form-group>
                         <label for="card-element">Credit Card</label>
                         <card-element required/>
-                        <b-form-invalid-feedback id="zipLiveFeedback">
-                            You gotta pay to play
-                        </b-form-invalid-feedback>
                     </b-form-group>
 
                     <!-- Used to display form errors -->
                     <div id="card-errors" role="alert"></div>
 
-                    <button @click.prevent="submitPayment" :disabled="$v.form.$invalid" class="btn btn-success">Submit Payment</button>
+                    <button @click.prevent="submitPayment" :disabled="$v.form.$invalid" class="btn btn-success">Submit Payment ${{ totalPrice }}</button>
                     
                 </b-form>
             </b-col>
@@ -124,7 +121,7 @@ export default {
                 city:'',
                 state:'',
                 zip:'',
-                amount:''
+                amount:this.totalPrice
             }
         }
     },
@@ -214,6 +211,7 @@ export default {
                     
                     // append hidden input to FormData object
                     fd.append('stripeToken', result.token.id);
+                    fd.append('amount', this.totalPrice);
 
                     // Make the call to our server to process donation using Stripe result.token.id 
 
@@ -221,6 +219,7 @@ export default {
                     
                     axios.post("/api/purchase", fd, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
 
+                                console.log("SUCCESS!!!!!!");
                                 this.resetForm();
                                 
                             }).catch((error) => {

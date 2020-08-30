@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('zip');
-            $table->integer('amount');
+            $table->float('amount');
             $table->id();
             $table->timestamps();
         });
