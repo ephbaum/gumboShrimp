@@ -103,6 +103,7 @@
         </b-row>
     </b-container>
 </template>
+
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { validationMixin } from "vuelidate";
@@ -242,8 +243,11 @@ export default {
 }
     
 </script>
+
 <style>
+
     .wrapper {
         margin-top: 20px;
     }
+
 </style>
