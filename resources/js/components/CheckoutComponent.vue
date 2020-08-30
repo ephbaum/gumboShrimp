@@ -3,6 +3,7 @@
         <b-row>
             <b-col>
                 <b-form id="payment-form">
+
                     <b-form-group id="emailInputGroup"
                             label="Email"
                             label-for="email">
@@ -23,8 +24,8 @@
                             v-model="form.address"
                             :state="!$v.form.address.$invalid"
                             aria-describedby="addressLiveFeedback"
-                            placeholder="Enter Address">
-                        </b-form-input>
+                            placeholder="Enter Address"
+                        />
                         <b-form-invalid-feedback id="addressLiveFeedback">
                             Please enter a valid Address
                         </b-form-invalid-feedback>
@@ -36,8 +37,8 @@
                             v-model="form.city"
                             :state="!$v.form.city.$invalid"
                             aria-describedby="cityLiveFeedback"
-                            placeholder="Enter City">
-                        </b-form-input>
+                            placeholder="Enter City"
+                        />
                         <b-form-invalid-feedback id="cityLiveFeedback">
                             Please enter a valid City
                         </b-form-invalid-feedback>
@@ -50,8 +51,9 @@
                             :state="!$v.form.state.$invalid"
                             aria-describedby="stateLiveFeedback"
                             placeholder="Enter State"
-                            maxlength=2>
-                        </b-form-input>
+                            minlength=2
+                            maxlength=2
+                        />
                         <b-form-invalid-feedback id="stateLiveFeedback">
                             Please enter a valid State
                         </b-form-invalid-feedback>
@@ -65,8 +67,8 @@
                             aria-describedby="zipLiveFeedback"
                             placeholder="Enter Zip Code"
                             minlength=5
-                            maxlength=5>
-                        </b-form-input>
+                            maxlength=5
+                        />
                         <b-form-invalid-feedback id="zipLiveFeedback">
                             Please enter a valid State
                         </b-form-invalid-feedback>
@@ -74,12 +76,12 @@
                 
                     <b-form-group id="nameInputGroup" label="Name On Card" label-for="name_on_card">
                         <b-form-input id="name_on_card"
-                                type="text"
-                                v-model="form.name_on_card"
-                                :state="!$v.form.name_on_card.$invalid" 
-                                aria-describedby="nameLiveFeedback"
-                                placeholder="Enter Name on Card">
-                        </b-form-input>
+                            type="text"
+                            v-model="form.name_on_card"
+                            :state="!$v.form.name_on_card.$invalid" 
+                            aria-describedby="nameLiveFeedback"
+                            placeholder="Enter Name on Card"
+                        />
                         <b-form-invalid-feedback id="nameLiveFeedback">
                             Please enter the name on the card
                         </b-form-invalid-feedback>
