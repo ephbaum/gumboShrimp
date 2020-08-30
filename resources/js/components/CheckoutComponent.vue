@@ -67,7 +67,7 @@
                             minlength=5
                             maxlength=5>
                         </b-form-input>
-                        <b-form-invalid-feedback id="stateLiveFeedback">
+                        <b-form-invalid-feedback id="zipLiveFeedback">
                             Please enter a valid State
                         </b-form-invalid-feedback>
                     </b-form-group>
@@ -129,11 +129,15 @@ export default {
     },
 
     mixins: [
+
         validationMixin
+
     ],
 
     validations: {
+        
         form: {
+
             email:{
                 required,
                 email
@@ -160,20 +164,23 @@ export default {
             }
 
         }
+
     },
 
     components: {
+
         CardElement
+
     },
 
     methods: {
+
         submitPayment() {
 
             this.$v.form.$touch();
 
             if (!this.$v.form.$invalid) {
                 
-
                 // createToken returns a Promise which resolves in a result object with
                 // either a token or an error key.
                 // See https://stripe.com/docs/api#tokens for the token object.
@@ -216,10 +223,13 @@ export default {
                     console.log("TOKEN: " + result.token.id);
 
                 })
+
             }
+
         },
  
     },
+    
     computed: {
         totalPrice(){
             let total = 0;
