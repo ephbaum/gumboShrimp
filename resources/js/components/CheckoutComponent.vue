@@ -222,7 +222,11 @@ export default {
                     axios.post("/api/purchase", fd, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
 
                                 console.log("SUCCESS!!!!!!");
+
+                                // this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
+
+                                this.$router.push('/');
                                 
                             }).catch((error) => {
                                 
