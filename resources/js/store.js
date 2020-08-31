@@ -97,6 +97,11 @@ export default new Vuex.Store({
             }  
             state.cartCount--;
             this.commit('saveCart');
+        },
+        emptyCart(state){
+            state.cart = null;
+
+            this.commit('saveCart');
         }
     },
     actions: {
@@ -132,6 +137,9 @@ export default new Vuex.Store({
         },
         subtractQuantityFromCart(context, cartItem){
             context.commit('subtractQuantityFromCart', cartItem);
+        },
+        purchaseSuccess(context){
+            context.commit('emptyCart');
         }
     }
 })
