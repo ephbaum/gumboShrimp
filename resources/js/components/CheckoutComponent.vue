@@ -9,7 +9,7 @@
                             label-for="email">
                         <b-form-input id="email"
                                 v-model="form.email"
-                                :state="!$v.form.email.$invalid"
+                                :class="{ 'has-danger': $v.form.email.$invalid && $v.form.email.$dirty, 'has-success': !$v.form.email.$invalid }"
                                 aria-describedby="emailLiveFeedback"
                                 placeholder="Enter Email" 
                         />
@@ -22,7 +22,7 @@
                         <b-form-input id="address"
                             type="text"
                             v-model="form.address"
-                            :state="!$v.form.address.$invalid"
+                            :class="{ 'has-danger': $v.form.address.$invalid && $v.form.address.$dirty, 'has-success': !$v.form.address.$invalid }"
                             aria-describedby="addressLiveFeedback"
                             placeholder="Enter Address"
                         />
@@ -35,7 +35,7 @@
                         <b-form-input id="city"
                             type="text"
                             v-model="form.city"
-                            :state="!$v.form.city.$invalid"
+                            :class="{ 'has-danger': $v.form.city.$invalid && $v.form.city.$dirty, 'has-success': !$v.form.city.$invalid }"
                             aria-describedby="cityLiveFeedback"
                             placeholder="Enter City"
                         />
@@ -48,7 +48,7 @@
                         <b-form-input id="state"
                             type="text"
                             v-model="form.state"
-                            :state="!$v.form.state.$invalid"
+                            :class="{ 'has-danger': $v.form.state.$invalid && $v.form.state.$dirty, 'has-success': !$v.form.state.$invalid }"
                             aria-describedby="stateLiveFeedback"
                             placeholder="Enter State"
                             minlength=2
@@ -63,14 +63,14 @@
                         <b-form-input id="zip"
                             type="text"
                             v-model="form.zip"
-                            :state="!$v.form.zip.$invalid"
+                            :class="{ 'has-danger': $v.form.zip.$invalid && $v.form.zip.$dirty, 'has-success': !$v.form.zip.$invalid }"
                             aria-describedby="zipLiveFeedback"
                             placeholder="Enter Zip Code"
                             minlength=5
                             maxlength=5
                         />
                         <b-form-invalid-feedback id="zipLiveFeedback">
-                            Please enter a valid State
+                            Please enter a valid Zip Code
                         </b-form-invalid-feedback>
                     </b-form-group>
                 
@@ -78,7 +78,7 @@
                         <b-form-input id="name_on_card"
                             type="text"
                             v-model="form.name_on_card"
-                            :state="!$v.form.name_on_card.$invalid" 
+                            :class="{ 'has-danger': $v.form.name_on_card.$invalid && $v.form.name_on_card.$dirty, 'has-success': !$v.form.name_on_card.$invalid }"
                             aria-describedby="nameLiveFeedback"
                             placeholder="Enter Name on Card"
                         />
