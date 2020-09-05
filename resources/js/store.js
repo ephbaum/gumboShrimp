@@ -100,6 +100,7 @@ export default new Vuex.Store({
         },
         emptyCart(state){
             state.cart = null;
+            state.cartCount = 0;
 
             this.commit('saveCart');
         }

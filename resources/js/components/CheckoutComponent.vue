@@ -223,7 +223,7 @@ export default {
 
                                 console.log("SUCCESS!!!!!!");
 
-                                // this.$store.dispatch('purchaseSuccess');
+                                this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
 
                                 this.$router.push('/');
