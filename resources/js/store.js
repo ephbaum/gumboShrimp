@@ -99,7 +99,7 @@ export default new Vuex.Store({
             this.commit('saveCart');
         },
         emptyCart(state){
-            state.cart = null;
+            
             state.cartCount = 0;
 
             this.commit('saveCart');
