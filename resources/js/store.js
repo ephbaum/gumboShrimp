@@ -127,8 +127,8 @@ export default new Vuex.Store({
                 router.push({ path: '/' });
             })
         },
-        addToCart(context, item) {
-            context.commit('addToCart', item);
+        addToCart(context, cartItem) {
+            context.commit('addToCart', cartItem);
         },
         removeFromCart(context, cartItem){
             context.commit('removeFromCart', cartItem);
