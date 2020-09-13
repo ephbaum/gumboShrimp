@@ -99,6 +99,8 @@ export default new Vuex.Store({
             this.commit('saveCart');
         },
         emptyCart(state){
+
+            state.cart = [];
             
             state.cartCount = 0;
 

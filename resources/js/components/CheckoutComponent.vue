@@ -124,7 +124,7 @@ export default {
                 state:'',
                 zip:'',
                 amount:this.totalPrice
-            }
+            },
         }
     },
 
@@ -210,17 +210,18 @@ export default {
                     Object.keys(this.form).forEach(key => {
                         fd.append(key, this.form[key])
                     })
-                    
-                    // append hidden input to FormData object
+                                        
+                    // append the necessary fields to the formData object
                     fd.append('stripeToken', result.token.id);
                     fd.append('amount', this.totalPrice);
-
-                    // Make the call to our server to process donation using Stripe result.token.id 
-
                     fd.append('role', 'user');
+                    fd.append('cart', this.cart);
                     
                     axios.post("/api/purchase", fd, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
-
+                                Object.keys(this.fd).forEach(key => {
+                                    fd.append(key, this.form[key])
+                                    console.log(this.form[fd]);
+                                })
                                 console.log("SUCCESS!!!!!!");
 
                                 this.$store.dispatch('purchaseSuccess');

@@ -21,7 +21,7 @@
                 </b-collapse>
 
                 <b-navbar-nav class="ml-auto">
-                    <b-nav-item type="light" to="cart" v-if="cartCount > 0"><button><i class="fas fa-shopping-basket" right> Cart <span v-if="cartCount != 0"> {{ cartCount}}</span></i></button></b-nav-item>
+                    <b-nav-item type="light" to="cart" v-if="cartCount > 0"><button><i class="fas fa-shopping-basket" right> Cart <span v-if="cartCount != 0"> {{ cartCount }}</span></i></button></b-nav-item>
                 </b-navbar-nav>
                 
             </b-navbar>
