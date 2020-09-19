@@ -218,12 +218,7 @@ export default {
                     fd.append('cart', this.cart);
                     
                     axios.post("/api/purchase", fd, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
-                                Object.keys(this.fd).forEach(key => {
-                                    fd.append(key, this.form[key])
-                                    console.log(this.form[fd]);
-                                })
-                                console.log("SUCCESS!!!!!!");
-
+                                console.log(data);
                                 this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
 
