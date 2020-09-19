@@ -206,18 +206,18 @@ export default {
                     this.$el.appendChild(hiddenInput);
 
                     // build the FormData object for each form key
-                    let fd = new FormData();
+                    let formData = new FormData();
                     Object.keys(this.form).forEach(key => {
-                        fd.append(key, this.form[key])
+                        formData.append(key, this.form[key])
                     })
                                         
                     // append the necessary fields to the formData object
-                    fd.append('stripeToken', result.token.id);
-                    fd.append('amount', this.totalPrice);
-                    fd.append('role', 'user');
-                    fd.append('cart', this.cart);
+                    formData.append('stripeToken', result.token.id);
+                    formData.append('amount', this.totalPrice);
+                    formData.append('role', 'user');
+                    formData.append('cart', this.cart);
                     
-                    axios.post("/api/purchase", fd, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
+                    axios.post("/api/purchase", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
                                 console.log(data);
                                 this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
