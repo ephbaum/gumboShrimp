@@ -12,9 +12,9 @@
         </b-row>
         <br>
 
-        <b-row>
+        <b-row id="card-body">
             <b-col lg="3" md="4" sm="6" v-for="item in filteredItems" :key="item.id">
-                <b-card v-if="item.image" :img-src="item.image" img-alt="Item image" img-height="300" img-width="300" :title="item.item_name">
+                <b-card class="fadeIn" v-if="item.image" :img-src="item.image" img-alt="Item image" img-height="300" img-width="300" :title="item.item_name">
                     
                     <b-row class="text-center">
                         <b-col>
@@ -35,11 +35,11 @@
                             </b-col>
                         
                             <b-col v-if="isAuthenticated">
-                                <b-button v-b-popover.hover.top="'Click here to DELETE item. You cannot undo this.'" title="DELETE ITEM" @click.prevent="deleteItem(item.id, item.item_name)" style="color: white;"><i class="far fa-trash-alt"></i></b-button>
+                                <b-button v-b-popover.hover.top="'Click here to DELETE item. You cannot undo this.'" :title="DELETE" @click.prevent="deleteItem(item.id, item.item_name)" style="color: white;"><i class="far fa-trash-alt"></i></b-button>
                             </b-col>
 
                             <b-col v-if="!isAuthenticated">
-                                <b-button v-b-popover.hover.top="'Click here to add this item to your cart.'" title="Add Item" @click="addToCart(item)" class="btn btn-link" style="color: white;"><i class="fas fa-shopping-cart"></i></b-button>
+                                <b-button  v-b-popover.hover.top="'Add to cart.'" :title="item.item_name" @click="addToCart(item)" class="btn btn-success" style="text-center color: white;"><i class="fas fa-shopping-cart"></i></b-button>
                             </b-col>
                         </b-row>
                     </b-card-footer>
@@ -252,22 +252,23 @@
             
         },
         mounted() {
-            this.loadItems();
+            this.loadItems();            
             console.log('Shop Component mounted.')
         }
     }
 </script>
 <style >
     .container-box {
-        background-color: rgb(214, 214, 214);
+        background-color:white;
         margin-top: 2em;
         padding-bottom: 2em;
     }
-    .bottom {
+    .b-bottom {
         position: relative;
         top: 10;
         left: 0;
         right: 0;
+        text-align: center;
     }
 
     .brandName {
@@ -283,6 +284,7 @@
         margin-right: auto;
         margin-bottom: auto;
         text-align: center;
+        
     }
 
     .modal-backdrop {
