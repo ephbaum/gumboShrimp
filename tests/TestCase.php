@@ -9,6 +9,9 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    /** @var string */
+    protected $token = '';
+
     public function loginRandomAdmin()
     {
         $user = User::inRandomOrder()->where('role', 'admin')->first();       
