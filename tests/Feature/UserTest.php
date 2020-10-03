@@ -14,8 +14,6 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertStringContainsString('token', $response->content());
-        $this->assertStringContainsString('user', $response->content());
-
-        
+        $this->assertStringContainsString('user', $response->content());   
     }
 }
