@@ -21,7 +21,12 @@
                 </b-collapse>
 
                 <b-navbar-nav class="ml-auto">
-                    <b-nav-item type="light" to="cart" v-if="cartCount > 0"><button><i class="fas fa-shopping-basket" right> Cart <span v-if="cartCount != 0"> {{ cartCount }}</span></i></button></b-nav-item>
+                    <b-nav-item type="light" to="cart" v-if="cartCount > 0">
+                        <button id="basketButton"> 
+                            <i class="basket fas fa-shopping-basket" right> Cart</i>
+                            <span class="basketText" v-if="cartCount != 0"> {{cartCount}} </span>
+                            </button>
+                    </b-nav-item>
                 </b-navbar-nav>
                 
             </b-navbar>
@@ -60,6 +65,23 @@
 
     .container {
         margin-bottom: 10px;
+    }
+    .basket {
+        color: green;
+    }
+
+    #basketButton{
+        background: white;
+        height: 50px;
+        border-left-width: 2px ;
+        border-right-width:2px ;
+        border-top-width: 2px ; 
+        border-bottom-width: 2px;
+        border-color: black;
+    }
+    .basketText {
+        color:red;
+
     }
 </style>
 
