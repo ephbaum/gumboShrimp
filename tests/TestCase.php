@@ -8,13 +8,13 @@ use App\Models\User;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
-
+    
     /** @var string */
     protected $token = '';
 
     public function loginRandomAdmin()
     {
-        $user = User::inRandomOrder()->where('role', 'admin')->first();       
+        $user = User::inRandomOrder()->where('role', 'admin')->first();
 
         $tokenData = [
             'grant_type' => 'password',
