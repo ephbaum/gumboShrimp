@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cookie;
 use App\Http\Resources\UserResource;
+use App\Http\Requests\UserRequest;
 
 class AuthController extends Controller
 {
@@ -32,7 +33,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request)
+    public function register(UserRequest $request)
     {
         // check if email is in use
         $user = User::where('email', $request->email)->first();
@@ -61,6 +62,11 @@ class AuthController extends Controller
                 'status' => Response::HTTP_CREATED,
             ], Response::HTTP_CREATED);
         }
+
+        return response()->json([
+            'message' => 'There was an error processing - user not saved.',
+            'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
+        ], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /**
