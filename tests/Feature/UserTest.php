@@ -52,7 +52,8 @@ class UserTest extends TestCase
         ];
 
         $response = $this->json('POST', '/api/register', $data);
-        $response->assertStatus(201) ->assertJsonStructure([
+
+        $response->assertStatus(201)->assertJsonStructure([
             "user" => [
                 'id',
                 'name',
@@ -62,7 +63,8 @@ class UserTest extends TestCase
                 'created_at',
                 'updated_at',
             ],
-            "message"
+            "message",
+            "status"
         ]);
 
         // delete the user we just made

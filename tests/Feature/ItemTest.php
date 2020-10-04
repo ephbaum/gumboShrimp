@@ -17,6 +17,9 @@ class ItemTest extends TestCase
 
     public function testCreateItem()
     {
+        // count records in db before adding
+        $countBefore = Item::count();
+        
         // this allows us past the auth on items POST route
         $this->loginRandomAdmin();
 
@@ -38,6 +41,10 @@ class ItemTest extends TestCase
         $response->assertStatus(201);
         $this->assertStringContainsString('Item successfully created and persisted', $response->content());
 
+        Item::latest('created_at')->first()->delete();
+
+        $countAfter = Item::count();
         
+        $this->assertSame($countBefore, $countAfter, "Item NOT deleted from DB");
     }
 }
