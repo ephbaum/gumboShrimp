@@ -26,6 +26,12 @@ class OrderController extends Controller
         //
     }
 
+    /**
+     * make a purchase
+     *
+     * @param OrderRequest $request
+     * @return Response|string
+     */
     public function purchase(OrderRequest $request)
     {
         // validate the request
@@ -98,17 +104,6 @@ class OrderController extends Controller
         return response()->json(null, Response::HTTP_BAD_REQUEST);
     }
     
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
