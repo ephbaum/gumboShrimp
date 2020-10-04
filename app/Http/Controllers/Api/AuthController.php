@@ -26,6 +26,12 @@ class AuthController extends Controller
         // $this->middleware('auth:api')->only('user');
     }
 
+    /**
+     * register a new user
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function register(Request $request)
     {
         // check if email is in use
@@ -57,6 +63,12 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * login a user
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function login(Request $request)
     {
         
