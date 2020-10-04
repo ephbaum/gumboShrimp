@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\User;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -17,12 +18,6 @@ class UserTest extends TestCase
         $this->assertStringContainsString('user', $response->content());
     }
 
-    public function testLogout()
-    {
-        $response = $this->logoutUser();
-        $response->assertStatus(204);
-    }
-
     public function testCurrentUser()
     {
         $response = $this->loginRandomAdmin();
@@ -32,7 +27,30 @@ class UserTest extends TestCase
         $header['Accept'] = 'application/json';
         $header['Authorization'] = 'Bearer ' . $this->token;
 
-        $response = $this->get("/api/users/current", $header);
-        $response->assertStatus(200);
+        $currentUser = $this->get("/api/user", $header);
+        $currentUser->assertStatus(200);
+    }
+
+    public function testLogout()
+    {
+        $response = $this->logoutUser();
+        $response->assertStatus(204);
+    }
+
+    public function testRegisterUser()
+    {
+        $user = factory(User::class)->make();
+        
+        $data = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'role' => $user->role,
+            'email_verified_at' => $user->email_verified_at,
+            'password' => $user->password,
+            'remember_token' => $user->remember_token
+        ];
+
+        $response = $this->json('POST', '/api/register', $data);
+        $response->assertStatus(201);
     }
 }
