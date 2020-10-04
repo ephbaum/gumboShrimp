@@ -41,7 +41,10 @@ class ItemTest extends TestCase
         $response->assertStatus(201);
         $this->assertStringContainsString('Item successfully created and persisted', $response->content());
 
-        Item::latest('created_at')->first()->delete();
+        // get the item ID so we can delete it
+        $itemId = Item::latest('created_at')->first()->id;
+
+        $this->json('delete', '/api/items/' . $itemId, $headers)->assertStatus(200);
 
         $countAfter = Item::count();
         
