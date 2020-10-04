@@ -26,6 +26,37 @@ class AuthController extends Controller
         // $this->middleware('auth:api')->only('user');
     }
 
+    public function register(Request $request)
+    {
+        // check if email is in use
+        $user = User::where('email', $request->email)->first();
+        if ($user) 
+        {
+            return response()->json([
+                'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => 'This email is already registered, please login.'
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'email_verified_at' => $request->email_verified_at,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $verifyUser = User::where('email', $user->email)->first();
+
+        if ($verifyUser) {
+            return response()->json([
+                'user' => $user,
+                'message' => "{$user->name} successfully created.",
+                'status' => Response::HTTP_CREATED,
+            ], Response::HTTP_CREATED);
+        }
+    }
+
     public function login(Request $request)
     {
         
