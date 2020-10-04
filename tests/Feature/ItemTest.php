@@ -23,8 +23,8 @@ class ItemTest extends TestCase
         // this allows us past the auth on items POST route
         $this->loginRandomAdmin();
 
+        // create an item
         $item = factory(Item::class)->make();
-
         $data = [
             'itemName' => $item->item_name,
             'itemDescription' => $item->description,
@@ -44,10 +44,11 @@ class ItemTest extends TestCase
         // get the item ID so we can delete it
         $itemId = Item::latest('created_at')->first()->id;
 
+        // delete the newly created item
         $this->json('delete', '/api/items/' . $itemId, $headers)->assertStatus(200);
 
+        // check the count after deleting, compare
         $countAfter = Item::count();
-        
         $this->assertSame($countBefore, $countAfter, "Item NOT deleted from DB");
     }
 }
