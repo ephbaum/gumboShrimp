@@ -52,7 +52,18 @@ class UserTest extends TestCase
         ];
 
         $response = $this->json('POST', '/api/register', $data);
-        $response->assertStatus(201);
+        $response->assertStatus(201) ->assertJsonStructure([
+            "user" => [
+                'id',
+                'name',
+                'email',
+                'role',
+                'email_verified_at',
+                'created_at',
+                'updated_at',
+            ],
+            "message"
+        ]);
 
         // delete the user we just made
         User::where('email', $user->email)->first()->delete();
