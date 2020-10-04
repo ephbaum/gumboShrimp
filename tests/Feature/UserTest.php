@@ -52,5 +52,8 @@ class UserTest extends TestCase
 
         $response = $this->json('POST', '/api/register', $data);
         $response->assertStatus(201);
+
+        // delete the user we just made
+        User::where('email', $user->email)->first()->delete();
     }
 }
