@@ -4,6 +4,7 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -12,6 +13,11 @@ abstract class TestCase extends BaseTestCase
     /** @var string */
     protected $token = '';
 
+    /**
+     * Log in random admin user
+     *
+     * @return object
+     */
     public function loginRandomAdmin()
     {
         $user = User::inRandomOrder()->where('role', 'admin')->first();
@@ -33,5 +39,17 @@ abstract class TestCase extends BaseTestCase
         }
 
         return $response;
+    }
+
+    public function logoutUser()
+    {
+        $response = $this->json('POST', 'api/logout');
+
+        return $response;
+    }
+
+    public function get_current_user()
+    {
+        return Auth::user();
     }
 }
