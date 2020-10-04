@@ -56,4 +56,38 @@ class UserTest extends TestCase
         // delete the user we just made
         User::where('email', $user->email)->first()->delete();
     }
+
+    public function testRegisterFailsWithNoEmail()
+    {
+        $user = factory(User::class)->make();
+        
+        $data = [
+            'name' => $user->name,
+            'email' => "THIS IS NOT A VALID EMAIL",
+            'role' => $user->role,
+            'email_verified_at' => $user->email_verified_at,
+            'password' => $user->password,
+            'remember_token' => $user->remember_token
+        ];
+
+        $response = $this->json('POST', '/api/register', $data);
+        $response->assertStatus(422);
+    }
+
+    public function testRegisterFailsWithNoName()
+    {
+        $user = factory(User::class)->make();
+        
+        $data = [
+            
+            'email' => $user->email,
+            'role' => $user->role,
+            'email_verified_at' => $user->email_verified_at,
+            'password' => $user->password,
+            'remember_token' => $user->remember_token
+        ];
+
+        $response = $this->json('POST', '/api/register', $data);
+        $response->assertStatus(422);
+    }
 }
