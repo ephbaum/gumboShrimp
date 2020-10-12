@@ -90,8 +90,6 @@ class AuthController extends Controller
             ], Response::HTTP_EXPECTATION_FAILED);
         }
 
-        Log::debug($user->password);
-        
         // if password doesn't match, no soup for you
         if (!Hash::check(request('password'), $user->password)) {
 
