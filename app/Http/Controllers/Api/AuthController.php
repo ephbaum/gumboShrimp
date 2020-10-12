@@ -85,11 +85,13 @@ class AuthController extends Controller
         if (!$user)                  
         {
             return response()->json([
-                'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
+                'status' => Response::HTTP_EXPECTATION_FAILED,
                 'message' => 'This email is not registered, please register'
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            ], Response::HTTP_EXPECTATION_FAILED);
         }
 
+        Log::debug($user->password);
+        
         // if password doesn't match, no soup for you
         if (!Hash::check(request('password'), $user->password)) {
 
