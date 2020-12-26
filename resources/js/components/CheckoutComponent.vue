@@ -216,6 +216,8 @@ export default {
                     formData.append('amount', this.totalPrice);
                     formData.append('role', 'user');
                     formData.append('cart', this.cart);
+
+                    console.log("CART: " + JSON.stringify(this.cart));
                     
                     axios.post("/api/purchase", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
                                 console.log(data);
