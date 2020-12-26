@@ -85,8 +85,7 @@ class OrderController extends Controller
             $order->state = request('state');
             $order->zip = request('zip');
             $order->amount = request('amount');
-            
-            
+                
             // make sure new Order is saved
             if ($order->save())
             {
