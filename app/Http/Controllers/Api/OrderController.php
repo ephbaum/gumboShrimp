@@ -75,7 +75,20 @@ class OrderController extends Controller
             }
 
             // Stripe call successful, carry on
+
             
+
+
+            $cart = request('cart');
+
+            Log::debug($request);
+            // foreach ($cart as $item) {
+            //     Log::debug($item);
+            // }
+
+
+
+
             // instantiate a new Order
             $order = New Order();
             $order->name = request('name_on_card');
@@ -85,7 +98,7 @@ class OrderController extends Controller
             $order->state = request('state');
             $order->zip = request('zip');
             $order->amount = request('amount');
-                
+            
             // make sure new Order is saved
             if ($order->save())
             {
