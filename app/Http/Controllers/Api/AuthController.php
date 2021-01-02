@@ -158,15 +158,7 @@ class AuthController extends Controller
         if (Auth::user()) {
 
             // fetch user's ID
-            $accessToken = Auth::user()->token()->id;
-            $currentId = DB::table('oauth_access_tokens')->where('id', $accessToken)->first()->user_id;
-
-            // if logged in, delete access token
-            if ($currentId) {
-                DB::table('oauth_access_tokens')
-                    ->where('user_id', $currentId)
-                    ->delete();
-            }
+            Auth::logout();
         }
 
         // return null
