@@ -215,7 +215,7 @@ export default {
                     formData.append('stripeToken', result.token.id);
                     formData.append('amount', this.totalPrice);
                     formData.append('role', 'user');
-                    formData.append('cart', this.cart);
+                    formData.append('cart', JSON.stringify(this.cart));
 
                     console.log("CART: " + JSON.stringify(this.cart));
                     

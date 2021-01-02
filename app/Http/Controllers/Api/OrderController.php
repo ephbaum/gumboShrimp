@@ -76,18 +76,9 @@ class OrderController extends Controller
 
             // Stripe call successful, carry on
 
-            
+            $cart = json_decode(request('cart'));
 
-
-            $cart = request('cart');
-
-            Log::debug($request);
-            // foreach ($cart as $item) {
-            //     Log::debug($item);
-            // }
-
-
-
+            Log::debug($cart);
 
             // instantiate a new Order
             $order = New Order();
