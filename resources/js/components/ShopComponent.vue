@@ -253,7 +253,7 @@
         },
         mounted() {
             this.loadItems();            
-            console.log('Shop Component mounted.')
+            console.log('Shop Component mounted.');
         }
     }
 </script>
