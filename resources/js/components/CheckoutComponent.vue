@@ -95,7 +95,7 @@
                     <!-- Used to display form errors -->
                     <div id="card-errors" role="alert"></div>
 
-                    <button @click.prevent="submitPayment" :disabled="$v.form.$invalid" class="btn btn-success">Submit Payment ${{ totalPrice }}</button>
+                    <button @click.prevent="submitPayment" :disabled="$v.form.$invalid" class="btn btn-success">Submit Payment ${{ totalPrice }}</button>                    
                     
                 </b-form>
             </b-col>
@@ -116,6 +116,7 @@ export default {
 
     data() {
         return {
+
             form:{
                 email:'',
                 name_on_card:'',
@@ -123,8 +124,10 @@ export default {
                 city:'',
                 state:'',
                 zip:'',
-                amount:this.totalPrice
+                amount:this.totalPrice,
+
             },
+         
         }
     },
 
@@ -168,8 +171,8 @@ export default {
     },
 
     components: {
-
-        CardElement
+        CardElement,
+        isLoading: false
 
     },
 
@@ -177,6 +180,7 @@ export default {
 
         submitPayment() {
 
+            this.$store.dispatch('isLoading');
             this.$v.form.$touch();
 
             if (!this.$v.form.$invalid) {
@@ -223,7 +227,6 @@ export default {
                                 console.log(data);
                                 this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
-
                                 this.$router.push('/');
                                 
                             }).catch((error) => {
@@ -232,6 +235,7 @@ export default {
                                 this.resetForm();
 
                             })
+                           
 
                     console.log("TOKEN: " + result.token.id);
 
@@ -259,7 +263,7 @@ export default {
                 total += item.totalPrice;
             }
             return total.toFixed(2);
-        },...mapGetters(['isAuthenticated', 'cart', 'cartCount'])
+        },...mapGetters(['isAuthenticated', 'cart', 'cartCount', 'isLoading'])
     }
 }
     

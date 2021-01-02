@@ -75,11 +75,8 @@ class OrderController extends Controller
             }
 
             // Stripe call successful, carry on
-
             $cart = json_decode(request('cart'));
-
             Log::debug($cart);
-
             // instantiate a new Order
             $order = New Order();
             $order->name = request('name_on_card');
