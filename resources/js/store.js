@@ -15,19 +15,22 @@ export default new Vuex.Store({
         let cart = window.localStorage.getItem('cart');
         let cartCount = window.localStorage.getItem('cartCount');
 
+
         return {
             token: userToken ? userToken : null,
             user: user ? user : null,
             currentUser: currentUser ? currentUser : null,
             cart: cart ? JSON.parse(cart) : [],
             cartCount: cartCount ? parseInt(cartCount) : 0,
+            isLoading: false,
         }
     },
     getters: { 
         isAuthenticated: state => !!state.token,
         currentUser: state => state.user,
         cart: state => state.cart,
-        cartCount: state => state.cartCount
+        cartCount: state => state.cartCount,
+        isLoading: state => state.isLoading
     },
 
 
@@ -105,7 +108,13 @@ export default new Vuex.Store({
             state.cartCount = 0;
 
             this.commit('saveCart');
-        }
+        },
+        isLoading(state){
+            state.isLoading = true;
+        },
+        stopLoading(state){
+            state.isLoading = false;
+        },
     },
     actions: {
         // actions are dispatched, they commit mutations
@@ -143,6 +152,11 @@ export default new Vuex.Store({
         },
         purchaseSuccess(context){
             context.commit('emptyCart');
+            context.commit('stopLoading');
+        },
+        isLoading(context){
+            context.commit('isLoading');
         }
+
     }
 })

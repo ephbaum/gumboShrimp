@@ -76,8 +76,6 @@ class OrderController extends Controller
             }
 
             // Stripe call successful, carry on
-
-            // 
             $cart = json_decode(request('cart'), true);  
 
             // instantiate and save a new Order
