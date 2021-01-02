@@ -22,6 +22,7 @@ Route::get('/user', 'Api\UserController@current');
 
 Route::resource('items', 'Api\ItemController');
 
+Route::get('/orders', 'Api\OrderController@index');
 Route::post('/purchase', 'Api\OrderController@purchase');
 
 Route::middleware('auth:api')->group(function () {
