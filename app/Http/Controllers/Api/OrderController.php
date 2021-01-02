@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Order;
 use App\Models\User;
+use App\Models\OrderItem;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -76,11 +77,10 @@ class OrderController extends Controller
 
             // Stripe call successful, carry on
 
-            $cart = json_decode(request('cart'));
+            // 
+            $cart = json_decode(request('cart'), true);  
 
-            Log::debug($cart);
-
-            // instantiate a new Order
+            // instantiate and save a new Order
             $order = New Order();
             $order->name = request('name_on_card');
             $order->email = request('email');
@@ -89,10 +89,19 @@ class OrderController extends Controller
             $order->state = request('state');
             $order->zip = request('zip');
             $order->amount = request('amount');
-            
-            // make sure new Order is saved
+
+            // make sure new Order is saved, then save each item in the cart
             if ($order->save())
             {
+                foreach($cart as $item) {
+                    $orderItem = New OrderItem();
+                    $orderItem->order_id = $order->id;
+                    $orderItem->item_id = $item['id'];
+                    $orderItem->quantity = $item['quantity'];
+                    $orderItem->price = $item['price'];
+                    $orderItem->save();
+                }
+
                 // everything went well, return 201
                 return response()->json(null, Response::HTTP_CREATED);
             }
