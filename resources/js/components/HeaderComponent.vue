@@ -29,20 +29,23 @@ export default {
 </script>
 
 <style scoped>
-.headImage {
-    max-height: 375px;
-    margin-top: 60px;
-}
 
-.banner {
-    font-family: 'Staatliches', cursive;
-    background-image: linear-gradient(red, yellow);
-    font-size: 8rem;
-}
+    * {
+        font-family: 'Staatliches', cursive;
+    }
 
-.subtitle {
-    font-family: 'Staatliches', cursive;
-    background-image: linear-gradient(yellow, white);
-    font-size: 2rem;
-}
+    .headImage {
+        max-height: 375px;
+        margin-top: 60px;
+    }
+
+    .banner {
+        background-image: linear-gradient(red, yellow);
+        font-size: 8rem;
+    }
+
+    .subtitle {
+        background-image: linear-gradient(yellow, white);
+        font-size: 2rem;
+    }
 </style>
