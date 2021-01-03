@@ -4,7 +4,7 @@
             <b-col>
                 <b-input-group class="mt-3">
                     <template v-slot:append>
-                        <b-button class="btn btn-success"><li class="fa fa-search"></li></b-button>
+                        <b-button class="btn"><li class="fa fa-search"></li></b-button>
                     </template>
                     <b-form-input v-model="search" placeholder="search for your item..." ></b-form-input>
                 </b-input-group>
@@ -39,7 +39,7 @@
                             </b-col>
 
                             <b-col v-if="!isAuthenticated">
-                                <b-button  v-b-popover.hover.top="'Add to cart.'" :title="item.item_name" @click="addToCart(item)" class="btn btn-success" style="text-center color: white;"><i class="fas fa-shopping-cart"></i></b-button>
+                                <b-button  v-b-popover.hover.top="'Add to cart.'" :title="item.item_name" @click="addToCart(item)" class="btn" style="text-center color: white;"><i class="fas fa-shopping-cart"></i></b-button>
                             </b-col>
                         </b-row>
                     </b-card-footer>
