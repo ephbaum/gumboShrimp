@@ -9,11 +9,12 @@
 
                     <b-navbar-nav>
                         <b-nav-item v-if="isAuthenticated" to="add-item">Add Item</b-nav-item>
-
-                        <b-nav-item v-if="!isAuthenticated" to="login">Login</b-nav-item>                
+                        <b-nav-item v-if="isAuthenticated" to="shop">Shop</b-nav-item>
+                        <b-nav-item v-if="isAuthenticated" to="orders">Orders</b-nav-item>            
                     </b-navbar-nav>
 
-                    <b-navbar-nav class="ml-auto"  v-if="isAuthenticated">
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-item v-if="!isAuthenticated" to="login" right>Login</b-nav-item>    
                         <b-nav-item v-if="isAuthenticated" @click="logout" right> 
                             logout
                         </b-nav-item>
