@@ -35,7 +35,7 @@
                             </b-col>
                         
                             <b-col v-if="isAuthenticated">
-                                <b-button v-b-popover.hover.top="'Click here to DELETE item. You cannot undo this.'" :title="DELETE" @click.prevent="deleteItem(item.id, item.item_name)" style="color: white;"><i class="far fa-trash-alt"></i></b-button>
+                                <b-button v-b-popover.hover.top="'Click here to DELETE item. You cannot undo this.'" @click.prevent="deleteItem(item.id, item.item_name)" style="color: white;"><i class="far fa-trash-alt"></i></b-button>
                             </b-col>
 
                             <b-col v-if="!isAuthenticated">
