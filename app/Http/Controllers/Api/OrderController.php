@@ -99,6 +99,7 @@ class OrderController extends Controller
                     $orderItem = New OrderItem();
                     $orderItem->order_id = $order->id;
                     $orderItem->item_id = $item['id'];
+                    $orderItem->item_name = $item['item_name'];
                     $orderItem->quantity = $item['quantity'];
                     $orderItem->price = $item['price'];
                     $orderItem->save();
