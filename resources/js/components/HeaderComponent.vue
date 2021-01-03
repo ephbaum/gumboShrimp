@@ -1,6 +1,6 @@
 <template>
     <b-container fluid>
-        <!-- <b-img class="headImage col-md-12" fluid src="../images/fruits.jpeg" alt="Image 1"></b-img> -->
+        <b-img class="headImage col-md-12" fluid src="../images/fruits.jpeg" alt="Image 1"></b-img>
     </b-container>
 </template>
 
