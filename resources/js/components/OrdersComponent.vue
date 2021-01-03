@@ -48,7 +48,7 @@
                         </b-col>
                     </b-row>
 
-                    <b-row v-for='item in order.order_item' :key="item">
+                    <b-row v-for='(item, id) in order.order_item' :key="id">
                        {{ item["item_id"] }}
                     </b-row>
                 </b-card>
