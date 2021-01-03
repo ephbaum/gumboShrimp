@@ -15,6 +15,8 @@
         <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
         <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.3/cropper.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     </head>
 
     <body>

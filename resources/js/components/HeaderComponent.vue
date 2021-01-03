@@ -1,7 +1,7 @@
 <template>
     <b-container fluid>
         <!-- <b-img class="headImage col-md-12" fluid src="../images/fruits.jpeg" alt="Image 1"></b-img> -->
-        <div class="banner center"><p>Chango Cart</p></div>
+        <div class="banner center">Chango Cart</div>
         <div class="subtitle center">A place to buy stuff.</div>
     </b-container>
 </template>
@@ -35,11 +35,13 @@ export default {
 }
 
 .banner {
+    font-family: 'Staatliches', cursive;
     background-image: linear-gradient(red, yellow);
     font-size: 8rem;
 }
 
 .subtitle {
+    font-family: 'Staatliches', cursive;
     background-image: linear-gradient(yellow, white);
     font-size: 2rem;
 }
