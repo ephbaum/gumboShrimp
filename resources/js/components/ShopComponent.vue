@@ -1,7 +1,7 @@
 <template>
     <b-container fluid class="container-box">
         <b-row>
-            <b-col>
+            <b-col offset="4" lg="4" md="6" sm="8">
                 <b-input-group class="mt-3">
                     <template v-slot:append>
                         <b-button class="btn"><li class="fa fa-search"></li></b-button>

@@ -51,6 +51,12 @@
                     <b-row v-for='(item, id) in order.order_item' :key="id">
                        {{ item["item_name"] }}
                     </b-row>
+
+                    <b-row>
+                        <b-col>
+                            <b-button>DELETE</b-button>
+                        </b-col>
+                    </b-row>
                 </b-card>
             </b-col>
         </b-row>
@@ -93,6 +99,9 @@
                     console.log(error);
                 }); 
             },
+            deleteItem(){
+                axios.post('/api/order{}')
+            }
         },
 
         computed: {
