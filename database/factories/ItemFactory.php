@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 $factory->define(Item::class, function (Faker $faker) {
     return [
-        'item_name' => $faker->randomElement($array = array('Microwave','Lamp','Shoes', 'Hairbrush', 'Hamster Wheel', 'Nintendo', 'Sega Genesis')),
+        'item_name' => $faker->randomElement($array = ['Microwave','Lamp','Shoes', 'Hairbrush', 'Hamster Wheel', 'Nintendo', 'Sega Genesis']),
         'description' => $faker->text($maxNbChars=200),
         'image' => $faker->randomElement($array = ['https://source.unsplash.com/random', 'https://source.unsplash.com/users/erondu']),
         'price' => $faker->numberBetween(1, 200),
