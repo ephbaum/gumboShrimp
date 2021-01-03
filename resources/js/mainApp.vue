@@ -41,7 +41,6 @@
 </script>
 
 <style>
-
     .loader {  
         border: 16px solid #f3f3f3; /* Light grey */
         border-top: 16px solid #fde614; 
