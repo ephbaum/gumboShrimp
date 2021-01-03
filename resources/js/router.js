@@ -34,16 +34,16 @@ export const router = new VueRouter({
 
                 {
                     path: 'register',
-                    components: {body: RegisterComponent},
+                    components: {body: RegisterComponent, header: HeaderComponent},
                 },
 
                 {
                     path: 'login',
-                    components: {body: LoginComponent},
+                    components: {body: LoginComponent, header: HeaderComponent},
                 },
                 {
                     path: 'checkout',
-                    components: {body: CheckoutComponent},
+                    components: {body: CheckoutComponent, header: HeaderComponent},
                 },
                 {
                     path: 'orders',
@@ -53,7 +53,7 @@ export const router = new VueRouter({
 
                 {
                     path: 'add-item',
-                    components: {body: AddItemComponent},
+                    components: {body: AddItemComponent, header: HeaderComponent},
                     beforeEnter: (to, from, next) => {
                         if (!window.auth.check()) {
                             next({
