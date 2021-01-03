@@ -26,7 +26,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return OrderResource::collection(Order::orderBy('created_at', 'asc')->get());
+        return OrderResource::collection(Order::orderBy('created_at', 'asc')->has('OrderItem')->with('OrderItem')->get());
+
+        
     }
 
     /**

@@ -8,6 +8,6 @@ class OrderItem extends Model
 {
     public function order()
     {
-        return $this->belongsTo('App\Models\Order');
+        return $this->belongsTo(Order::class);
     }
 }
