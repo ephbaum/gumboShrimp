@@ -21,10 +21,10 @@
 
                 </b-collapse>
 
-                <b-navbar-nav class="ml-auto">
+                <b-navbar-nav class="ml-auto" v-b-popover.hover.top="'Checkout'">
                     <b-nav-item type="light" to="cart" v-if="cartCount > 0">
                         <button id="basketButton"> 
-                            <i class="basket fas fa-shopping-basket" right> Cart</i>
+                            <i class="basket fas fa-shopping-basket" right></i>
                             <span class="basketText" v-if="cartCount != 0"> {{cartCount}} </span>
                             </button>
                     </b-nav-item>
@@ -73,7 +73,7 @@
 
     #basketButton{
         background: white;
-        height: 50px;
+        height: 30px;
         border-left-width: 2px ;
         border-right-width:2px ;
         border-top-width: 2px ; 
