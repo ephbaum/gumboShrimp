@@ -10,7 +10,7 @@ import HeaderComponent from './components/HeaderComponent'
 import CartComponent from './components/CartComponent'
 import UserComponent from './components/UserComponent'
 import CheckoutComponent from './components/CheckoutComponent'
-import ordersDashComponent from './components/ordersDashComponent'
+import OrdersComponent from './components/OrdersComponent'
 
 
 export const router = new VueRouter({ 
@@ -47,7 +47,7 @@ export const router = new VueRouter({
                 },
                 {
                     path: 'orders',
-                    components: {body: ordersDashComponent, header: HeaderComponent}
+                    components: {body: OrdersComponent, header: HeaderComponent}
                 },
 
 

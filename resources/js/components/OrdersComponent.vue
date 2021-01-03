@@ -44,14 +44,13 @@
                         <b-col>
 
                             <b-card-text>amount: {{ order.amount }} </b-card-text>
-
                             
                         </b-col>
                     </b-row>
-                    
-                    <b-card-footer>
 
-                    </b-card-footer>
+                    <b-row v-for='item in order.order_item' :key="item">
+                       {{ item["item_id"] }}
+                    </b-row>
                 </b-card>
             </b-col>
         </b-row>
@@ -66,7 +65,8 @@
     export default {
         data(){
             return {
-                orders:[]
+                orders:[],
+                items:[]
             }
         },
 
@@ -80,7 +80,19 @@
                 .catch(error =>{
                     console.log(error);
                 });
-            }
+            },
+            loadItems(){
+                axios.get('/api/items')
+                .then(response =>{
+                    this.items = response.data.data;
+                    console.log(this.items);
+                    console.log("Items have successfully loaded");
+                })
+                .catch(error => {
+                    console.log("ERROR ON LOAD ITEMS. Error-->");
+                    console.log(error);
+                }); 
+            },
         },
 
         computed: {
@@ -89,6 +101,7 @@
         },
         mounted() {
             this.loadOrders();
+            this.loadItems();
             console.log('shop component mounted');
         }
 
