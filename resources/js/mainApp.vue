@@ -42,13 +42,8 @@
 
 <style>
 
-    .container-fluid {
-        background-color: black;
-    }
-
     .loader {  
-        border: 16px solid #f3f3f3;
-    /* Light grey */
+        border: 16px solid #f3f3f3; /* Light grey */
         border-top: 16px solid #fde614; 
         border-radius: 50%;
         width: 120px; 
