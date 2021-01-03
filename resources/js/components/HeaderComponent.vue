@@ -1,8 +1,8 @@
 <template>
     <b-container fluid>
         <!-- <b-img class="headImage col-md-12" fluid src="../images/fruits.jpeg" alt="Image 1"></b-img> -->
-        <div class="banner"><p>Chango Cart</p></div>
-        <div class="subtitle">A place to buy stuff.</div>
+        <div class="banner center"><p>Chango Cart</p></div>
+        <div class="subtitle center">A place to buy stuff.</div>
     </b-container>
 </template>
 
@@ -14,41 +14,33 @@ import { required, minLength, email } from "vuelidate/lib/validators";
 
 export default {
     name: "headerComponent",
+    
     data() {
         return {
         }
     },
 
-    mixins: [
-      validationMixin
-    ],
-
-
-    
-
     computed: mapGetters(['isAuthenticated']),  
-    
 
         mounted() {
-            console.log('Component mounted.')
+            console.log('Header Component mounted.')
         }
 }
-
 </script>
 
-<style>
+<style scoped>
 .headImage {
     max-height: 375px;
     margin-top: 60px;
 }
 
 .banner {
-    text-align: center;
+    background-image: linear-gradient(red, yellow);
     font-size: 8rem;
 }
 
 .subtitle {
-    text-align: center;
+    background-image: linear-gradient(yellow, white);
     font-size: 2rem;
 }
 </style>
