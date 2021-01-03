@@ -41,15 +41,21 @@ export const router = new VueRouter({
                     path: 'login',
                     components: {body: LoginComponent, header: HeaderComponent},
                 },
+
                 {
                     path: 'checkout',
                     components: {body: CheckoutComponent, header: HeaderComponent},
                 },
+
                 {
                     path: 'orders',
                     components: {body: OrdersComponent, header: HeaderComponent}
                 },
 
+                {
+                    path: 'cart',
+                    components: {body: CartComponent}
+                },
 
                 {
                     path: 'add-item',
@@ -64,11 +70,6 @@ export const router = new VueRouter({
                         next();
                     },
                 },
-
-                {
-                    path: 'cart',
-                    components: {body: CartComponent}
-                }
             ]
         },
     ]
