@@ -4,10 +4,9 @@
         <br>
         <nav-bar></nav-bar>
         <br>
-        <div class="loader" v-if="isLoading">
+        
+        <div class="loader" v-if="isLoading"></div>
 
-
-        </div>
         <router-view name="header" v-if="!isAuthenticated"/>
         <router-view name="body"/>
 
@@ -43,23 +42,27 @@
 
 <style>
 
-.loader {  
-    border: 16px solid #f3f3f3;
- /* Light grey */
-    border-top: 16px solid #fde614; 
-    border-radius: 50%;
-    width: 120px; 
-    height: 120px;
-    position: fixed;
-    top: 30%; 
-    left: 50%;  
-    margin-top: -60px; 
-    margin-left: -60px;  
-    z-index: 10;  
-    -webkit-animation: spin 1s linear infinite;
-    animation: spin 2s linear infinite;}
+    .container-fluid {
+        background-color: black;
+    }
 
-    @-webkit-keyframes 
-    spin { 0% {-webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% {-webkit-transform: rotate(360deg); transform: rotate(360deg);  }}
-    @keyframes spin {  0% {    -webkit-transform: rotate(0deg);            transform: rotate(0deg);  }  100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
+    .loader {  
+        border: 16px solid #f3f3f3;
+    /* Light grey */
+        border-top: 16px solid #fde614; 
+        border-radius: 50%;
+        width: 120px; 
+        height: 120px;
+        position: fixed;
+        top: 30%; 
+        left: 50%;  
+        margin-top: -60px; 
+        margin-left: -60px;  
+        z-index: 10;  
+        -webkit-animation: spin 1s linear infinite;
+        animation: spin 2s linear infinite;}
+
+        @-webkit-keyframes 
+        spin { 0% {-webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% {-webkit-transform: rotate(360deg); transform: rotate(360deg);  }}
+        @keyframes spin {  0% {    -webkit-transform: rotate(0deg);            transform: rotate(0deg);  }  100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
 </style>
