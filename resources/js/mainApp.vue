@@ -1,13 +1,14 @@
 <template>    
     <b-container fluid>
         
+        <router-view name="header" v-if="!isAuthenticated"/>
         <br>
         <nav-bar></nav-bar>
         <br>
         
         <div class="loader" v-if="isLoading"></div>
 
-        <router-view name="header" v-if="!isAuthenticated"/>
+        
         <router-view name="body"/>
 
         <notifications group="notifications" position="bottom center" width="100%"/>
@@ -43,7 +44,7 @@
 <style>
     .loader {  
         border: 16px solid #f3f3f3; /* Light grey */
-        border-top: 16px solid #fde614; 
+        border-top: 16px solid #2ffd14; 
         border-radius: 50%;
         width: 120px; 
         height: 120px;
