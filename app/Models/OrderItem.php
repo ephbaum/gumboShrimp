@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
+    /**
+     * establish the relationship to the order
+     *
+     * @return void
+     */
     public function order()
     {
         return $this->belongsTo(Order::class);
