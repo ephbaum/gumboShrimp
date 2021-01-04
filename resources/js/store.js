@@ -151,6 +151,15 @@ export default new Vuex.Store({
             context.commit('subtractQuantityFromCart', cartItem);
         },
         purchaseSuccess(context){
+            Vue.$notify({
+				group: 'notifications',
+				type: 'success',
+				title: "success",
+				text: 'Your purchase was successful.',
+				duration: '15000',
+				width: '100%'
+            });
+            
             context.commit('emptyCart');
             context.commit('stopLoading');
         },
