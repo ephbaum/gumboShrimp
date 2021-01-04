@@ -54,7 +54,7 @@
 
                     <b-row>
                         <b-col>
-                            <b-button>DELETE</b-button>
+                            <b-button @click.prevent="deleteItem(order.id)">DELETE</b-button>
                         </b-col>
                     </b-row>
                 </b-card>
@@ -99,8 +99,11 @@
                     console.log(error);
                 }); 
             },
-            deleteItem(){
-                axios.post('/api/order{}')
+            deleteItem(id){
+                axios.delete('/api/orders/' + id).then(response =>{
+                    this.$router.go(0);
+                    console.log('DELETED SUCCESSFULLY'); 
+                });
             }
         },
 

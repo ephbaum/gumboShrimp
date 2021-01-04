@@ -21,8 +21,10 @@ Route::post('/logout', 'Api\AuthController@logout');
 Route::get('/user', 'Api\UserController@current');
 
 Route::resource('items', 'Api\ItemController');
+Route::resource('orders', 'Api\OrderController');
 
 Route::get('/orders', 'Api\OrderController@index');
+Route::delete('/orders/{id}', 'Api\OrderController@destroy');
 Route::post('/purchase', 'Api\OrderController@purchase');
 
 Route::middleware('auth:api')->group(function () {

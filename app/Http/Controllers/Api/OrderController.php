@@ -139,6 +139,12 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order = Order::find($order)->first();
+        
+        if($order->delete()){
+            return response()->json(['message' => 'Order successfully deleted'], Response::HTTP_OK);
+        };
+
+        return response()->json(['message' => 'Order did not delete'], Response::HTTP_EXPECTATION_FAILED);
     }
 }
