@@ -220,14 +220,11 @@ export default {
                     formData.append('amount', this.totalPrice);
                     formData.append('role', 'user');
                     formData.append('cart', JSON.stringify(this.cart));
-
-                    console.log("CART: " + JSON.stringify(this.cart));
                     
                     axios.post("/api/purchase", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
-                                console.log(data);
                                 this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
-                                this.$router.push('/');
+                                this.$router.push('/shop');
                                 
                             }).catch((error) => {
                                 
