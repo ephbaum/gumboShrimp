@@ -35,92 +35,94 @@
 
 <script>
 
-import { mapActions, mapGetters } from "vuex";
-import { validationMixin } from "vuelidate";
-import { required, minLength, email } from "vuelidate/lib/validators";
+    import { mapActions, mapGetters } from "vuex";
+    import { validationMixin } from "vuelidate";
+    import { required, minLength, email } from "vuelidate/lib/validators";
 
-export default {
-    name: "login",
-    data() {
-        return {
-        
-            form: {
-                email: "",
-                password: "",
-            }
-        }
-    },
-
-    mixins: [
-      validationMixin
-    ],
-
-    validations: {
-        form: {
-            password: {
-                required,
-                minLength: minLength(8),
-            },
-            email: {
-                required,
-                email
-            }
-        }
-    },
-
-    methods: {
-        login() {
-
-            const formData = {
-                email: this.form.email,
-                password: this.form.password,
-            };
+    export default {
+        name: "login",
+        data() {
+            return {
             
-            let self=this;
-
-            axios.post("/api/login", formData).then(({data}) => {
-
-                this.$cookie.set('token', data.token)
-                this.$cookie.set('user', data.user.email)
-
-                auth.setAuthToken(data.token)
-                auth.login(data.token, data.user.email);
-        
-                this.$router.push({path: '/orders'});
-                
-                self.$notify({
-                    group: 'notifications',
-                    type: 'success',
-                    title: 'Success!',
-                    text: data.user.name + ' is now logged in',
-                    duration: '15000',
-                    width: '100%'
-                });
-            })
-            .catch(function (error) {
-
-                self.$notify({
-                    group: 'notifications',
-                    type: 'error',
-                    title: error,
-                    text: 'INVALID CREDENTIALS - PLEASE TRY AGAIN.',
-                    duration: '15000',
-                    width: '100%'
-                });
-            });
-            
+                form: {
+                    email: "",
+                    password: "",
+                }
+            }
         },
-        register() {
-            console.log("[LoginComponent]->register")
-        }
-    },
-    computed: mapGetters(['isAuthenticated']),
-}
+
+        mixins: [
+        validationMixin
+        ],
+
+        validations: {
+            form: {
+                password: {
+                    required,
+                    minLength: minLength(8),
+                },
+                email: {
+                    required,
+                    email
+                }
+            }
+        },
+
+        methods: {
+            login() {
+
+                const formData = {
+                    email: this.form.email,
+                    password: this.form.password,
+                };
+                
+                let self=this;
+
+                axios.post("/api/login", formData).then(({data}) => {
+
+                    this.$cookie.set('token', data.token)
+                    this.$cookie.set('user', data.user.email)
+
+                    auth.setAuthToken(data.token)
+                    auth.login(data.token, data.user.email);
+            
+                    this.$router.push({path: '/orders'});
+                    
+                    self.$notify({
+                        group: 'notifications',
+                        type: 'success',
+                        title: 'Success!',
+                        text: data.user.name + ' is now logged in',
+                        duration: '15000',
+                        width: '100%'
+                    });
+                })
+                .catch(function (error) {
+
+                    self.$notify({
+                        group: 'notifications',
+                        type: 'error',
+                        title: error,
+                        text: 'INVALID CREDENTIALS - PLEASE TRY AGAIN.',
+                        duration: '15000',
+                        width: '100%'
+                    });
+                });
+                
+            },
+            register() {
+                console.log("[LoginComponent]->register")
+            }
+        },
+        computed: mapGetters(['isAuthenticated']),
+    }
 
 </script>
 
 <style scoped>
+
     .container-box {
         margin-top: 1em;
     }
+    
 </style>
