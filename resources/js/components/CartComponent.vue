@@ -34,9 +34,8 @@
 </template>
  
 <script>
-import { mapGetters } from 'vuex'
-import CardElement from '../components/CardElement'
-
+    import { mapGetters } from 'vuex'
+    import CardElement from '../components/CardElement'
 
     export default {
         data() {
@@ -77,6 +76,3 @@ import CardElement from '../components/CardElement'
         }
     }
 </script>
-
-<style>
-</style>
