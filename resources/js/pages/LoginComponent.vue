@@ -121,6 +121,6 @@ export default {
 
 <style scoped>
     .container-box {
-        margin-top: 10em;
+        margin-top: 1em;
     }
 </style>
