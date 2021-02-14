@@ -83,49 +83,49 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import { validationMixin } from "vuelidate";
-import { required, minLength, email } from "vuelidate/lib/validators";
-    export default {
-        data(){
-            return{
-                form:{
-                    itemName:'',
-                    itemDescription:'',
-                    itemImage:null,
-                    itemPrice:'',
-                    numberAvailable:'',
-                    itemSize:'',
-                    url:null,
-                    sent:false
+    import { mapActions, mapGetters } from "vuex";
+    import { validationMixin } from "vuelidate";
+    import { required, minLength, email } from "vuelidate/lib/validators";
+        export default {
+            data(){
+                return{
+                    form:{
+                        itemName:'',
+                        itemDescription:'',
+                        itemImage:null,
+                        itemPrice:'',
+                        numberAvailable:'',
+                        itemSize:'',
+                        url:null,
+                        sent:false
+                    },
+                }
+            },
+            mixins: [
+                validationMixin
+            ],
+                validations: {
+            form: {
+                itemImage: {
+                    required
                 },
+                itemName: {
+                    required,
+                    minLength: minLength(3),
+                },
+                itemDescription: {
+                    required,
+                    minLength: minLength(3)
+                },
+                itemPrice:{
+                    required,
+                    minLength: minLength(3),
+                },
+                numberAvailable:{
+                    required
+                }
             }
         },
-        mixins: [
-            validationMixin
-        ],
-            validations: {
-        form: {
-            itemImage: {
-                required
-            },
-            itemName: {
-                required,
-                minLength: minLength(3),
-            },
-            itemDescription: {
-                required,
-                minLength: minLength(3)
-            },
-            itemPrice:{
-                required,
-                minLength: minLength(3),
-            },
-            numberAvailable:{
-                required
-            }
-        }
-    },
 
         methods:{
             createItem(){
@@ -185,16 +185,15 @@ import { required, minLength, email } from "vuelidate/lib/validators";
                 this.form.url = URL.createObjectURL(file);
                 this.form.image = file;            
             },
-
         },
         mounted() {
             
         }
     }
 </script>
-<style>
-.addItem{
-    padding-top: 2rem ;
-}
 
+<style>
+    .addItem{
+        padding-top: 2rem ;
+    }
 </style>
