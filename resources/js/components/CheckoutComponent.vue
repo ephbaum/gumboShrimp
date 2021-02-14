@@ -104,175 +104,174 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import { validationMixin } from "vuelidate";
-import { helpers, required, minLength, maxLength, email } from "vuelidate/lib/validators";
-import CardElement from '../components/CardElement'
-import { Card, createToken, stripe } from 'vue-stripe-elements-plus'
+    import { mapActions, mapGetters } from "vuex";
+    import { validationMixin } from "vuelidate";
+    import { helpers, required, minLength, maxLength, email } from "vuelidate/lib/validators";
+    import CardElement from '../components/CardElement'
+    import { Card, createToken, stripe } from 'vue-stripe-elements-plus'
 
-const zip = helpers.regex('zip', /(^\d{5}$)|(^\d{5}-\d{4}$)/);
+    const zip = helpers.regex('zip', /(^\d{5}$)|(^\d{5}-\d{4}$)/);
 
-export default {
+    export default {
 
-    data() {
-        return {
+        data() {
+            return {
 
-            form:{
-                email:'',
-                name_on_card:'',
-                address:'',
-                city:'',
-                state:'',
-                zip:'',
-                amount:this.totalPrice,
+                form:{
+                    email:'',
+                    name_on_card:'',
+                    address:'',
+                    city:'',
+                    state:'',
+                    zip:'',
+                    amount:this.totalPrice,
 
-            },
-         
-        }
-    },
-
-    mixins: [
-
-        validationMixin
-
-    ],
-
-    validations: {
-        
-        form: {
-
-            email:{
-                required,
-                email
-            },
-            name_on_card:{
-                required,
-                minLength: minLength(3)
-            },
-            address:{
-                required
-            },
-            city:{
-                required,
-                minLength: minLength(2)
-            },
-            state:{
-                required,
-                minLength: minLength(2),
-                maxLength: maxLength(2)
-            },
-            zip:{
-                required,
-                zip
-            }
-
-        }
-
-    },
-
-    components: {
-        CardElement,
-        isLoading: false
-
-    },
-
-    methods: {
-
-        submitPayment() {
-
-            this.$store.dispatch('isLoading');
-            this.$v.form.$touch();
-
-            if (!this.$v.form.$invalid) {
-                
-                // createToken returns a Promise which resolves in a result object with
-                // either a token or an error key.
-                // See https://stripe.com/docs/api#tokens for the token object.
-                // See https://stripe.com/docs/api#errors for the error object.
-                // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-                const options = {
-                    name: this.name_on_card,
-                }
-                createToken(options).then(result => {
-
-                    if(result.error) {
-                        console.log(result.error);
-                    }
-                    
-                    // create hidden input with stripe token to complete transaction
-                    let hiddenInput = document.createElement('input');
-                    
-                    hiddenInput.setAttribute('type', 'hidden');
-                    hiddenInput.setAttribute('name', 'stripeToken');
-                    hiddenInput.setAttribute('value', result.token.id);
-
-                    //append stripe token noto form
-                    this.$el.appendChild(hiddenInput);
-
-                    // build the FormData object for each form key
-                    let formData = new FormData();
-                    Object.keys(this.form).forEach(key => {
-                        formData.append(key, this.form[key])
-                    })
-                                        
-                    // append the necessary fields to the formData object
-                    formData.append('stripeToken', result.token.id);
-                    formData.append('amount', this.totalPrice);
-                    formData.append('role', 'user');
-                    formData.append('cart', JSON.stringify(this.cart));
-                    
-                    axios.post("/api/purchase", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
-                                this.$store.dispatch('purchaseSuccess');
-                                this.resetForm();
-
-                                self.$notify({
-                                    group: 'notifications',
-                                    type: 'success',
-                                    title: "success",
-                                    text: 'Your purchase was successful.',
-                                    duration: '15000',
-                                    width: '100%'
-                                });
-
-                                this.$router.push('/shop');
-                                
-                            }).catch((error) => {
-                                
-                                console.log(error);
-                                this.resetForm();
-
-                            })
-                           
-                    console.log("TOKEN: " + result.token.id);
-
-                })
+                },
+            
             }
         },
 
-        resetForm() {
+        mixins: [
 
-            this.form.email = '';
-            this.form.name_on_card = '',
-            this.form.address = '',
-            this.form.city = '',
-            this.form.state = '',
-            this.form.zip = '',
-            this.form.amount = ''
+            validationMixin
+
+        ],
+
+        validations: {
             
-        }
-    },
-    
-    computed: {
-        totalPrice(){
-            let total = 0;
-            for(let item of this.$store.state.cart){
-                total += item.totalPrice;
+            form: {
+
+                email:{
+                    required,
+                    email
+                },
+                name_on_card:{
+                    required,
+                    minLength: minLength(3)
+                },
+                address:{
+                    required
+                },
+                city:{
+                    required,
+                    minLength: minLength(2)
+                },
+                state:{
+                    required,
+                    minLength: minLength(2),
+                    maxLength: maxLength(2)
+                },
+                zip:{
+                    required,
+                    zip
+                }
+
             }
-            return total.toFixed(2);
-        },...mapGetters(['isAuthenticated', 'cart', 'cartCount', 'isLoading'])
+
+        },
+
+        components: {
+            CardElement,
+            isLoading: false
+
+        },
+
+        methods: {
+
+            submitPayment() {
+
+                this.$store.dispatch('isLoading');
+                this.$v.form.$touch();
+
+                if (!this.$v.form.$invalid) {
+                    
+                    // createToken returns a Promise which resolves in a result object with
+                    // either a token or an error key.
+                    // See https://stripe.com/docs/api#tokens for the token object.
+                    // See https://stripe.com/docs/api#errors for the error object.
+                    // More general https://stripe.com/docs/stripe.js#stripe-create-token.
+                    const options = {
+                        name: this.name_on_card,
+                    }
+                    createToken(options).then(result => {
+
+                        if(result.error) {
+                            console.log(result.error);
+                        }
+                        
+                        // create hidden input with stripe token to complete transaction
+                        let hiddenInput = document.createElement('input');
+                        
+                        hiddenInput.setAttribute('type', 'hidden');
+                        hiddenInput.setAttribute('name', 'stripeToken');
+                        hiddenInput.setAttribute('value', result.token.id);
+
+                        //append stripe token noto form
+                        this.$el.appendChild(hiddenInput);
+
+                        // build the FormData object for each form key
+                        let formData = new FormData();
+                        Object.keys(this.form).forEach(key => {
+                            formData.append(key, this.form[key])
+                        })
+                                            
+                        // append the necessary fields to the formData object
+                        formData.append('stripeToken', result.token.id);
+                        formData.append('amount', this.totalPrice);
+                        formData.append('role', 'user');
+                        formData.append('cart', JSON.stringify(this.cart));
+                        
+                        axios.post("/api/purchase", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
+                                    this.$store.dispatch('purchaseSuccess');
+                                    this.resetForm();
+
+                                    self.$notify({
+                                        group: 'notifications',
+                                        type: 'success',
+                                        title: "success",
+                                        text: 'Your purchase was successful.',
+                                        duration: '15000',
+                                        width: '100%'
+                                    });
+
+                                    this.$router.push('/shop');
+                                    
+                                }).catch((error) => {
+                                    
+                                    console.log(error);
+                                    this.resetForm();
+
+                                })
+                            
+                        console.log("TOKEN: " + result.token.id);
+
+                    })
+                }
+            },
+
+            resetForm() {
+
+                this.form.email = '';
+                this.form.name_on_card = '',
+                this.form.address = '',
+                this.form.city = '',
+                this.form.state = '',
+                this.form.zip = '',
+                this.form.amount = ''
+                
+            }
+        },
+        
+        computed: {
+            totalPrice(){
+                let total = 0;
+                for(let item of this.$store.state.cart){
+                    total += item.totalPrice;
+                }
+                return total.toFixed(2);
+            },...mapGetters(['isAuthenticated', 'cart', 'cartCount', 'isLoading'])
+        }
     }
-}
-    
 </script>
 
 <style>
