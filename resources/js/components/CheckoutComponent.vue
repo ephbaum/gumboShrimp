@@ -225,7 +225,7 @@ export default {
                                 this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
 
-                                this.$notify({
+                                self.$notify({
                                     group: 'notifications',
                                     type: 'success',
                                     title: "success",
@@ -233,7 +233,7 @@ export default {
                                     duration: '15000',
                                     width: '100%'
                                 });
-                                
+
                                 this.$router.push('/shop');
                                 
                             }).catch((error) => {
