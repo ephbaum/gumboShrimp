@@ -224,6 +224,16 @@ export default {
                     axios.post("/api/purchase", formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(({data}) => {
                                 this.$store.dispatch('purchaseSuccess');
                                 this.resetForm();
+
+                                this.$notify({
+                                    group: 'notifications',
+                                    type: 'success',
+                                    title: "success",
+                                    text: 'Your purchase was successful.',
+                                    duration: '15000',
+                                    width: '100%'
+                                });
+                                
                                 this.$router.push('/shop');
                                 
                             }).catch((error) => {
@@ -233,7 +243,6 @@ export default {
 
                             })
                            
-
                     console.log("TOKEN: " + result.token.id);
 
                 })
