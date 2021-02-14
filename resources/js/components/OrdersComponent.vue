@@ -40,6 +40,14 @@
                         </b-col>
                     </b-row>
 
+                    <b-row v-for='(item, id) in order.order_item' :key="id" class="text-center">
+                        <b-col>
+
+                            {{ item["quantity"] }} -- {{ item["item_name"] }}
+                        
+                        </b-col>
+                    </b-row>
+
                     <b-row class="text-center bottom">
                         <b-col>
 
@@ -48,13 +56,11 @@
                         </b-col>
                     </b-row>
 
-                    <b-row v-for='(item, id) in order.order_item' :key="id">
-                        {{ item["quantity"] }} -- {{ item["item_name"] }}
-                    </b-row>
-
-                    <b-row>
+                    <b-row class="text-center bottom">
                         <b-col>
-                            <b-button @click.prevent="deleteItem(order.id)">DELETE</b-button>
+
+                            <b-button @click.prevent="fulfillOrder(order.id)">Fulfill</b-button>
+                        
                         </b-col>
                     </b-row>
                 </b-card>
@@ -99,11 +105,13 @@
                     console.log(error);
                 }); 
             },
-            deleteItem(id){
+            fulfillOrder(id){
                 axios.delete('/api/orders/' + id).then(response =>{
                     this.$router.go(0);
                     console.log('DELETED SUCCESSFULLY'); 
                 });
+
+                console.log("Order Deleted");
             }
         },
 
