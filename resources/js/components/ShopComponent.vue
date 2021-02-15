@@ -195,7 +195,16 @@
                 });
                 }
             },
-            addToCart(item){    
+            addToCart(item){
+
+                this.$notify({
+                        group: 'notifications',
+                        type: 'success',
+                        title: 'Item Added',
+                        text: 'Item added to cart.',
+                        duration: '8000',
+                        width: '100%'
+                    });
                 this.$store.dispatch('addToCart', item);
 
             },
