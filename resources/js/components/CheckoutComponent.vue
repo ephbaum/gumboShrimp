@@ -225,7 +225,7 @@
                                     this.$store.dispatch('purchaseSuccess');
                                     this.resetForm();
 
-                                    self.$notify({
+                                    this.$notify({
                                         group: 'notifications',
                                         type: 'success',
                                         title: "success",
