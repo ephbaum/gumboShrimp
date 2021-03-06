@@ -106,12 +106,9 @@ class OrderController extends Controller
 
                     // grab and remove quantity from inventory
                     $item = Item::where('id', $item['id'])->first();
-
-                    // get the new number available
-                    $numAvailable = $numAvailable - $orderItem->quantity;
                     
                     // set and save
-                    $item->number_available = $numAvailable;
+                    $item->number_available = $numAvailable - $orderItem->quantity;
                 
                     $item->save();
                     $orderItem->save();
