@@ -27,8 +27,6 @@ class OrderController extends Controller
     public function index()
     {
         return OrderResource::collection(Order::orderBy('created_at', 'asc')->has('OrderItem')->with('OrderItem')->get());
-
-        
     }
 
     /**
@@ -103,6 +101,8 @@ class OrderController extends Controller
                     $orderItem->quantity = $item['quantity'];
                     $orderItem->price = $item['price'];
                     $orderItem->save();
+
+                    // remove from inventory
                 }
 
                 // everything went well, return 201
