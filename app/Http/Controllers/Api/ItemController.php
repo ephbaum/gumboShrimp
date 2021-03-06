@@ -34,7 +34,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return ItemResource::collection(Item::orderBy('created_at', 'asc')->get());
+        return ItemResource::collection(Item::orderBy('created_at', 'asc')->where('number_available', '>', 0)->get());
     }
 
     /**
