@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Item;
 use App\Models\OrderItem;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class OrderController extends Controller
 
             } catch (CardErrorException $e) {
                 // handle exception 
-                return back()->withErrors('There was an error with Stripe: ' . $e->getMessage());
+                return response()->json(['message' => $e], Response::HTTP_EXPECTATION_FAILED);
             }
 
             // Stripe call successful, carry on
@@ -94,15 +95,26 @@ class OrderController extends Controller
             if ($order->save())
             {
                 foreach($cart as $item) {
+                    $numAvailable = $item['number_available'];
+
                     $orderItem = New OrderItem();
                     $orderItem->order_id = $order->id;
                     $orderItem->item_id = $item['id'];
                     $orderItem->item_name = $item['item_name'];
                     $orderItem->quantity = $item['quantity'];
                     $orderItem->price = $item['price'];
-                    $orderItem->save();
 
-                    // remove from inventory
+                    // grab and remove quantity from inventory
+                    $item = Item::where('id', $item['id'])->first();
+
+                    // get the new number available
+                    $numAvailable = $numAvailable - $orderItem->quantity;
+                    
+                    // set and save
+                    $item->number_available = $numAvailable;
+                
+                    $item->save();
+                    $orderItem->save();
                 }
 
                 // everything went well, return 201
@@ -117,18 +129,6 @@ class OrderController extends Controller
         // The resource is not validated, return 400
         Log::debug(('[ORDER CONTROLLER] --> Resource not validated -- return 400'));
         return response()->json(null, Response::HTTP_BAD_REQUEST);
-    }
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
     }
 
     /**
