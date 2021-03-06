@@ -26,6 +26,10 @@
                         <b-col>
                             <b-card-text> ${{ item.price }} </b-card-text>
                         </b-col>
+
+                        <b-col>
+                            <b-card-text> {{ item.number_available }} </b-card-text>
+                        </b-col>
                     </b-row>
                     
                     <b-card-footer>
