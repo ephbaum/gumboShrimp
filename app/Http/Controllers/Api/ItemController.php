@@ -49,7 +49,6 @@ class ItemController extends Controller
         if($validated)
         {
             $item = new Item();
-
             $item->item_name = request('itemName');
             $item->description = request('itemDescription');
             $item->price = request('itemPrice');
@@ -85,12 +84,10 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $item = Item::find($item)->first();
-
         $item->item_name = request('itemName');
         $item->description = request('itemDescription');
         $item->price = request('itemPrice');
         $item->number_available = request('numberAvailable');    
-    
 
         if($request->hasFile('itemImage'))
         {
