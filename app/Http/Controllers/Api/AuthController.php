@@ -37,6 +37,7 @@ class AuthController extends Controller
     {
         // check if email is in use
         $user = User::where('email', $request->email)->first();
+
         if ($user) 
         {
             return response()->json([
@@ -77,7 +78,6 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        
         // check if user exists
         $user = User::where('email', $request->email)->first();
         
@@ -110,7 +110,6 @@ class AuthController extends Controller
             'password' => $request->password,
             'scope' => '',
         ];
-
 
         // Get access_token
         $request = Request::create('/oauth/token', 'POST', $data);
@@ -153,6 +152,12 @@ class AuthController extends Controller
             'status' => Response::HTTP_OK,
         ]);
     }
+
+    /**
+     * logout the user
+     *
+     * @return null
+     */
     public function logout()
     {
         if (Auth::user()) {
@@ -166,7 +171,8 @@ class AuthController extends Controller
     }
 
     /**
-     *
+     * return the current user
+     * 
      * @return \App\Models\User
     */
     public function User()
