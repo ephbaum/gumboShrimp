@@ -8,7 +8,6 @@
         
         <div class="loader" v-if="isLoading"></div>
 
-        
         <router-view name="body"/>
 
         <notifications group="notifications" position="bottom center" width="100%"/>
@@ -35,6 +34,7 @@
         mounted() {
             if (window.auth.check()) {
                 // here is where you can do something if the user is logged in
+                console.log("USER IS LOGGED IN AND MAIN APP IS MOUNTED.");
             }
         }
     }
