@@ -6,6 +6,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Item;
+use Laravel\Passport\Passport;
+use Mockery\Generator\StringManipulation\Pass\Pass;
+use App\Models\User;
 
 class ItemTest extends TestCase
 {
@@ -20,9 +23,6 @@ class ItemTest extends TestCase
         // count records in db before adding
         $countBefore = Item::count();
         
-        // this allows us past the auth on items POST route
-        $this->loginRandomAdmin();
-
         // create an item
         $item = factory(Item::class)->make();
         $data = [
@@ -33,11 +33,12 @@ class ItemTest extends TestCase
             'itemImage' => $item->image
         ];
 
-        $headers = [];
-        $headers['Accept'] = 'application/json';
-        $headers['Authorization'] = 'Bearer ' . $this->token;
+        Passport::actingAs(
+            factory(User::class)->create(),
+            ['*']
+        );
 
-        $response = $this->json('POST', '/api/items', $data, $headers);
+        $response = $this->json('POST', '/api/items', $data);
         $response->assertStatus(201);
         $this->assertStringContainsString('Item successfully created and persisted', $response->content());
 
@@ -45,7 +46,7 @@ class ItemTest extends TestCase
         $itemId = Item::latest('created_at')->first()->id;
 
         // delete the newly created item
-        $this->json('delete', '/api/items/' . $itemId, $headers)->assertStatus(200);
+        $this->json('delete', '/api/items/' . $itemId)->assertStatus(200);
 
         // check the count after deleting, compare
         $countAfter = Item::count();

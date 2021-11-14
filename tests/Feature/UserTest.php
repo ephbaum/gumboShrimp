@@ -7,21 +7,32 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\JsonResponse;
 use App\Models\User;
 use Tests\TestCase;
+use Laravel\Passport\Passport;
 
 class UserTest extends TestCase
 {
     public function testLoginRandomAdmin()
     {
-        $response = $this->loginRandomAdmin();
+        Passport::actingAs(
+            factory(User::class)->create(),
+            ['*']
+        );
 
-        $response->assertStatus(200);
-        $this->assertStringContainsString('token', $response->content());
-        $this->assertStringContainsString('user', $response->content());
+        $this->post('/api/login')
+            ->assertStatus(200)
+            ->assertStringContainsString('token', $response->content())
+            ->assertStringContainsString('user', $response->content());
     }
 
     public function testCurrentUser()
     {
-        $response = $this->loginRandomAdmin();
+        Passport::actingAs(
+            factory(User::class)->create(),
+            ['*']
+        );
+
+        $response = $this->json('POST', '/api/login');
+
         $response->assertStatus(200);
 
         $header = [];

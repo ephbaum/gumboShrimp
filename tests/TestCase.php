@@ -4,32 +4,39 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Models\User;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\Passport;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, RefreshDatabase, DatabaseMigrations, InteractsWithDatabase;
     
     /** @var string */
     protected $token = '';
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        \Artisan::call('migrate',['-vvv' => true]);
+        \Artisan::call('passport:install',['-vvv' => true]);
+        \Artisan::call('db:seed',['-vvv' => true]);
+    }
+
     /**
-     * Log in random admin user
-     *
+     * 
      * @return object
      */
     public function loginRandomAdmin()
     {
-        $user = User::inRandomOrder()->where('role', 'admin')->first();
+        Passport::actingAs(
+            factory(User::class)->create(),
+            ['*']
+        );
 
-        $tokenData = [
-            'grant_type' => 'password',
-            'email' => trim($user->email),
-            'password' => 'password',
-            'scope' => ''
-        ];
-
-        $response = $this->json('POST', '/api/login', $tokenData);
+        $response = $this->json('POST', '/api/login');
 
         $json = json_decode($response->content());
 

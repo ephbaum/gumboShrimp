@@ -30,6 +30,15 @@ An eCommerce application from the ground up, as it goes. This is a dirty stew of
     - `docker compose exec php php artisan key:generate`
     - `docker compose exec php php artisan migrate`
     - `docker compose exec php php artisan db:seed`
+7. Do some more Laravel stuff, this time for [Passport](https://laravel.com/docs/7.x/passport)
+    - `docker compose exec php artisan passport:install` @todo update, this seems scriptable
+        - Output of this will be used to [create personal access client](https://laravel.com/docs/7.x/passport#creating-a-personal-access-client) by populating two values in your `.env` file
+            - ```
+PASSPORT_PERSONAL_ACCESS_CLIENT_ID=client-id-value
+PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET=unhashed-client-secret-value 
+```
+            - 
+
 
 ## License
 
