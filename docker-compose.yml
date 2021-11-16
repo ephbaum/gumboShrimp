@@ -19,7 +19,8 @@ services:
 
   # Database Image
   mysql:
-    image: mysql:5.7.22
+    platform: linux/amd64
+    image: mysql:5.7.34
     container_name: mysql
     restart: always
     tty: true
@@ -27,7 +28,7 @@ services:
       - "3307:3306"
     environment:
       MYSQL_DATABASE: gumbo_shrimp
-      MYSQL_USER: root
+      
       MYSQL_ROOT_PASSWORD: root
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
@@ -52,9 +53,9 @@ services:
       - ./:/var/www
     networks:
       - laravel
-    depends_on:
-      mysql:
-        condition: service_healthy
+    # depends_on:
+    #   mysql:
+    #     condition: service_healthy
 
 # Volumes
 volumes:
