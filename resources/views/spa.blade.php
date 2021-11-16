@@ -8,8 +8,6 @@
     
         <title>CB Store</title>
 
-        <link rel="icon" href="localhost:8000/favicon.ico?v=2" />
-
         <!-- Fonts -->
         <link href="https://bootswatch.com/4/litera/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> 
