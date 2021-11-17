@@ -14,9 +14,7 @@
 
                 <b-navbar-nav class="ml-auto">
                     <b-nav-item v-if="!isAuthenticated" to="login" right>Login</b-nav-item>    
-                    <b-nav-item v-if="isAuthenticated" @click="logout" right> 
-                        logout
-                    </b-nav-item>
+                    <b-nav-item v-if="isAuthenticated" @click="logout" right>Logout</b-nav-item>
                 </b-navbar-nav>
 
             </b-collapse>
