@@ -125,16 +125,12 @@
                     state:'',
                     zip:'',
                     amount:this.totalPrice,
-
                 },
-            
             }
         },
 
         mixins: [
-
             validationMixin
-
         ],
 
         validations: {
@@ -165,19 +161,15 @@
                     required,
                     zip
                 }
-
             }
-
         },
 
         components: {
             CardElement,
             isLoading: false
-
         },
 
         methods: {
-
             submitPayment() {
 
                 this.$store.dispatch('isLoading');
@@ -277,9 +269,7 @@
 <style>
 
     .wrapper {
-
         margin-top: 20px;
-
     }
 
 </style>
