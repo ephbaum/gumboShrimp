@@ -151,7 +151,6 @@
                         width: '100%'
                     });
 
-                        console.log("AXIOS CALL SUCCESSFULL");
                         // this.$store.dispatch('formSuccess')
                         this.resetForm()
 
