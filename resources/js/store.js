@@ -15,7 +15,6 @@ export default new Vuex.Store({
         let cart = window.localStorage.getItem('cart');
         let cartCount = window.localStorage.getItem('cartCount');
 
-
         return {
             token: userToken ? userToken : null,
             user: user ? user : null,
@@ -35,7 +34,7 @@ export default new Vuex.Store({
 
 
     mutations: {
-        // mutations are committed by actions, and are the ONLY way to manipulate state
+        // mutations are committed by actions, and are the only way to manipulate state
 
         setLoginCred(state, payload) {
             state.token = payload.token;
