@@ -51,9 +51,8 @@
             }
 
             return false;
-        },
-        ...mapGetters(['isAuthenticated', 'currentUser'])
-        },
+        },...mapGetters(['isAuthenticated', 'currentUser'])},
+
         methods: {
             init() {
                 
@@ -63,8 +62,6 @@
             axios.get('/api/users').then((response) => {
                 this.users = response.data.data;
             });
-
-            // this.$store.dispatch('refreshUserData');
         }
     }
 </script>
