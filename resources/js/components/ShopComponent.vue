@@ -220,7 +220,6 @@
                         this.updateItem.image = reader.result;
                         console.log(this.updateItem.image);
                         console.log("IMAGE;");
-                        
                     }
                     reader.readAsDataURL(file);
                 } else{
