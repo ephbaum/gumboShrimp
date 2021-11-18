@@ -2,9 +2,9 @@
     <b-container fluid>
         
         <router-view name="header" v-if="!isAuthenticated"/>
-        <br>
-        <nav-bar></nav-bar>
-        <br>
+        
+        <nav-bar class="n-bar"></nav-bar>
+        
         
         <div class="loader" v-if="isLoading"></div>
 
@@ -42,6 +42,11 @@
 </script>
 
 <style>
+    .n-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
     .loader {  
         border: 16px solid #f3f3f3; /* Light grey */
         border-top: 16px solid #2ffd14; 
