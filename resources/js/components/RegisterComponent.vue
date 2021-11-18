@@ -131,9 +131,6 @@ export default {
       }
     },
     computed: mapGetters(['isAuthenticated']),
-    mounted() {
-		
-    }
 }
 
 </script>
