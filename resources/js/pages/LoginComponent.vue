@@ -35,7 +35,7 @@
 
 <script>
 
-    import { mapActions, mapGetters } from "vuex";
+    import { mapGetters } from "vuex";
     import { validationMixin } from "vuelidate";
     import { required, minLength, email } from "vuelidate/lib/validators";
 
