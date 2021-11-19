@@ -108,11 +108,7 @@
                         width: '100%'
                     });
                 });
-                
             },
-            register() {
-                console.log("[LoginComponent]->register")
-            }
         },
         computed: mapGetters(['isAuthenticated']),
     }

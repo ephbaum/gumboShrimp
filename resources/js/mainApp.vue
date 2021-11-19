@@ -5,7 +5,6 @@
         
         <nav-bar class="n-bar"></nav-bar>
         
-        
         <div class="loader" v-if="isLoading"></div>
 
         <router-view name="body"/>
