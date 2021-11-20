@@ -1,7 +1,7 @@
 <template>    
     <div>
         <b-navbar toggleable="md" type="light" variant="light">
-        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+            <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
             <b-collapse is-nav id="nav_collapse">
                 
                 <b-navbar-brand to="/"><i class="fas fa-shopping-cart"></i> changocart</b-navbar-brand>
@@ -26,16 +26,13 @@
                         <span class="basketText" v-if="cartCount != 0"> {{cartCount}} </span>
                         </button>
                 </b-nav-item>
-            </b-navbar-nav>
-            
+            </b-navbar-nav>   
         </b-navbar>
     </div>
 </template>
 
 <script>
-    import { mapActions, mapGetters } from "vuex";
-    import { validationMixin } from "vuelidate";
-    import { required, minLength, email } from "vuelidate/lib/validators";
+    import { mapGetters } from "vuex";
     
     export default {
         name: "navBar",
@@ -61,7 +58,7 @@
         height: auto;
     }
 
-    #basketButton{
+    #basketButton {
         background: black;
         color: white;
         height: 30px;
