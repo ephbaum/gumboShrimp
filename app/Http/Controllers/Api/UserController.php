@@ -12,6 +12,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    /** @var mixed */
     private $user;
 
     /**
@@ -26,18 +27,23 @@ class UserController extends Controller
         $this->middleware('auth:api');
     }
 
+    /**
+     * display users
+     *
+     * @return \App\Models\User
+     */
     public function index() 
     {
         return new UserResource(User::all());
     }
 
     /**
-     *
+     * return the current user
+     * 
      * @return \App\Models\User
     */
     public function current()
     {
         return $this->user;
-
     }
 }
