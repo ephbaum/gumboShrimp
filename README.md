@@ -30,7 +30,9 @@ An eCommerce application from the ground up, as it goes. This is a dirty stew of
     - `docker compose exec php php artisan key:generate`
     - `docker compose exec php php artisan migrate`
     - `docker compose exec php php artisan db:seed`
-
+7. Run tests
+    - `docker compose exec php ./vendor/bin/phpunit`
+    
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
