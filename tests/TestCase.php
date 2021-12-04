@@ -33,8 +33,7 @@ abstract class TestCase extends BaseTestCase
 
         $json = json_decode($response->content());
 
-        if($response->getStatusCode() == 200)
-        {
+        if($response->getStatusCode() == 200) {
             $this->token = $json->token;
         }
 
