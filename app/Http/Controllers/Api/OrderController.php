@@ -138,10 +138,11 @@ class OrderController extends Controller
     {
         $order = Order::find($order)->first();
         
-        if($order->delete()){
-            return response()->json(['message' => 'Order successfully deleted'], Response::HTTP_OK);
+        if(!$order->delete()){
+            return response()->json(['message' => 'Order did not delete'], Response::HTTP_EXPECTATION_FAILED);    
         };
 
-        return response()->json(['message' => 'Order did not delete'], Response::HTTP_EXPECTATION_FAILED);
+        return response()->json(['message' => 'Order successfully deleted'], Response::HTTP_OK);
+        
     }
 }
