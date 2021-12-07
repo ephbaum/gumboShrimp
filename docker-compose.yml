@@ -49,7 +49,7 @@ services:
         HOST_UID: $HOST_UID
     container_name: php
     volumes:
-      # - ./:/var/www
+      - ./:/var/www
       - ./storage/app/public/images:/var/www/public/images
     networks:
       - laravel
