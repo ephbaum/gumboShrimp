@@ -92,7 +92,7 @@ class ItemController extends Controller
 
         if($request->hasFile('itemImage'))
         {
-            //store the image using Laravel's Storage facade
+            //store the image using Laravel's Storage facade - someone please rewrite this, love BM
             $path = "/storage" . substr(Storage::putFile('public/images', $request->file('itemImage'), 'public'), 6);
             $item->image = $path;
         }
