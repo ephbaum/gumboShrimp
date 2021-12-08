@@ -91,9 +91,8 @@ class ItemController extends Controller
 
         if($request->hasFile('itemImage'))
         {
-            // $path includes 'public/', and we don't want that in our URL, but we want 'storage' - so we chop it off and add it:
-            $path = "/storage" . substr(Storage::putFile('public/images', $request->file('itemImage'), 'public'), 6);
-
+            //store the image using Laravel's Storage facade
+            $path = Storage::putFile('public', $request->file('itemImage'));
             $item->image = $path;
         }
 
