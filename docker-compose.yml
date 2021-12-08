@@ -50,7 +50,7 @@ services:
     container_name: php
     volumes:
       - ./:/var/www
-      - ./storage/app/public/images:/var/www/public/images
+      - ./storage/app/public/images:/var/www/public/storage
     networks:
       - laravel
     depends_on:
