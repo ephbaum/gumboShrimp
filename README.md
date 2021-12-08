@@ -2,7 +2,7 @@
 
 ## About gumboShrimp
 
-An eCommerce application from the ground up, as it goes. This is a dirty stew of a playground. Beware.
+Codename gumboShrimp is an eCommerce application that offers an online store. Admin users may log in and add and update items and see the dashboard which has current orders. This is a Laravel 7 and Vue 2 application that runs in a Docker container. 
 
 ### How to Use (WIP?)
 
@@ -12,6 +12,8 @@ An eCommerce application from the ground up, as it goes. This is a dirty stew of
 4. when user clicks on 'cart' the router takes the user to CartComponent, which displays the items in the cart, with the ability to increase or decrease amounts
 
 ### Developer Setup (WIP)
+
+You'll need Docker Desktop running
 
 1. Pull this repository
     - `git clone git@github.com:git@github.com:baldmike/gumboShrimp.git`
@@ -39,6 +41,7 @@ An eCommerce application from the ground up, as it goes. This is a dirty stew of
     - get back to root `cd ..`
     - create the symlink `php artisan storage:link`
     - exit out `exit`
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
