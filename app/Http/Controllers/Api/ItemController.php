@@ -45,15 +45,17 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
-        if($request->validated())
+        if(!$request->validated())
         {
-            $item = new Item();
-            $item->item_name = request('itemName');
-            $item->description = request('itemDescription');
-            $item->price = request('itemPrice');
-            $item->image = request('itemImage');
-            $item->number_available = request('numberAvailable');    
+            return response()->json(['message' => 'There are errors in your request'], Response::HTTP_UNPROCESSABLE_ENTITY);       
         }
+
+        $item = new Item();
+        $item->item_name = request('itemName');
+        $item->description = request('itemDescription');
+        $item->price = request('itemPrice');
+        $item->image = request('itemImage');
+        $item->number_available = request('numberAvailable');
 
         if($request->hasFile('itemImage'))
         {
@@ -63,14 +65,14 @@ class ItemController extends Controller
             $item->image = $path;
         }
 
-        if ($item->save()) 
+        if (!$item->save()) 
         {
-            // item saved, return 201
-            return response()->json(['message' => 'Item successfully created and persisted'], Response::HTTP_CREATED);
+            // Item did not save, return 417
+            return response()->json(['message' => 'Item did not save'], Response::HTTP_EXPECTATION_FAILED);    
         };
 
-        // Item did not save, return 417
-        return response()->json(['message' => 'Item did not save'], Response::HTTP_EXPECTATION_FAILED);
+        // item saved, return 201
+        return response()->json(['message' => 'Item successfully created and persisted'], Response::HTTP_CREATED);
     }
 
     /**
