@@ -32,7 +32,13 @@ An eCommerce application from the ground up, as it goes. This is a dirty stew of
     - `docker compose exec php php artisan db:seed`
 7. Run tests
     - `docker compose exec php ./vendor/bin/phpunit`
-    
+8. You'll need to make a symbolic link for the uploaded images.
+    - get into your container `docker compose exec -it php sh`
+    - cd into the public folder `cd public`
+    - remove the existing storage folder `rm storage`
+    - get back to root `cd ..`
+    - create the symlink `php artisan storage:link`
+    - exit out `exit`
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
