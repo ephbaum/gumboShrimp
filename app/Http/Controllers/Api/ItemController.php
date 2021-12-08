@@ -45,8 +45,7 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
-        $validated = $request->validated();
-        if($validated)
+        if($request->validated())
         {
             $item = new Item();
             $item->item_name = request('itemName');
@@ -92,7 +91,7 @@ class ItemController extends Controller
         if($request->hasFile('itemImage'))
         {
             //store the image using Laravel's Storage facade
-            $path = Storage::putFile('public', $request->file('itemImage'));
+            $path = "/storage" . substr(Storage::putFile('public/images', $request->file('itemImage'), 'public'), 6);
             $item->image = $path;
         }
 
