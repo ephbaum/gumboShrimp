@@ -43,28 +43,31 @@
                  
             }
         },
+
         components: {
             CardElement
         },
+
         methods: {
             goToCheckout(){
                 this.$router.push("/checkout");
             },
+
             removeFromCart(cartItem) {
                 if(confirm("Are you sure you want to delete " + cartItem.item_name + "?")) {
                     this.$store.dispatch('removeFromCart', cartItem);
-                }
-                
+                }  
             },
+
             addQuantityToCart(cartItem){
                 this.$store.dispatch('addQuantityToCart', cartItem);
             },
+
             subtractQuantityFromCart(cartItem){
-
                 this.$store.dispatch('subtractQuantityFromCart', cartItem);
-
             }
         },
+
         computed: {
             totalPrice(){
                 let total = 0;
