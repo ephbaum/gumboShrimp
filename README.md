@@ -35,7 +35,7 @@ You'll need Docker Desktop running, and the app runs at localhost:8088
     - `docker compose exec php php artisan db:seed`
 7. Run tests
     - `docker compose exec php ./vendor/bin/phpunit`
-8. You'll need to make a symbolic link for the uploaded images.
+8. Make a new symbolic link for the uploaded images
     - get into your container `docker compose exec -it php sh`
     - cd into the public folder `cd public`
     - remove the existing storage folder `rm storage`
