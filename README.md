@@ -10,7 +10,7 @@ Codename gumboShrimp is an eCommerce application that offers an online store. Ad
 2. item gets added to cart (like you have), no double lines/entries
 3. the cart icon at the top (on the navbar?) should have a number next to it, that shows how many items are in the cart (like a normal website).
 4. when user clicks on 'cart' the router takes the user to CartComponent, which displays the items in the cart, with the ability to increase or decrease amounts
-5. use 4242 4242 4242 4242 4/20 as your credit card creds
+5. use 4242 4242 4242 4242 4/20 424 as your credit card creds
 
 ### Developer Setup (WIP)
 
