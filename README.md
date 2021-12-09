@@ -14,7 +14,7 @@ Codename gumboShrimp is an eCommerce application that offers an online store. Ad
 
 ### Developer Setup (WIP)
 
-You'll need Docker Desktop running
+You'll need Docker Desktop running, and the app runs at localhost:8088
 
 1. Pull this repository
     - `git clone git@github.com:git@github.com:baldmike/gumboShrimp.git`
