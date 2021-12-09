@@ -1,6 +1,5 @@
 <template>
     <b-container fluid>
-        <!-- <b-img class="headImage col-md-12" fluid src="../images/fruits.jpeg" alt="Image 1"></b-img> -->
         <div class="banner center">Chango Cart</div>
         <div class="subtitle center">A place to buy stuff.</div>
     </b-container>
@@ -8,15 +7,14 @@
 
 <script>
 
-import { mapActions, mapGetters } from "vuex";
-import { validationMixin } from "vuelidate";
-import { required, minLength, email } from "vuelidate/lib/validators";
+import { mapGetters } from "vuex";
 
 export default {
     name: "headerComponent",
     
     data() {
         return {
+            
         }
     },
 
