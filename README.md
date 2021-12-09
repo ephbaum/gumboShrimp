@@ -42,6 +42,7 @@ You'll need Docker Desktop running, and the app runs at localhost:8088
     - get back to root `cd ..`
     - create the symlink `php artisan storage:link`
     - exit out `exit`
+9. Surf your way to localhost:8088
 
 ## License
 
