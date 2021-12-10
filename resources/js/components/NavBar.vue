@@ -20,12 +20,14 @@
             </b-collapse>
 
             <b-navbar-nav class="ml-auto" v-b-popover.hover.top="'Checkout'">
+
                 <b-nav-item type="light" to="cart" v-if="cartCount > 0">
                     <button id="basketButton"> 
                         <i class="basket fas fa-shopping-basket" right></i>
                         <span class="basketText" v-if="cartCount != 0"> {{cartCount}} </span>
                         </button>
                 </b-nav-item>
+                
             </b-navbar-nav>   
         </b-navbar>
     </div>
@@ -36,12 +38,8 @@
     
     export default {
         name: "navBar",
-        data(){
-            return {
-            }
-        },
+
         methods: {
-           
             logout() {
                 this.$store.dispatch('logout');
             }
@@ -71,7 +69,6 @@
 
     .basketText {
         color:white;
-
     }
 </style>
 
