@@ -1,6 +1,7 @@
 <template>
     <b-container>
         <b-form class="addItem" >
+            
             <b-form-group
                 label-cols-lg="3"
                 label="Add an Item"
@@ -8,8 +9,8 @@
                 label-class="font-weight-bold pt-0"
                 class="mb-0">
             </b-form-group>       
+
             <b-form-group id="imageGroup" label="Image" label-for="image">
-                
                     <b-form-file
                     id="image"
                     accept="image/*"
@@ -48,6 +49,7 @@
                     Please enter item description
                 </b-form-invalid-feedback>
             </b-form-group>
+
             <b-form-group id="priceInputGroup" label="Price" label-for="price">
                 <b-form-input id="price"
                     type="number"
@@ -59,6 +61,7 @@
                     Please enter valid price
                 </b-form-invalid-feedback>
             </b-form-group>
+
             <b-form-group id="numberAvailableInputGroup" label="Number Available" label-for="numberAvailable">
                 <b-form-input id="numberAvailable"
                     type="number"
@@ -70,6 +73,7 @@
                     Please enter number Available
                 </b-form-invalid-feedback>
             </b-form-group>
+
               <b-form-group id="sizeInputGroup" label-for="size">
                 <b-form-input id="size"
                     type="text"
@@ -77,15 +81,17 @@
                     placeholder="Enter Size... ex: sm, md or lg">
                 </b-form-input>
             </b-form-group>
+
             <b-button type="submit" @click.prevent="createItem" :disabled="$v.form.$invalid" >Add Item</b-button>
+
         </b-form>
     </b-container>
 </template>
 
 <script>
-    import { mapActions, mapGetters } from "vuex";
+
     import { validationMixin } from "vuelidate";
-    import { required, minLength, email } from "vuelidate/lib/validators";
+    import { required, minLength } from "vuelidate/lib/validators";
         export default {
             data(){
                 return{
@@ -185,9 +191,6 @@
                 this.form.image = file;            
             },
         },
-        mounted() {
-            
-        }
     }
 </script>
 
