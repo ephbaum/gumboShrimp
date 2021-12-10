@@ -162,7 +162,6 @@ class AuthController extends Controller
     {
         if (Auth::user()) {
 
-            // fetch user's ID
             Auth::logout();
         }
 
