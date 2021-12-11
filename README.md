@@ -2,7 +2,7 @@
 
 ## About gumboShrimp
 
-GumboShrimp is an eCommerce application that offers an online store, "Chango Cart". Admin users may log in and add and update items and see the dashboard which has current orders. This is a Laravel 7 and Vue 2 application that runs in a Docker container.
+GumboShrimp is an eCommerce application that offers an online store, "Chango Cart". Admin users may log in and add and update items and see the dashboard which has current orders. Stripe is used for credit card processing. This is a Laravel 7 and Vue 2 application that runs in a Docker container.
 
 ### How to Use (WIP?)
 
