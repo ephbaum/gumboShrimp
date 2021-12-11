@@ -44,6 +44,9 @@ You'll need Docker Desktop running, and the app runs at localhost:8088
     - exit out `exit`
 9. Surf your way to localhost:8088
 
+### Helpful Hints
+- `php artisan optimize` will get you out of some jams. You'll have to run it in your docker box, so `docker exec -it php php artisan optimize`
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
