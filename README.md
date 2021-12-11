@@ -33,6 +33,7 @@ You'll need Docker Desktop running, and the app runs at localhost:8088
     - `docker compose exec php php artisan key:generate`
     - `docker compose exec php php artisan migrate`
     - `docker compose exec php php artisan db:seed`
+    ##### this will give you an admin user `admin@example.com` with the password `password`
 7. Make a new symbolic link for the uploaded images
     - get into your container `docker compose exec -it php sh`
     - cd into the public folder `cd public`
