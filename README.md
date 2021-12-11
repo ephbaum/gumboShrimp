@@ -33,15 +33,15 @@ You'll need Docker Desktop running, and the app runs at localhost:8088
     - `docker compose exec php php artisan key:generate`
     - `docker compose exec php php artisan migrate`
     - `docker compose exec php php artisan db:seed`
-7. Run tests
-    - `docker compose exec php ./vendor/bin/phpunit`
-8. Make a new symbolic link for the uploaded images
+7. Make a new symbolic link for the uploaded images
     - get into your container `docker compose exec -it php sh`
     - cd into the public folder `cd public`
     - remove the existing storage folder `rm storage`
     - get back to root `cd ..`
     - create the symlink `php artisan storage:link`
     - exit out `exit`
+8. Run tests
+    - `docker compose exec php ./vendor/bin/phpunit`
 9. Surf your way to localhost:8088
 
 ### Helpful Hints
