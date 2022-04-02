@@ -27,7 +27,7 @@ jobs:
     - name: Create Database
       run: |
         mkdir -p database
-        touch database/database.sql
+        touch database/gumboShrimp.sql
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
