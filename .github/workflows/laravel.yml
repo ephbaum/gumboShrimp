@@ -39,7 +39,7 @@ jobs:
         touch gumbo_shrimp.sql
     - name: Set up MySQL
       run: |
-        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USERNAME }} -p${{ env.DB_PASSWORD }}
+        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u ${{ env.DB_USERNAME }} -p ${{ env.DB_PASSWORD }}
     - name: Run Migrations
       run: |
         php artisan migrate --force
