@@ -44,7 +44,7 @@ jobs:
         mysql -e 'CREATE DATABASE gumbo_shrimp;' -uroot -proot
     - name: Run Migrations
       run: |
-        php artisan migrate --force
+        docker compose exec php php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
