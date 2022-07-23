@@ -42,6 +42,15 @@ jobs:
       run: |
         sudo /etc/init.d/mysql start
         mysql -e 'CREATE DATABASE gumbo_shrimp;' -uroot -proot
+    - name: Run Migrations
+      env:
+        DB_CONNECTION: mysql
+        DB_DATABASE: gumbo_shrimp
+        DB_PORT: 3306
+        DB_USER: root
+        DB_PASSWORD: root
+      run: |
+        php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
