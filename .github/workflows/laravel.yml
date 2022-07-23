@@ -16,7 +16,7 @@ jobs:
           image: mysql:5.7
           env:
               MYSQL_ALLOW_EMPTY_PASSWORD: yes
-              MYSQL_DATABASE: database/gumboShrimp.sql
+              MYSQL_DATABASE: gumboShrimp
           ports:
               - 3306
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -40,9 +40,8 @@ jobs:
         touch database/gumboShrimp.sql
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DB_PORT: 3306
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}
       run: |
-        php artisan migrate 
         vendor/bin/phpunit
-
+        
    
