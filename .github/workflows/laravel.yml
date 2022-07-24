@@ -13,11 +13,10 @@ jobs:
 
     services:
       mysql:
-          image: mysql:latest
+          image: mysql:5.7
           env:
+              MYSQL_ALLOW_EMPTY_PASSWORD: yes
               MYSQL_DATABASE: gumbo_shrimp
-              MYSQL_PASSWORD: root
-              MYSQL_ROOT_PASSWORD: root
           ports:
               - 3306
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -41,10 +40,7 @@ jobs:
     - name: start mysql
       run: |
         sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE gumbo_shrimp;' -uroot -proot
-    - name: see containers
-      run: |
-        docker ps 
+        mysql -e 'CREATE DATABASE gumbo_shrimp;' -uroot 
     - name: Run Migrations
       env:
         DB_CONNECTION: mysql
