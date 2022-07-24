@@ -40,7 +40,10 @@ jobs:
     - name: start mysql
       run: |
         sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE gumbo_shrimp;' -uroot -proot
+        mysql -e 'CREATE DATABASE gumbo_shrimp;' -uroot -p
+    - name: see containers
+      run: |
+        docker ps 
     - name: Run Migrations
       env:
         DB_CONNECTION: mysql
