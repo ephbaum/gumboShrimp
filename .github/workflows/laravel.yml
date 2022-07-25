@@ -45,9 +45,10 @@ jobs:
       env:
         DB_CONNECTION: mysql
         DB_DATABASE: gumbo_shrimp
-        DB_PORT: 3306
+        DB_PORT: 8888
         DB_USER: root
         DB_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: root
       run: |
         php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit
