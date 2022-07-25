@@ -18,7 +18,7 @@ jobs:
               MYSQL_ALLOW_EMPTY_PASSWORD: yes
               MYSQL_DATABASE: gumbo_shrimp
           ports:
-              - 3306
+              - 8888:3306
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -37,10 +37,9 @@ jobs:
     - name: Create Database
       run: |
         touch gumbo_shrimp.sql
-    - name: start mysql
+    - name: run mysql
       run: |
-        sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE gumbo_shrimp;' -uroot 
+        mysql -h 127.0.0.1 --port 8888 -u root -p root -e 'CREATE DATABASE IF NOT EXISTS gumbo_shrimp;'
     - name: Run Migrations
       env:
         DB_CONNECTION: mysql
