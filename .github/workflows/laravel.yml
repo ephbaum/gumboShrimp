@@ -39,7 +39,7 @@ jobs:
         touch gumbo_shrimp.sql
     - name: run mysql
       run: |
-        mysql -h 127.0.0.1 --port 8888 -u root -p root -e 'CREATE DATABASE IF NOT EXISTS gumbo_shrimp;'
+        mysql -h 127.0.0.1 --port 8888 -u root -proot -e 'CREATE DATABASE IF NOT EXISTS gumbo_shrimp;'
     - name: Run Migrations
       env:
         DB_CONNECTION: mysql
