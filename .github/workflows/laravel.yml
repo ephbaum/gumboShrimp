@@ -17,6 +17,7 @@ jobs:
           env:
               MYSQL_ALLOW_EMPTY_PASSWORD: yes
               MYSQL_DATABASE: gumbo_shrimp
+              MYSQL_ROOT_PASSWORD: root
           ports:
               - 8888:3306
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -44,10 +45,9 @@ jobs:
       env:
         DB_CONNECTION: mysql
         DB_DATABASE: gumbo_shrimp
-        DB_PORT: 8888
+        DB_PORT: 3306
         DB_USER: root
         DB_PASSWORD: root
-        MYSQL_ROOT_PASSWORD: root
       run: |
         php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit
