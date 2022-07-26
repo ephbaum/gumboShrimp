@@ -19,7 +19,7 @@ jobs:
               MYSQL_DATABASE: gumbo_shrimp
               MYSQL_ROOT_PASSWORD: root
           ports:
-              - 8888:3306
+              - 3306
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -40,7 +40,7 @@ jobs:
         touch gumbo_shrimp.sql
     - name: run mysql
       run: |
-        mysql -h 127.0.0.1 --port 8888 -u root -proot -e 'CREATE DATABASE IF NOT EXISTS gumbo_shrimp;'
+        mysql -h 127.0.0.1 --port 3306 -u root -proot -e 'CREATE DATABASE IF NOT EXISTS gumbo_shrimp;'
     - name: Run Migrations
       env:
         DB_CONNECTION: mysql
