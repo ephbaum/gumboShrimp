@@ -45,7 +45,7 @@ jobs:
         mysql -h 127.0.0.1 --port 33306 -u root -proot -e 'CREATE DATABASE IF NOT EXISTS gumbo_shrimp;'
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DB_CONNECTION: 12.0.0.1
+        DB_CONNECTION: 127.0.0.1
         DB_DATABASE: gumbo_shrimp
         DB_PORT: 33306
         DB_USER: gumbo_shrimp_user
