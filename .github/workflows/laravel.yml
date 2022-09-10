@@ -43,9 +43,6 @@ jobs:
     - name: run mysql
       run: |
         mysql -h 127.0.0.1 --port 33306 -u root -proot -e 'CREATE DATABASE IF NOT EXISTS gumbo_shrimp;'
-    - name: Run Migrations
-      run: |
-        php artisan migrate --force
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: mysql
@@ -54,5 +51,6 @@ jobs:
         DB_USER: gumbo_shrimp_user
         DB_PASSWORD: gumbo_shrimp_password
       run: |
+        php artisan migrate --force
         ./vendor/bin/phpunit
    
