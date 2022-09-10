@@ -24,8 +24,6 @@ abstract class TestCase extends BaseTestCase
     {
         $user = User::inRandomOrder()->where('role', 'admin')->first();
 
-        dd($user);
-
         $tokenData = [
             'grant_type' => 'password',
             'email' => trim($user->email),
