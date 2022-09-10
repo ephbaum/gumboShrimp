@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use App\Models\User;
+use \App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -22,6 +22,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function loginRandomAdmin()
     {
+        factory(User::class, 10)->create();
         $user = User::inRandomOrder()->where('role', 'admin')->first();
 
         $tokenData = [
