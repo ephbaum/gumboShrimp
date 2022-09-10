@@ -5,9 +5,11 @@ namespace Tests;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 abstract class TestCase extends BaseTestCase
 {
+    use RefreshDatabase;
     use CreatesApplication;
     
     /** @var string */
@@ -21,6 +23,8 @@ abstract class TestCase extends BaseTestCase
     public function loginRandomAdmin()
     {
         $user = User::inRandomOrder()->where('role', 'admin')->first();
+
+        dd($user);
 
         $tokenData = [
             'grant_type' => 'password',

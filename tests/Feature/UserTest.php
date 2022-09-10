@@ -10,6 +10,9 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase;
+    use WithFaker;
+
     public function testLoginRandomAdmin()
     {
         $response = $this->loginRandomAdmin();

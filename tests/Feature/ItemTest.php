@@ -9,6 +9,9 @@ use App\Models\Item;
 
 class ItemTest extends TestCase
 {
+    use RefreshDatabase;
+    use WithFaker;
+
     public function testIndexRoute()
     {
         $response = $this->get('/api/items');
