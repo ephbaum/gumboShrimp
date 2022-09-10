@@ -50,6 +50,6 @@ jobs:
         DB_PASSWORD: root
       run: |
         php artisan migrate --force
-        mysql -h 127.0.0.1 --port 33306 -u root -proot -d gumbo_shrimp -e 'show create table items;'
+        mysql -h 127.0.0.1 --port 33306 -u root -proot gumbo_shrimp -e 'show create table items;'
         ./vendor/bin/phpunit
    
