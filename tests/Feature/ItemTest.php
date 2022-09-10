@@ -24,9 +24,6 @@ class ItemTest extends TestCase
     {
         // count records in db before adding
         $countBefore = Item::count();
-        
-        // this allows us past the auth on items POST route
-        // $this->loginRandomAdmin();
 
         // create an item
         $item = factory(Item::class)->make();
